@@ -35,11 +35,13 @@ public class FirstSeleniumTest {
         // by name
         WebElement elementVariantByNameOne = driver.findElement(By.xpath("//*[@name='password']"));
         WebElement elementVariantByNameTwo = driver.findElement(By.cssSelector("[name='password']"));
+        WebElement elementVariantByNameThree = driver.findElement(By.name("password"));
 
 
         // form control
         WebElement elementVariantFormControlOne = driver.findElement(By.xpath("//*[@formcontrolname='password']"));
         WebElement elementVariantFormControlTwo = driver.findElement(By.cssSelector("[formcontrolname='password']"));
+        WebElement elementVariantFormControlThree = driver.findElement(By.name("form-control rounded-pill ng-untouched ng-pristine ng-invalid"));
 
         //placeholder
         WebElement elementVariantPlaceholderOne = driver.findElement(By.xpath("//*[@placeholder='Password']"));
