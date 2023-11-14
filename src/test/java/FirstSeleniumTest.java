@@ -35,11 +35,11 @@ public class FirstSeleniumTest {
 
         WebElement elementVariantPasswordOne = driver.findElement(By.xpath("//*[@formcontrolname='password']"));
         WebElement elementVariantPasswordTwo = driver.findElement(By.cssSelector("[formcontrolname='password]"));
-        WebElement elementVariantPasswordThree = driver.findElement(By.name("password"));
+
 
         WebElement elementVariantPlaceholderdOne = driver.findElement(By.xpath("//*[@placeholder='Password']"));
         WebElement elementVariantPlaceholderdTwo = driver.findElement(By.cssSelector("[placeholder='Password']"));
-        WebElement elementVariantPlaceholderdThree = driver.findElement(By.name("password"));
+
 
         WebElement elementVariantName1One = driver.findElement(By.xpath("//*[@name='password']"));
         WebElement elementVariantName2Two = driver.findElement(By.cssSelector("[name='password']"));
