@@ -22,4 +22,23 @@ public class Locators {
     WebElement elementVariantClassThree = driver.findElement(By.cssSelector("[class='form-control mb-2 rounded-pill ng-untouched ng-pristine ng-invalid']"));
     WebElement elementVariantClassFour = driver.findElement(By.cssSelector(".form-control.mb-2.rounded-pill.ng-untouched.ng-pristine.ng-invalid"));
     WebElement elementVariantClassFive = driver.findElement(By.className("form-control mb-2 rounded-pill ng-untouched ng-pristine ng-invalid"));
+
+
+    //domawka
+    WebElement elementVariantPasswordOne = driver.findElement(By.xpath("//*[@formcontrolname=`password`]"));
+    WebElement elementVariantPasswordTwo = driver.findElement(By.cssSelector("[formcontrolname=`password`]"));
+
+
+    WebElement elementVariantPlaceholderOne = driver.findElement(By.xpath("//*[@placeholder=`Password`]"));
+    WebElement elementVariantPlaceholderTwo = driver.findElement(By.cssSelector("[placeholder=`Password`"));
+
+
+    WebElement elementVariantNameOne1 = driver.findElement(By.xpath("//*[@name=`password`]"));
+    WebElement elementVariantNameTwo2 = driver.findElement(By.cssSelector("[name=`password`]"));
+    WebElement elementVariantNameThree3 = driver.findElement(By.name("password"));
+
+
+
+
 }
+
