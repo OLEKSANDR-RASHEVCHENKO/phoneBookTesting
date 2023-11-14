@@ -32,13 +32,14 @@ public class FirstSeleniumTest {
         WebElement elementVariantClassFour = driver.findElement(By.cssSelector(".form-control.mb-2.rounded-pill.ng-untouched.ng-pristine.ng-invalid"));
         WebElement elementVariantClassFive = driver.findElement(By.className("form-control mb-2 rounded-pill ng-untouched ng-pristine ng-invalid"));
 
-        WebElement elementVariantPasswordOne = driver.findElement(By.xpath("//*[@formcontrolname=`password`]"));
-        WebElement elementVariantPasswordTwo = driver.findElement(By.cssSelector("//*[@formcontrolname=`password`]"));
-        WebElement elementVariantPasswordThree = driver.findElement(By.name("password"));
 
-        WebElement elementVariantPlaceholderOne = driver.findElement(By.xpath("//*[@placeholder=`password`]"));
-        WebElement elementVariantPlaceholderTwo = driver.findElement(By.cssSelector("[placeholder=`password`"));
-        WebElement elementVariantPlaceholderThree = driver.findElement(By.name("password"));
+        WebElement elementVariantPasswordOne = driver.findElement(By.xpath("//*[@formcontrolname=`password`]"));
+        WebElement elementVariantPasswordTwo = driver.findElement(By.cssSelector("[formcontrolname=`password`]"));
+
+
+        WebElement elementVariantPlaceholderOne = driver.findElement(By.xpath("//*[@placeholder=`Password`]"));
+        WebElement elementVariantPlaceholderTwo = driver.findElement(By.cssSelector("[placeholder=`Password`"));
+
 
         WebElement elementVariantNameOne1 = driver.findElement(By.xpath("//*[@name=`password`]"));
         WebElement elementVariantNameTwo2 = driver.findElement(By.cssSelector("[name=`password`]"));
