@@ -1,17 +1,17 @@
 public class MY {
 
     // name
-     WebElement elementVariantPasswordOne = driver.findElement(By.xpath("//*[@formcontrolname='password']"));
-     WebElement elementVariantPasswordTwo = driver.findElement(By.cssSelector("[formcontrolname='password]"));
-     WebElement elementVariantPasswordThree = driver.findElement(By.name("password"));
+    // WebElement elementVariantPasswordOne = driver.findElement(By.xpath("//*[@formcontrolname='password']"));
+    // WebElement elementVariantPasswordTwo = driver.findElement(By.cssSelector("[formcontrolname='password]"));
+    // WebElement elementVariantPasswordThree = driver.findElement(By.name("password"));
 
-     WebElement elementVariantPasswordOne = driver.findElement(By.xpath("//*[@placeholder='Password']"));
-     WebElement elementVariantPasswordTwo = driver.findElement(By.cssSelector("[placeholder='Password']"));
-     WebElement elementVariantPasswordThree = driver.findElement(By.name("password"));
+    // WebElement elementVariantPasswordOne = driver.findElement(By.xpath("//*[@placeholder='Password']"));
+    // WebElement elementVariantPasswordTwo = driver.findElement(By.cssSelector("[placeholder='Password']"));
+    // WebElement elementVariantPasswordThree = driver.findElement(By.name("password"));
 
-     WebElement elementVariantNamedOne = driver.findElement(By.xpath("//*[@name='password']"));
-     WebElement elementVariantNameTwo = driver.findElement(By.cssSelector("[name='password']"));
-     WebElement elementVariantNameThree = driver.findElement(By.name("password"));
+    // WebElement elementVariantNamedOne = driver.findElement(By.xpath("//*[@name='password']"));
+    // WebElement elementVariantNameTwo = driver.findElement(By.cssSelector("[name='password']"));
+    // WebElement elementVariantNameThree = driver.findElement(By.name("password"));
 
 
 
