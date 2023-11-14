@@ -34,9 +34,16 @@ public class FirstSeleniumTest {
         WebElement elementVariantClassFour = driver.findElement(By.cssSelector(".form-control.mb-2.rounded-pill.ng-untouched.ng-pristine.ng-invalid"));
         WebElement elementVariantClassFive = driver.findElement(By.className("form-control mb-2 rounded-pill ng-untouched ng-pristine ng-invalid"));
 
+        // password
+
         WebElement elementVariantPasswordOne = driver.findElement(By.xpath("//*[@formcontrolname='password']"));
         WebElement elementVariantPasswordTwo = driver.findElement(By.cssSelector("[name='password']"));
         WebElement elementVariantPasswordThree = driver.findElement(By.name("password"));
+
+        // email
+        WebElement elementVariantEmailOne = driver.findElement(By.xpath("//*[@id='defaultRegisterFormEmail']"));
+        WebElement elementVariantEmailTwo = driver.findElement(By.cssSelector("[name='email']"));
+        WebElement elementVariantEmailThree = driver.findElement(By.name("email"));
 
 
         driver.quit();
