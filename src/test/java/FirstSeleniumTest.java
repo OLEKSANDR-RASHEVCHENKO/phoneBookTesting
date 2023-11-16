@@ -27,7 +27,7 @@ public class FirstSeleniumTest {
 
         WebElement loginButton = driver.findElement(By.xpath("//*[@type='submit']"));
         loginButton.click();
-        Thread.sleep(10000);
+        Thread.sleep(8000);
         List<WebElement> elements = driver.findElements(By.xpath("//*[@class='list-group']"));
         int actualContactCount = elements.size();
         int expectedContactCount = 1009;
