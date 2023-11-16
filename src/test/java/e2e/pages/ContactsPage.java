@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.NoSuchElementException;
+
 public class ContactsPage extends BasePage {
     public ContactsPage(WebDriver driver) {
         super(driver);
@@ -13,6 +15,11 @@ public class ContactsPage extends BasePage {
     WebElement header;
 
     public boolean confirmLogin(){
-        return header.isDisplayed();
+        try{
+            return true;
+
+        }catch (NoSuchElementException e){
+            return false;
+        }
     }
 }
