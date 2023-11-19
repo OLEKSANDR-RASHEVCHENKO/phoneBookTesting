@@ -33,7 +33,7 @@ public WebDriver driver;
         List<WebElement> elements = driver.findElements(By.xpath("//*[@class='list-group']"));
         //System.out.println(elements.size());
         int actualContactCount = elements.size();
-        int expectedContactCount = 1009 ;
+        int expectedContactCount = 1010 ;
         Assert.assertEquals(actualContactCount,expectedContactCount, actualContactCount + " not equal " + expectedContactCount);
 
         driver.quit();
