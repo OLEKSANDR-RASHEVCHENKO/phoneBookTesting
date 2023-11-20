@@ -1,10 +1,11 @@
-package pages;
+package e2e;
 
+import e2e.ApplicationManager;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class TestBase {
-    protected  static  ApplicationManager app = new ApplicationManager();
+    protected  static ApplicationManager app = new ApplicationManager();
 
     @BeforeMethod
     public void setupTest(){

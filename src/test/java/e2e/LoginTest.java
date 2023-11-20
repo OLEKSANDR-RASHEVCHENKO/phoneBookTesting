@@ -1,9 +1,11 @@
-package pages;
+package e2e;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import e2e.pages.ContactsPage;
+import e2e.pages.LoginPage;
 
-public class LoginTest extends TestBase{
+public class LoginTest extends TestBase {
     LoginPage loginPage;
     ContactsPage contactsPage;
     @Test
