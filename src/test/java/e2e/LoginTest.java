@@ -22,13 +22,13 @@ public class LoginTest extends TestBase{
 
     @Test
     public void userCannotLoginWithInvalidEmail() {
-        String email = "redbull@gmail.com";
+        String email = "newtestgmail.com";
         String password = "newtest@gmail.com";
 
         loginPage = new LoginPage(app.driver);
         loginPage.login(email, password);
         contactsPage = new ContactsPage(app.driver);
-        Assert.assertTrue(contactsPage.confirmLogin(), "User should not be logged in with invalid email");
+        Assert.assertFalse(contactsPage.confirmLogin(), "User should not be logged in with invalid email");
 
     }
 
@@ -40,7 +40,7 @@ public class LoginTest extends TestBase{
         loginPage = new LoginPage(app.driver);
         loginPage.login(email,password);
         contactsPage = new ContactsPage(app.driver);
-        Assert.assertTrue(contactsPage.confirmLogin(),"User is login");
+        Assert.assertFalse(contactsPage.confirmLogin(),"User is login");
 
 }
     @Test
@@ -51,7 +51,7 @@ public class LoginTest extends TestBase{
         loginPage = new LoginPage(app.driver);
         loginPage.login(email,password);
         contactsPage = new ContactsPage(app.driver);
-        Assert.assertTrue(contactsPage.confirmLogin(),"User is not expected to be logged in");
+        Assert.assertFalse(contactsPage.confirmLogin(),"User is  expected to be logged in");
     }
     @Test
     public void userCannotLoginWithInvalidPasswordAndEmail() {
@@ -61,7 +61,7 @@ public class LoginTest extends TestBase{
         loginPage = new LoginPage(app.driver);
         loginPage.login(email, password);
         contactsPage = new ContactsPage(app.driver);
-        Assert.assertTrue(contactsPage.confirmLogin(), "The user cannot log in with invalid credentials.");
+        Assert.assertFalse(contactsPage.confirmLogin(), "The user cannot log in with invalid credentials.");
     }
 }
 
