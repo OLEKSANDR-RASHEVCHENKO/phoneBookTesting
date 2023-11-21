@@ -1,11 +1,10 @@
 package e2e.pages;
 
-import e2e.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AddContactDialog extends BasePage {
+public class AddContactDialog extends ContactsPage{
     //import constructor!!!
     public AddContactDialog(WebDriver driver) {
         super(driver);
