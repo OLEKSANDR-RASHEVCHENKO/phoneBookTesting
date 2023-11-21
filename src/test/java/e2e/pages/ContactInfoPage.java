@@ -17,7 +17,7 @@ public class ContactInfoPage extends ContactsPage{
     WebElement lastNameField;
 
     @FindBy(xpath = "//div[@id='contact-description']")
-    WebElement contactDescriptionField;
+    WebElement descriptionField;
 
     @FindBy(xpath = "//button[@id='btn-edit-contact']")
     WebElement editButton;
@@ -36,4 +36,25 @@ public class ContactInfoPage extends ContactsPage{
 
     @FindBy(xpath = "//textarea[@name='input-ec-description']")
     WebElement descriptionInput;
+
+    public  String getFirstName(){
+        return firstNameField.getText();
+    }
+
+    public  String getLastName(){
+        return lastNameField.getText();
+    }
+
+    public  String getDescription(){
+        return descriptionField.getText();
+    }
+
+    public void openEditContactForm(){
+        editButton.click();
+        isElementDisplayed(firstNameInput);
+    }
+
+    public void setFirstNameInput(String firstName){
+        setInput(firstNameInput, firstName);
+    }
 }
