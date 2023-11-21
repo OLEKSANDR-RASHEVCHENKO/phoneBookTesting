@@ -9,4 +9,5 @@ public class AddContactDialog extends ContactsPage{
     public AddContactDialog(WebDriver driver) {
         super(driver);
     }
+
 }
