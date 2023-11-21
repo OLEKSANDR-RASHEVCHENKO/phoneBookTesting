@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage{
-    // important constructor!!!
+    //import constructor!!!
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -20,10 +20,12 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//*[@type='submit']")
     WebElement loginButton;
 
-    // Describe methods
+    //Describe methods
     public void login(String email, String password){
         emailInput.sendKeys(email);
         passwordInput.sendKeys(password);
         loginButton.click();
     }
+
+
 }
