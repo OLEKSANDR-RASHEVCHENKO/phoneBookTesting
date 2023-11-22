@@ -4,10 +4,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class TestBase {
-    protected static ApplicationManager app = new ApplicationManager();
+    protected static AplicationManager app = new AplicationManager();
 
     @BeforeMethod
-    public void setupTest(){
+    public void setAppTest(){
         app.init();
     }
 

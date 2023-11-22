@@ -11,6 +11,7 @@ public class BasePage {
     public BasePage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
+
     }
 
     protected boolean isElementDisplayed(WebElement element){
@@ -21,7 +22,7 @@ public class BasePage {
         }
     }
 
-    protected void setInput(WebElement input,String value){
+    protected void setInput(WebElement input, String value){
         input.click();
         input.clear();
         input.sendKeys(value);

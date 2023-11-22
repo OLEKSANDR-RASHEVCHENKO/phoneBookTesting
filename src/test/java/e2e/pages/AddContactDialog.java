@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 public class AddContactDialog extends ContactsPage{
+
     public AddContactDialog(WebDriver driver) {
         super(driver);
     }
@@ -56,4 +57,5 @@ public class AddContactDialog extends ContactsPage{
         saveButton.click();
         Assert.assertFalse(isElementDisplayed(dialog), "Dialog is not closed");
     }
+
 }
