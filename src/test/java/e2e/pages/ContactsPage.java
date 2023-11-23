@@ -16,6 +16,8 @@ public class ContactsPage extends BasePage{
     WebElement languageDropDown;
     @FindBy(xpath = "//input[@formcontrolname='searchInput']")
     WebElement searchInput;
+    @FindBy(xpath = "//*[@href='/contacts']")
+    WebElement addContactButton;
     @FindBy(xpath = "//*[@id='contacts-list'] ")
     WebElement contactList;
     @FindBy(xpath = "//*[@ng-reflect-router-link='/account']")
@@ -25,12 +27,20 @@ public class ContactsPage extends BasePage{
     @FindBy(xpath = "//*[@text()='Logout']")
     WebElement logoutButton;
 
-    public boolean confirmLogin(){
-        try{
-            header.isDisplayed();
-            return true;
-        }catch (NoSuchElementException e){
-            return false;
-        }
+    public boolean confirmLogin(){return header.isDisplayed();}
+
+    public AddContactDialog openAddContactDialog(){
+        addContactButton.click();
+        return new AddContactDialog(driver);
     }
-}
+
+    public void openDeleteDialog(){
+        deleteButton.click();
+    }
+
+    public void setSearchInput(String contactValue){
+        searchInput.sendKeys(contactValue);
+    }
+
+    }
+
