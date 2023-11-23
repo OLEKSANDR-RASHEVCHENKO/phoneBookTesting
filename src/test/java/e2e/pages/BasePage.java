@@ -13,7 +13,7 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    protected boolean isElementDisplayed(WebElement element){
+    protected boolean isElementDisplayed(WebElement element) {
         try {
             return element.isDisplayed();
         }catch (NoSuchElementException e){
