@@ -4,6 +4,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class ContactsPage extends BasePage {
     public ContactsPage(WebDriver driver) {
@@ -38,15 +39,19 @@ public class ContactsPage extends BasePage {
         return header.isDisplayed();
     }
 
+    // метод кот открывает диалоговое окно контакта, аргументы не нужны, т.к. это метод действия это
     public AddContactDialog openAddContactDialog(){
+        Assert.assertTrue(isElementDisplayed(addContactButton));
         addContactButton.click();
-        return new AddContactDialog(driver);
+        return new AddContactDialog(driver); // после клика мы выводим новый экземпляр класса AddContact Dialog
     }
 
+    // метод удаления контакта
     public void openDeleteDialog(){
         deleteButton.click();
     }
 
+    // метод, кот ввводит данные в серчинг(set - заполнить).
     public void setSearchInput (String contactValue){
         searchInput.sendKeys(contactValue);
     }

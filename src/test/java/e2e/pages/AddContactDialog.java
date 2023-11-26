@@ -9,8 +9,10 @@ public class AddContactDialog extends ContactsPage{
     public AddContactDialog(WebDriver driver) {
         super(driver);
     }
+
     // Describe locator
-    @FindBy(xpath = "//*[@role='dialog']")
+    @FindBy(xpath = "//*[@role='dialog']") //   //- поиск по всем элементам, * - любой тэг,
+    // [] - ищем атрибут со значением( @атрибут = 'значение')
     WebElement dialog;
 
     @FindBy(xpath = "//*[@id='form-name']")
@@ -25,7 +27,7 @@ public class AddContactDialog extends ContactsPage{
     @FindBy(xpath = "//*[@type='reset']")
     WebElement cancelButton;
 
-    @FindBy(xpath = "//*[@type='submit']")
+    @FindBy(xpath = "//*[@role='dialog']//*[@type='submit']")
     WebElement saveButton;
 
     @FindBy(xpath = "//*[@aria-label='Close']")
@@ -34,13 +36,13 @@ public class AddContactDialog extends ContactsPage{
     @FindBy(xpath = "//*[@id='form-error-firstName']")
     WebElement errorMessage;
 
+    // метод запонения имени, фамилии и описания соответс.
     public void setFirstNameInput(String firstName){
         setInput(firstNameInput, firstName);// заменяет 3 строки внизу
 
-        //firstNameInput.click(); //кликнуть -доступен для ввода
-        //firstNameInput.clear();
+        //firstNameInput.click(); //кликнуть на инпут -доступен для ввода
+        //firstNameInput.clear(); // возможность стереть
         //firstNameInput.sendKeys(firstName);// ввод значения в инпут
-
     }
     public  void setLastNameInput(String lastName){
         setInput(lastNameInput, lastName);
@@ -48,25 +50,22 @@ public class AddContactDialog extends ContactsPage{
         //lastNameInput.click();
         //lastNameInput.clear();
         //lastNameInput.sendKeys(lastName);
-
     }
-
     public void setDescription(String description){
         setInput(descriptiontInput, description);
 
         //descriptiontInput.click();
         //descriptiontInput.clear();
         //descriptiontInput.sendKeys(description);
-
     }
+    // метод  кот включает в себя все 3 метода, заполняем полностью всю форму
     public  void setAddContactForm(String firstName,String lastName, String description){
         setFirstNameInput(firstName);
         setLastNameInput(lastName);
         setDescription(description);
     }
-    public void SaveContact(){
+    public void saveContact(){
         saveButton.click();
-        Assert.assertFalse(isElementDisplayed(dialog), "Dialog is not closed");
     }
 
 }

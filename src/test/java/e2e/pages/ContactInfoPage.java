@@ -1,8 +1,11 @@
 package e2e.pages;
 
+import e2e.enums.ContactInfoTabs;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.nio.file.WatchEvent;
 
@@ -22,23 +25,14 @@ public class ContactInfoPage extends ContactsPage{
     @FindBy(xpath = "//button[@id='btn-edit-contact']")
     WebElement editButton;
 
-    @FindBy(xpath = "//button[@class='btn btn-secondary cancel-btn-ec']")
-    WebElement cancelButton;
+//метод на все табы через намы
+    public void openTab(ContactInfoTabs tab){
+        driver.findElement(By.xpath("//*[@id='ngb-nav-"+tab.value+"'")).click();
 
-    @FindBy(xpath = "//button[@class='btn btn-primary submit-btn-ec']")
-    WebElement saveButton;
-
-    @FindBy(xpath = "//input[@name='input-ec-firstName']")
-    WebElement firstNameInput;
-
-    @FindBy(xpath = "//input[@name='input-ec-lastName']")
-    WebElement lastNameInput;
-
-    @FindBy(xpath = "//textarea[@name='input-ec-description']")
-    WebElement descriptionInput;
-
+}
+    // get метод, кот проверяет, создался/сохранился ли новый контакт, сохранились ли валидные данные - выводит содержимое Field
     public  String getFirstName(){
-        return firstNameField.getText();
+        return firstNameField.getText(); // поле в кот содержится имя но мы туда ничего не можем ввести -Field
     }
 
     public  String getLastName(){
@@ -48,13 +42,14 @@ public class ContactInfoPage extends ContactsPage{
     public  String getDescription(){
         return descriptionField.getText();
     }
-
-    public void openEditContactForm(){
+    // метод для редактирования
+    public EditContactForm openEditContactForm(){
         editButton.click();
-        isElementDisplayed(firstNameInput);
+        Assert.assertFalse(isElementDisplayed(firstNameField), "Edit contact form was not opened"); // проверка, что хотябы
+        //  первый элемент при открытии формы отображается, для того, чтобы потом написать методы на ввод данных
+        return new EditContactForm(driver);
     }
 
-    public void setFirstNameInput(String firstName){
-        setInput(firstNameInput, firstName);
-    }
 }
+
+
