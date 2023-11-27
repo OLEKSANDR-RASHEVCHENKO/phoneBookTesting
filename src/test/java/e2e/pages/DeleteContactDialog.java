@@ -20,7 +20,7 @@ public class DeleteContactDialog extends ContactsPage{
     WebElement removeContactButton;
 
     public void setConfirmDeletion(){
-        Assert.assertTrue(isElementDisplayed(dialog));
+        Assert.assertTrue(isElementDisplayed(dialog));// проверка что отображается диалог
         confirmDeletionCheckbox.click();
     }
     public void removeContact(){

@@ -25,7 +25,7 @@ public class ContactInfoPage extends ContactsPage{
     @FindBy(xpath = "//button[@id='btn-edit-contact']")
     WebElement editButton;
 
-//метод на все табы через намы
+//метод на все табы через энамы, смотреть по локаторамюю отличаются только цифрой-динамический
     public void openTab(ContactInfoTabs tab){
         driver.findElement(By.xpath("//*[@id='ngb-nav-"+tab.value+"'")).click();
 

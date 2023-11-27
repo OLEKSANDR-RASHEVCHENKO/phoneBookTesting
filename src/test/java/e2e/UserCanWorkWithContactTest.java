@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class UserCanWorkWithContactTest extends TestBase{
-    LoginPage loginPage;
+    LoginPage loginPage;// пуустые переменные, туда будем записывать новые экземпляры класса
     ContactsPage contactsPage;
     AddContactDialog addContactDialog;
     ContactInfoPage contactInfoPage;
@@ -31,7 +31,7 @@ public class UserCanWorkWithContactTest extends TestBase{
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
 
-        String firstName = faker.internet().uuid();
+        String firstName = faker.internet().uuid(); // faker генерирует рандомные данные через генератор uuid
         String lastName = faker.internet().uuid();
         String description = faker.lorem().sentence();
 

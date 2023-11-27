@@ -37,6 +37,7 @@ import org.testng.Assert;
         public void setDescriptionInput(String description){
             setInput(descriptionInput, description);
         }
+
         public void saveChange(){
             saveButton.click();
             Assert.assertFalse(isElementDisplayed(descriptionInput), "Edit contact form was opened");
