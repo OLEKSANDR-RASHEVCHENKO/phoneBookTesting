@@ -33,7 +33,7 @@ public class UserCanWorkWithContactTest extends TestBase{
 
         String firstName = faker.internet().uuid(); // faker генерирует рандомные данные через генератор uuid
         String lastName = faker.internet().uuid();
-        String description = faker.lorem().sentence();
+        String description = faker.lorem().sentence(); // рандомный текст
 
         String  editFirstName = faker.internet().uuid();
         String  editLastName = faker.internet().uuid();
