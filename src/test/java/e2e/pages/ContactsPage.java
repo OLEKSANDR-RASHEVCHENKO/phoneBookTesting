@@ -34,6 +34,7 @@ public class ContactsPage extends BasePage {
     public boolean confirmLogin() {return header.isDisplayed();}
 
     public AddContactDialog openAddContactDialog(){
+
         addContactButton.click();
         return new AddContactDialog(driver);
     }
