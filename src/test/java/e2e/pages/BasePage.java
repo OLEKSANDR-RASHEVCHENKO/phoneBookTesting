@@ -21,9 +21,9 @@ public class BasePage {
             return false;
         }
     }
-   protected void setInput(WebElement input, String value){
+    protected void setInput(WebElement input, String value){
         input.click();
-       input.clear();
+        input.clear();
         input.sendKeys(value);
-   }
+    }
 }
