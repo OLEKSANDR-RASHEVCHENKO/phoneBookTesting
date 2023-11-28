@@ -23,7 +23,7 @@ public class UserCanWorkWithContactTest extends TestBase{
         String actualDescription = page.getDescription();
         Assert.assertEquals(actualFirstName, firstName, actualFirstName + "is not equal" + firstName); // актуальное с ожидаемым
         Assert.assertEquals(actualLastName, lastName, actualLastName + "is not equal" + lastName); // актуальное с ожидаемым
-        Assert.assertEquals(actualDescription, lastName, actualDescription + "is not equal" + description);
+        Assert.assertEquals(actualDescription, description, actualDescription + "is not equal" + description);
     }
 
     @Test
@@ -55,6 +55,7 @@ public class UserCanWorkWithContactTest extends TestBase{
 
         // check created contact
         contactInfoPage = new ContactInfoPage(app.driver);
+        Thread.sleep(2000);
         checkContactData(contactInfoPage, firstName, lastName, description);
 
         // edit contact
@@ -63,6 +64,26 @@ public class UserCanWorkWithContactTest extends TestBase{
         editContactForm.setLastNameInput(editLastName);
         editContactForm.setDescriptionInput(editDescription);
         editContactForm.saveChange();
+
+        // check edited contact
+        checkContactData(contactInfoPage, editFirstName,editLastName, editDescription);
+
+        // open contact page
+        contactInfoPage.openContactsPage();
+
+        // filter by contact name
+        contactsPage.filterByContact(editFirstName);
+        Thread.sleep(2000);
+        int actualContactCountRow = contactsPage.getContactCount();
+        Assert.assertEquals(actualContactCountRow, 1, "Contact count row after filter should be 1");
+
+        deleteContactDialog = contactsPage.openDeleteDialog();
+        deleteContactDialog.setConfirmDeletion();
+        deleteContactDialog.removeContact();
+        //Thread.sleep(2000);
+        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(), " No result message is not visible");
+
+
     }
 
 }

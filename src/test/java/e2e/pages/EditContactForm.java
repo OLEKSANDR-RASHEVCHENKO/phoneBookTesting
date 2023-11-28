@@ -38,8 +38,10 @@ import org.testng.Assert;
             setInput(descriptionInput, description);
         }
 
-        public void saveChange(){
+        public void saveChange() throws InterruptedException {
+            Assert.assertTrue(isElementDisplayed(saveButton), "Save contact button is not visible");
             saveButton.click();
+            Thread.sleep(2000);
             Assert.assertFalse(isElementDisplayed(descriptionInput), "Edit contact form was opened");
         }
     }
