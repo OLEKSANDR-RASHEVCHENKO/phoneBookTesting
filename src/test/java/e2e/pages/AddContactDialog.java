@@ -1,5 +1,6 @@
 package e2e.pages;
 
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -53,6 +54,10 @@ public class AddContactDialog extends ContactsPage{
     }
 
     public void saveContact(){
-        saveButton.click();
+        try {
+            saveButton.click();
+        }catch (StaleElementReferenceException e){
+            e.printStackTrace();
+        }
     }
 }
