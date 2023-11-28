@@ -52,6 +52,7 @@ public class UserCanWorkWithContactTest extends TestBase {
 
         // check created contact
         contactInfoPage = new ContactInfoPage(app.driver);
+        Thread.sleep(2000);
         checkContactData(contactInfoPage, firstName,lastName,description);
         // edit contact
         editContactForm = contactInfoPage.openEditContactForm();
@@ -59,6 +60,25 @@ public class UserCanWorkWithContactTest extends TestBase {
         editContactForm.setLastNameInput(editLastName);
         editContactForm.setDescriptionInput(editDescription);
         editContactForm.saveChanges();
-    }
 
+        //check edited contact
+        checkContactData(contactInfoPage, editFirstName, editLastName, editDescription);
+
+        //open contacts page
+        contactInfoPage.openContactPage();
+
+        //filter by contact name
+        contactsPage.filterByContact(editFirstName);
+        Thread.sleep(2000);
+        int actualContactCountRow = contactsPage.getContactCount();
+        Assert.assertEquals(actualContactCountRow, 1, "Contact count row after 1");
+
+        deleteContactDialog = contactsPage.openDeleteDialog();
+        deleteContactDialog.setConfirmDeletion();
+        deleteContactDialog.removeContact();
+
+        Assert.assertTrue(contactsPage.isNoResultMassageDisplayed(),"No result massage is not visible");
+
+
+    }
 }
