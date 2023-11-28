@@ -11,7 +11,7 @@ public class ApplicationManager {
     protected void init(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.get("http://phonebook.telran-edu.de:8080/");
+       driver.get("http://phonebook.telran-edu.de:8080/");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
