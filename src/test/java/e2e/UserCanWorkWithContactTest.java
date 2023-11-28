@@ -20,7 +20,7 @@ public class UserCanWorkWithContactTest extends TestBase {
         String actualLastName = contactInfoPage.getLastName();
         String actualDescription = contactInfoPage.getDescription();
         Assert.assertEquals(actualFirstName,firstName,actualFirstName + " is not equal " + firstName);
-        Assert.assertEquals(actualFirstName,lastName,actualLastName + " is not equal " + lastName);
+        Assert.assertEquals(actualLastName,lastName,actualLastName + " is not equal " + lastName);
         Assert.assertEquals(actualDescription,description,actualDescription + " is not equal " + description);
     }
 
@@ -65,6 +65,23 @@ public class UserCanWorkWithContactTest extends TestBase {
         editContactForm.setDescriptionInput(editDescription);
         editContactForm.saveChanges();
 
+
+
+        checkContactData(contactInfoPage,editFirstName,editLastName,editDescription);
+
+        //open contacts page
+        contactInfoPage.openContactsPage();
+        //filter by contact name
+        contactsPage.filterByContact(editFirstName);
+        Thread.sleep(2000);
+        int actualContactCountRow = contactsPage.getContactCount();
+        Assert.assertEquals(actualContactCountRow, 1, "Contact count row after filter should be 1");
+
+        deleteContactDialog = contactsPage.openDeleteDialog();
+        deleteContactDialog.setConfirmDeletion();
+        deleteContactDialog.removeContact();
+        Thread.sleep(2000);
+        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(), "No result message is not visible");
 
     }
 }

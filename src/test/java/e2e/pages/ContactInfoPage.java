@@ -22,7 +22,7 @@ public class ContactInfoPage extends ContactsPage{
 
     public void openTab(ContactInfoTabs tab){
 
-        driver.findElement(By.xpath("//*[@id='ngb-nav-"+tab.value+"'}]")).click();
+        driver.findElement(By.xpath("//*[@id='ngb-nav-"+tab.value+"']")).click();
     }
 
 
