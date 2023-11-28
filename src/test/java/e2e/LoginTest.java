@@ -1,9 +1,11 @@
-package pages;
+package e2e;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import e2e.pages.ContactsPage;
+import e2e.pages.LoginPage;
 
-public class LoginTest extends TestBase{
+public class LoginTest extends TestBase {
     LoginPage loginPage;
     ContactsPage contactsPage;
     @Test
@@ -30,9 +32,20 @@ public class LoginTest extends TestBase{
     }
 
     @Test
-
     public void userCanNotLoginWithInvalidPassword(){
         String email = "newtest@gmail.com";
+        String password = "invalid@gmail.com";
+
+        loginPage = new LoginPage(app.driver);
+        loginPage.login(email, password);
+
+        contactsPage = new ContactsPage(app.driver);
+        Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
+    }
+
+    @Test
+    public void userCanNotLoginWithInvalidData(){
+        String email = "invalid@gmail.com";
         String password = "invalid@gmail.com";
 
         loginPage = new LoginPage(app.driver);
