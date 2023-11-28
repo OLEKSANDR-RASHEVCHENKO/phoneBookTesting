@@ -10,14 +10,11 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
-
     // describe locator
     @FindBy(xpath = "//*[@name='email']")
     WebElement emailInput;
-
     @FindBy(xpath = "//*[@name='password']")
     WebElement passwordInput;
-
     @FindBy(xpath = "//*[@type='submit']")
     WebElement loginButton;
 
@@ -28,7 +25,4 @@ public class LoginPage extends BasePage {
         passwordInput.sendKeys(password);
         loginButton.click();
     }
-
-
-
 }
