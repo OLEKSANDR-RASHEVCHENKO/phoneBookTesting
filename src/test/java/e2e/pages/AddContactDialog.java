@@ -37,6 +37,17 @@ public class AddContactDialog extends ContactsPage{
     @FindBy(xpath = "//*[@id='form-error-firstName']")
     WebElement errorMessage;
 
+
+    // ждет загрузки диалога
+    public void waitForOpen(){
+        getWait().forVisibility(dialog);
+        getWait().forVisibility(firstNameInput);
+        getWait().forVisibility(lastNameInput);
+        getWait().forVisibility(descriptiontInput);
+        getWait().forVisibility(saveButton);
+
+    }
+
     // метод запонения имени, фамилии и описания соответс.
     public void setFirstNameInput(String firstName){
         setInput(firstNameInput, firstName);// заменяет 3 строки внизу
@@ -67,7 +78,9 @@ public class AddContactDialog extends ContactsPage{
     }
     public void saveContact(){
         try {
+            getWait().forClickable(saveButton);
             saveButton.click();
+            getWait().forInvisibility(dialog);
         }catch (StaleElementReferenceException e){ //отображается старый элемент
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package e2e.pages;
 
+import e2e.Wait.Wait;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,11 @@ public class BasePage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
+    public Wait getWait(){
+        return new Wait(driver);
+    }
+
     // метод кот находит элемент
     protected boolean isElementDisplayed(WebElement element) { // указываем типизацию элемента в аргументах
         try{

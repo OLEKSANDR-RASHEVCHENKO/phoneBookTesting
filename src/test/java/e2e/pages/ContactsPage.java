@@ -6,13 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import java.util.List;
+
 public class ContactsPage extends BasePage {
     public ContactsPage(WebDriver driver) {
         super(driver);
     }
 
     @FindBy(xpath = "//div[@class='collapse navbar-collapse']")
-    WebElement header;
+    public WebElement header;
 
     @FindBy(xpath = "//div[@class='collapse navbar-collapse']//*[@href='/']")
     WebElement contactsButton;
@@ -25,6 +27,9 @@ public class ContactsPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='contacts-list']")
     WebElement contactsList;
+
+    @FindBy(xpath = "//*[@class='list-group']")
+    List<WebElement>  contactRows;
 
     @FindBy(xpath = "//*[@formcontrolname='searchInput']")
     WebElement searchInput;
@@ -41,9 +46,14 @@ public class ContactsPage extends BasePage {
     @FindBy(xpath = "//*[text()='Logout']")
     WebElement logoutButton;
 
-
-    public boolean confirmLogin() {
-        return header.isDisplayed();
+    public void waitForLoading(){
+        getWait().forVisibility(header);
+        getWait().forVisibility(contactsButton);
+        getWait().forVisibility(addContactButton);
+        getWait().forVisibility(contactsList);
+        getWait().forAllVisibility(contactRows);
+        getWait().forClickable(addContactButton);
+        getWait().forClickable(contactsButton);
     }
 
     // открыть страницу контактов
@@ -58,13 +68,13 @@ public class ContactsPage extends BasePage {
 
     // метод кот открывает диалоговое окно контакта, аргументы не нужны, т.к. это метод действия это
     public AddContactDialog openAddContactDialog(){
-        Assert.assertTrue(isElementDisplayed(addContactButton));
         addContactButton.click();
         return new AddContactDialog(driver); // после клика мы выводим новый экземпляр класса AddContact Dialog
     }
 
     // метод удаления контакта
     public DeleteContactDialog openDeleteDialog(){
+        getWait().forClickable(deleteButton);
         deleteButton.click();
         return new DeleteContactDialog(driver);
     }
