@@ -19,8 +19,16 @@ public class EditContactForm extends ContactInfoPage {
     WebElement firstNameInput;
     @FindBy(xpath = "//input[@name='input-ec-lastName']")
     WebElement lastNameInput;
-    @FindBy(xpath = "//textarea[@name=\"input-ec-description\"]")
+    @FindBy(xpath = "//textarea[@name='input-ec-description']")
     WebElement descriptionInput;
+
+    public void waitForOpen() {
+        getWait().forVisibility(firstNameInput);
+        getWait().forVisibility(lastNameInput);
+        getWait().forVisibility(descriptionInput);
+        getWait().forVisibility(saveButton);
+        getWait().forClickable(saveButton);
+    }
 
     public void setFirstNameInput(String firstName) {
         setInput(firstNameInput, firstName);
@@ -34,8 +42,10 @@ public class EditContactForm extends ContactInfoPage {
         setInput(descriptionInput, description);
     }
 
-    public void saveChanges() {
+    public void saveChanges(){
         saveButton.click();
-        Assert.assertFalse(isElementDisplayed(descriptionInput), "Edit contact form was opened");
+        getWait().forInvisibility(saveButton);
+
+
     }
 }

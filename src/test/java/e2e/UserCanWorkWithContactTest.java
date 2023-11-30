@@ -14,20 +14,19 @@ public class UserCanWorkWithContactTest extends TestBase {
     DeleteContactDialog deleteContactDialog;
     Faker faker = new Faker();
 
-    private void checkContactData(ContactInfoPage page, String firstName, String lastName, String description){
+    private void checkContactData(ContactInfoPage page, String firstName, String lastName, String description) {
 
         String actualFirstName = page.getFirstName();
         String actualLastName = page.getLastName();
         String actualDescription = page.getDescription();
-        Assert.assertEquals(actualFirstName,firstName,actualFirstName + " is not equal" + firstName);
-        Assert.assertEquals(actualLastName,lastName,actualLastName + " is not equal" + lastName);
-        Assert.assertEquals(actualDescription,description,actualDescription + " is not equal" + description);
+        Assert.assertEquals(actualFirstName, firstName, actualFirstName + " is not equal" + firstName);
+        Assert.assertEquals(actualLastName, lastName, actualLastName + " is not equal" + lastName);
+        Assert.assertEquals(actualDescription, description, actualDescription + " is not equal" + description);
     }
 
 
-
     @Test
-    public void userCanWorkWithContactTest() {
+    public void userCanWorkWithContactTest() throws InterruptedException {
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
 
@@ -41,25 +40,57 @@ public class UserCanWorkWithContactTest extends TestBase {
 
         //login as user
         loginPage = new LoginPage(app.driver);
+        loginPage.waitForLoading();
         loginPage.login(email, password);
 
         //check that user was logged
         contactsPage = new ContactsPage((app.driver));
-        Assert.assertTrue(contactsPage.confirmLogin());
+        contactsPage.waitForLoading();
 
         //add contact
         addContactDialog = contactsPage.openAddContactDialog();
+        addContactDialog.waitForOpen();
         addContactDialog.setAddContactForm(firstName, lastName, description);
+        addContactDialog.saveContact();
 
         //Check created contact
         contactInfoPage = new ContactInfoPage(app.driver);
+        contactsPage.waitForLoading();
         checkContactData(contactInfoPage, firstName, lastName, description);
 
         // edit contact
         editContactForm = contactInfoPage.openEditContactForm();
+        editContactForm.waitForOpen();
         editContactForm.setFirstNameInput(editFirstName);
         editContactForm.setLastNameInput(editLastName);
         editContactForm.setDescriptionInput(editDescription);
         editContactForm.saveChanges();
+
+        // check edited contact
+        checkContactData(contactInfoPage, editFirstName, editLastName, editDescription);
+        contactInfoPage.waitForLoading();
+
+
+        // open contacts page
+        contactInfoPage.openContactsPage();
+        contactsPage.waitForLoading();
+
+        // filter by contact name
+        contactsPage.filterByContact(editFirstName);
+        contactsPage.waitForLoading();
+
+        // check rows count after filter by contact
+        int actualContactCountRow = contactsPage.getContactCount();
+        Assert.assertEquals(actualContactCountRow, 1, "Contact count row after filter should be 1");
+
+        //delete contact
+        deleteContactDialog = contactsPage.openDeleteDialog();
+        deleteContactDialog.waitForOpen();
+        deleteContactDialog.setConfirmDeletion();
+        deleteContactDialog.removeContact();
+
+        //check that contact was deleted
+        contactsPage.waitForLoading();
+        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(), "No result message is not visible");
     }
 }
