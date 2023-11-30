@@ -29,6 +29,7 @@ public class Wait {
             e.printStackTrace();
         }
     }
+
     public void forAllVisibility(List<WebElement> elements) {
         try {
             setWait().until(ExpectedConditions.visibilityOfAllElements(elements));

@@ -41,15 +41,16 @@ public class ContactsPage extends BasePage {
     WebElement noResultsMessage;
     @FindBy(xpath = "//*[text()='Logout']")
     WebElement logoutButton;
-public void waitForLoading(){
-    getWait().forVisibility(header);
-    getWait().forVisibility(contactsButton);
-    getWait().forVisibility(addContactButton);
-    getWait().forVisibility(contactsList);
-    getWait().forAllVisibility(contactRows);
-    getWait().forClickable(addContactButton);
-    getWait().forClickable(contactsButton);
-}
+
+    public void waitForLoading() {
+        getWait().forVisibility(header);
+        getWait().forVisibility(contactsButton);
+        getWait().forVisibility(addContactButton);
+        getWait().forVisibility(contactsList);
+        getWait().forAllVisibility(contactRows);
+        getWait().forClickable(addContactButton);
+        getWait().forClickable(contactsButton);
+    }
 
     public void openContactsPage() {
         contactsButton.click();
@@ -66,7 +67,7 @@ public void waitForLoading(){
     }
 
     public DeleteContactDialog openDeleteDialog() {
-    getWait().forClickable(deleteButton);
+        getWait().forClickable(deleteButton);
         deleteButton.click();
         return new DeleteContactDialog(driver);
     }

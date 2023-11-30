@@ -12,6 +12,7 @@ import java.util.List;
 
 public class FirstSeleniumTest {
     public WebDriver driver;
+
     @Test
     public void firstSeleniumTest() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
@@ -33,7 +34,7 @@ public class FirstSeleniumTest {
         List<WebElement> elements = driver.findElements(By.xpath("//*[@class='list-group']"));
         int actualContactCount = elements.size();
         int expectedContactCount = 1054;
-        Assert.assertEquals(actualContactCount,expectedContactCount, actualContactCount + " not equal " + expectedContactCount);
+        Assert.assertEquals(actualContactCount, expectedContactCount, actualContactCount + " not equal " + expectedContactCount);
 
         driver.quit();
     }

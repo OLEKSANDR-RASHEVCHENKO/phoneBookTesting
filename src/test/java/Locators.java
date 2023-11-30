@@ -12,7 +12,6 @@ public class Locators {
     WebElement elementVariantNameFive = driver.findElement(By.xpath("//*[@routerlink='/user/forgot-password']"));
 
 
-
     // id
     WebElement elementVariantIdOne = driver.findElement(By.xpath("//*[@id='login-form']//*[@id ='defaultRegisterFormEmail']"));
     WebElement elementVariantIdTwo = driver.findElement(By.cssSelector("[id='defaultRegisterFormEmail']"));
@@ -30,7 +29,6 @@ public class Locators {
     WebElement elementVariantClassSeven = driver.findElement(By.cssSelector("[class = 'btn-link'][href='/user/forgot-password']"));
 
 
-
     // by name
 
     WebElement elementVariantByNameOne = driver.findElement(By.xpath("//*[@name='password']"));
@@ -38,8 +36,6 @@ public class Locators {
     WebElement elementVariantByNameThree = driver.findElement(By.name("password"));
     WebElement getElementVariantByNameFour = driver.findElement(By.name("Register new Account"));
     WebElement getElementVariantByNameFive = driver.findElement(By.name("Forgot password"));
-
-
 
 
     // form control

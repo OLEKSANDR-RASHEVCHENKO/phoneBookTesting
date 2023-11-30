@@ -42,7 +42,7 @@ public class EditContactForm extends ContactInfoPage {
         setInput(descriptionInput, description);
     }
 
-    public void saveChanges(){
+    public void saveChanges() {
         saveButton.click();
         getWait().forInvisibility(saveButton);
 

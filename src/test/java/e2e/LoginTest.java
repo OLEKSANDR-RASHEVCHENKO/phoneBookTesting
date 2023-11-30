@@ -19,7 +19,7 @@ public class LoginTest extends TestBase {
         LoginPage.login(email, password);
 
         contactsPage = new ContactsPage(app.driver);
-       contactsPage.waitForLoading();
+        contactsPage.waitForLoading();
     }
 
     @Test

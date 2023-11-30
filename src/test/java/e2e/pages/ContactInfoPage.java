@@ -20,7 +20,8 @@ public class ContactInfoPage extends ContactsPage {
     WebElement descriptionField;
     @FindBy(xpath = "//button[@id='btn-edit-contact']")
     WebElement editButton;
-    public void waitForLoading(){
+
+    public void waitForLoading() {
         getWait().forVisibility(firstNameField);
         getWait().forVisibility(lastNameField);
         getWait().forVisibility(descriptionField);
@@ -28,9 +29,10 @@ public class ContactInfoPage extends ContactsPage {
         getWait().forClickable(editButton);
 
     }
-    public void openTab(ContactInfoTabs tab){
 
-        driver.findElement(By.xpath("//*[@id='ngb-nav-"+tab.value+"']")).click();
+    public void openTab(ContactInfoTabs tab) {
+
+        driver.findElement(By.xpath("//*[@id='ngb-nav-" + tab.value + "']")).click();
     }
 
     public String getFirstName() {
@@ -45,9 +47,9 @@ public class ContactInfoPage extends ContactsPage {
         return descriptionField.getText();
     }
 
-    public EditContactForm openEditContactForm(){
+    public EditContactForm openEditContactForm() {
         editButton.click();
-        Assert.assertFalse(isElementDisplayed(firstNameField),"Edit contact form was not opened");
+        Assert.assertFalse(isElementDisplayed(firstNameField), "Edit contact form was not opened");
         return new EditContactForm(driver);
     }
 }
