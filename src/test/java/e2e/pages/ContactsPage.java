@@ -6,13 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import java.util.List;
+
 public class ContactsPage extends BasePage {
     public ContactsPage(WebDriver driver) {
         super(driver);
     }
 
     @FindBy(xpath = "//div[@class='collapse navbar-collapse']")
-    WebElement header;
+    public WebElement header;
     @FindBy(xpath = "//div[@class='collapse navbar-collapse']//*[@href='/']")
     WebElement contactsButton;
     @FindBy(xpath = "//*[@href='/contacts']")
@@ -21,6 +23,8 @@ public class ContactsPage extends BasePage {
     WebElement languageDropdown;
     @FindBy(xpath = "//*[@id='contacts-list']")
     WebElement contactsList;
+    @FindBy(xpath = "//*[@class='list-group']")
+    List<WebElement> contactRows;
     @FindBy(xpath = "//*[@formcontrolname='searchInput']")
     WebElement searchInput;
     @FindBy(xpath = "//*[@ng-reflect-router-link='/account']")
@@ -32,10 +36,16 @@ public class ContactsPage extends BasePage {
     @FindBy(xpath = "//*[text()='Logout']")
     WebElement logoutButton;
 
-
-    public boolean confirmLogin() {
-        return header.isDisplayed();
+    public void waitForLoading(){
+        getWait().forVisibility(header);
+        getWait().forVisibility(contactsButton);
+        getWait().forVisibility(addContactButton);
+        getWait().forVisibility(contactsList);
+        getWait().forAllVisibility(contactRows);
+        getWait().forClickable(addContactButton);
+        getWait().forClickable(contactsButton);
     }
+
 
     public void openContactsPage(){
         contactsButton.click();
@@ -45,8 +55,7 @@ public class ContactsPage extends BasePage {
         return driver.findElements(By.xpath("//*[@id='contacts-list']//*[@class='list-group']")).size();
     }
 
-    public AddContactDialog openAddContactDialog() throws InterruptedException {
-        Assert.assertTrue(isElementDisplayed(addContactButton));
+    public AddContactDialog openAddContactDialog()  {
         addContactButton.click();
         return new AddContactDialog(driver);
     }

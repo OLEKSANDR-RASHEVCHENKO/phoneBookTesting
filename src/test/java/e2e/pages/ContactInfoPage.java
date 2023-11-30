@@ -20,6 +20,14 @@ public class ContactInfoPage extends ContactsPage{
     @FindBy(xpath = "//button[@id='btn-edit-contact']")
     WebElement editButton;
 
+    public void waitForLoading(){
+        getWait().forVisibility(firstNameField);
+        getWait().forVisibility(lastNameField);
+        getWait().forVisibility(descriptionField);
+        getWait().forVisibility(editButton);
+        getWait().forClickable(editButton);
+    }
+
     public void openTab(ContactInfoTabs tab){
         driver.findElement(By.xpath("//*[@id='ngb-nav-"+tab.value+"']")).click();
     }
@@ -33,7 +41,7 @@ public class ContactInfoPage extends ContactsPage{
     public String getDescription(){ return descriptionField.getText();
     }
 
-    public EditContactForm openEditContactForm() throws InterruptedException {
+    public EditContactForm openEditContactForm()  {
         editButton.click();
         Assert.assertFalse(isElementDisplayed(firstNameField),"Edit contact form is was not opened");
         return new EditContactForm(driver);
