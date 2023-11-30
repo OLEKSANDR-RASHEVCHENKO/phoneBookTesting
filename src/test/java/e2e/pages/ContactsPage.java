@@ -5,13 +5,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class ContactsPage extends BasePage {
     public ContactsPage(WebDriver driver) {
         super(driver);
     }
 
     @FindBy(xpath = "//div[@class='collapse navbar-collapse']")
-    WebElement header;
+    public WebElement header;
 
     @FindBy(xpath = "//div[@class='collapse navbar-collapse']//*[@href='/']")
     WebElement contactsButton;
@@ -25,8 +27,8 @@ public class ContactsPage extends BasePage {
     @FindBy(xpath = "//*[@id='contacts-list']")
     WebElement contactsList;
 
-
-
+    @FindBy(xpath = "//*[@class='list-group']")
+    List<WebElement> contactRows;
     @FindBy(xpath = "//*[@formcontrolname='searchInput']")
     WebElement searchInput;
 
@@ -43,10 +45,16 @@ public class ContactsPage extends BasePage {
     @FindBy(xpath = "//*[text()='Logout']")
     WebElement logoutButton;
 
-
-    public boolean confirmLogin() {
-        return header.isDisplayed();
+    public  void waitForLoading(){
+        getWait().forVisibility(header);
+        getWait().forVisibility(contactsButton);
+        getWait().forVisibility(addContactButton);
+        getWait().forVisibility(contactsList);
+        getWait().forAllVisibility(contactRows);
+        getWait().forClickable(addContactButton);
+        getWait().forClickable(contactsButton);
     }
+
 
     public void openContactsPage(){
         contactsButton.click();
@@ -62,6 +70,7 @@ public class ContactsPage extends BasePage {
     }
 
     public DeleteContactDialog openDeleteDialog(){
+        getWait().forClickable(deleteButton);
         deleteButton.click();
         return new DeleteContactDialog(driver);
     }

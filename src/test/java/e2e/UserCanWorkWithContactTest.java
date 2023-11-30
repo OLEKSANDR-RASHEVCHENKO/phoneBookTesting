@@ -39,48 +39,58 @@ public class UserCanWorkWithContactTest extends TestBase {
 
         // login as user " войти как пользователь "
         loginPage=new LoginPage(app.driver);
+        loginPage.getWait();
         loginPage.login(email,password);
 
         // Check that user was logged " Проверьте, что пользователь залогинился "
         contactsPage = new ContactsPage(app.driver);
-        Assert.assertTrue(contactsPage.confirmLogin());
+
 
         // add contact " добавить контакт "
-        Thread.sleep(2000);
         addContactDialog = contactsPage.openAddContactDialog();
+        addContactDialog.waitForOpen();
         addContactDialog.setAddContactForm(firstName,lastName,description);
         addContactDialog.saveContact();
 
         // check created contact " Создать новый контакт "
 
-
         contactInfoPage = new ContactInfoPage(app.driver);
+        contactInfoPage.waitForLoading();
         checkContactData(contactInfoPage,firstName,lastName,description);
 
 
         // edit contact " изменить контакт "
         editContactForm = contactInfoPage.openEditContactForm();
+        editContactForm.waitForOpen();
         editContactForm.setFirstNameInput(editFirstName);
         editContactForm.setLastNameInput(editLastName);
         editContactForm.setDescriptionInput(editDescription);
         editContactForm.saveChanges();
 
 
-
+        //check edited contact
+        contactInfoPage.waitForLoading();
         checkContactData(contactInfoPage,editFirstName,editLastName,editDescription);
 
         //open contacts page
         contactInfoPage.openContactsPage();
+        contactsPage.waitForLoading();
         //filter by contact name
         contactsPage.filterByContact(editFirstName);
-        Thread.sleep(2000);
+        contactsPage.waitForLoading();
+
+        //check row
         int actualContactCountRow = contactsPage.getContactCount();
         Assert.assertEquals(actualContactCountRow, 1, "Contact count row after filter should be 1");
 
+        //delete contact
         deleteContactDialog = contactsPage.openDeleteDialog();
+        deleteContactDialog.waitForOpen();
         deleteContactDialog.setConfirmDeletion();
         deleteContactDialog.removeContact();
-        Thread.sleep(2000);
+
+        //check that contact was deleted
+        contactsPage.waitForLoading();
         Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(), "No result message is not visible");
 
     }
