@@ -19,8 +19,8 @@ public class UserCanWorkWithContactTest extends TestBase{
         String actualLastName = page.getLastName();
         String actualDescription = page.getDescription();
         Assert.assertEquals(actualFirstname,firstName, actualFirstname + "is not equal" + firstName);
-        Assert.assertEquals(actualFirstname,lastName, actualLastName + "is not equal" + lastName);
-        Assert.assertEquals(actualFirstname,description, actualDescription + "is not equal" + description);
+        Assert.assertEquals(actualLastName,lastName, actualLastName + "is not equal" + lastName);
+        Assert.assertEquals(actualDescription,description, actualDescription + "is not equal" + description);
     }
 
 
@@ -41,7 +41,7 @@ public class UserCanWorkWithContactTest extends TestBase{
         loginPage = new LoginPage(app.driver);
         loginPage.login(email,password);
 
-        // check that user was logget
+        // check that user was logged
         contactsPage = new ContactsPage(app.driver);
         Assert.assertTrue(contactsPage.confirmLogin());
 
@@ -53,6 +53,7 @@ public class UserCanWorkWithContactTest extends TestBase{
 
         // check created contact
         contactInfoPage = new ContactInfoPage(app.driver);
+        Thread.sleep(2000);
         checkContactData(contactInfoPage, firstName,lastName,description);
 
         // edit contact
@@ -62,6 +63,21 @@ public class UserCanWorkWithContactTest extends TestBase{
         editContactForm.setDescriptionInput(editDescription);
         editContactForm.saveChanges();
 
+        // check edited contact
+        checkContactData(contactInfoPage, editFirstName, editLastName, editDescription);
 
+        // open contact page
+        contactInfoPage.openContactsPage();
+        // filter by contact name
+        contactsPage.filterByContact(editFirstName);
+        Thread.sleep(2000);
+        int actualContactCountRow = contactsPage.getContactCount();
+        Assert.assertEquals(actualContactCountRow, 1, "Contact count row after filter should be 1");
+
+        deleteContactDialog = contactsPage.openDeleteDialog();
+        deleteContactDialog.setConfirmDeletion();
+        deleteContactDialog.removeContact();
+        Assert.assertTrue(addContactDialog.isNoResultDisplayed(),"No result message is not visible");
     }
+
 }

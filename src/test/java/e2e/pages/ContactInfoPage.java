@@ -30,7 +30,7 @@ public class ContactInfoPage extends ContactsPage{
         return firstNameField.getText();
     }
 
-    public String getLastNameField(){
+    public String getLastName(){
         return lastNameField.getText();
     }
 
@@ -40,11 +40,11 @@ public class ContactInfoPage extends ContactsPage{
 
     public EditContactForm openEditContactForm(){
         editButton.click();
+        Assert.assertFalse(isElementDisplayed(firstNameField), "Edit contact form was not opened");
         return new EditContactForm(driver);
     }
 
-    public String getLastName() {
 
-    }
 }
+
 
