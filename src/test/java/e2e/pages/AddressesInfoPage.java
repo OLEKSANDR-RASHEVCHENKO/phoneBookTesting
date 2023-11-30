@@ -25,6 +25,9 @@ public class AddressesInfoPage extends ContactInfoPage {
     WebElement saveButton;
     @FindBy(xpath = "//*[@class='close']")
     WebElement closeButton;
-    @FindBy(xpath = "//*[@class=\"dropdown-toggle btn btn-outline-light btn-block\"]]")
+    @FindBy(xpath = "//*[@class='dropdown-toggle btn btn-outline-light btn-block']")
     WebElement optionDropDown;
+    @FindBy(xpath = "//*[@id='cc-select']")
+    WebElement countrySelectButton;
+
 }
