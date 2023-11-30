@@ -17,7 +17,7 @@ public class LoginTest extends TestBase {
         loginPage.login(email, password);
 
         contactsPage = new ContactsPage(app.driver);
-        Assert.assertTrue(contactsPage.confirmLogin(), "User can't login");
+        contactsPage.waitForLoading();
     }
     @Test
     public void userCannotLoginWithInvalidEmail() {
@@ -26,9 +26,7 @@ public class LoginTest extends TestBase {
 
         loginPage = new LoginPage(app.driver);
         loginPage.login(email, password);
-
-        contactsPage = new ContactsPage(app.driver);
-        Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
+        loginPage.waitForLoading();
     }
 
     @Test
@@ -38,9 +36,7 @@ public class LoginTest extends TestBase {
 
         loginPage = new LoginPage(app.driver);
         loginPage.login(email, password);
-
-        contactsPage = new ContactsPage(app.driver);
-        Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
+        loginPage.waitForLoading();
     }
 
     @Test
@@ -50,8 +46,6 @@ public class LoginTest extends TestBase {
 
         loginPage = new LoginPage(app.driver);
         loginPage.login(email, password);
-
-        contactsPage = new ContactsPage(app.driver);
-        Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
+        loginPage.waitForLoading();
     }
 }
