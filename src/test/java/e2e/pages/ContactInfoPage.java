@@ -36,7 +36,7 @@ public class ContactInfoPage extends ContactsPage{
     public String getDescription(){
         return descriptionField.getText();
     }
-    public EditContactForm openEditContactForm(){
+    public EditContactForm openEditContactForm() throws InterruptedException {
     editButton.click();
     Assert.assertFalse(isElementDisplayed(firstNameField),"Edit contact form was not opened");
     return new EditContactForm(driver);

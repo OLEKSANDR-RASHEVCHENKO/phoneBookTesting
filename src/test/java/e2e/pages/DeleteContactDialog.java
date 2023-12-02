@@ -16,11 +16,11 @@ public class DeleteContactDialog extends ContactsPage{
     @FindBy(xpath = "//*[@id='submit-remove']")
     WebElement removedContactButton;
 
-    public void setConfirmDeletion(){
+    public void setConfirmDeletion() throws InterruptedException {
         Assert.assertTrue(isElementDisplayed(dialog));
         confirmDeleteCheckbox.click();
     }
-    public void removeContact(){
+    public void removeContact() throws InterruptedException {
         removedContactButton.click();
         Assert.assertFalse(isElementDisplayed(dialog));
     }

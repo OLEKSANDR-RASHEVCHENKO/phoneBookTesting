@@ -34,7 +34,7 @@ public class EditContactForm extends ContactInfoPage {
         setInput(descriptionInput, description);
     }
 
-    public void saveChanges() {
+    public void saveChanges() throws InterruptedException {
         saveButton.click();
         Assert.assertFalse(isElementDisplayed(descriptionInput), "Edit contact form was open");
     }

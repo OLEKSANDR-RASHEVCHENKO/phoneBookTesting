@@ -4,6 +4,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class ContactsPage extends BasePage{
     public ContactsPage(WebDriver driver){
@@ -29,7 +30,8 @@ public class ContactsPage extends BasePage{
 
     public boolean confirmLogin(){return header.isDisplayed();}
 
-    public AddContactDialog openAddContactDialog(){
+    public AddContactDialog openAddContactDialog() throws InterruptedException {
+        Assert.assertTrue(isElementDisplayed(addContactButton));
         addContactButton.click();
         return new AddContactDialog(driver);
     }
