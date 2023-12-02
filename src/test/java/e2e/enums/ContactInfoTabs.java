@@ -12,7 +12,8 @@ public class ContactInfoTabs {
     ADDRESSES("5");
     public final String value;
 
-    ContactInfoTabs(String value){
+    ContactInfoTabs(String value) {
         this.value = value;
     }
 }
+
