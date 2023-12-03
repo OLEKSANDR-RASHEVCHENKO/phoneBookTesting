@@ -49,6 +49,7 @@ public class UserCanWorkWithContactTest extends TestBase{
         addContactDialog.saveContact();
 
         //check created contact
+        Thread.sleep(2000);
         contactInfoPage = new ContactInfoPage(app.driver);
         checkContactData(contactInfoPage,firstName,lastName,description);
 
@@ -58,5 +59,22 @@ public class UserCanWorkWithContactTest extends TestBase{
         editContactForm.setLastNameInput(editLastName);
         editContactForm.setDescriptionInput(editDescription);
         editContactForm.saveChanges();
+
+        //check edited contact
+        checkContactData(contactInfoPage, editFirstName, editLastName, editDescription);
+
+        //openContactsPage
+        contactInfoPage.openContactsPage();
+        //filter by contact name
+        contactsPage.filterByContact(editFirstName);
+        Thread.sleep(2000);
+        int actualContactCountRow = contactsPage.getContactCount();
+        Assert.assertEquals(actualContactCountRow,1,"Contact count row after filter should be 1");
+
+        deleteContactDialog = contactsPage.openDeleteDialog();
+        deleteContactDialog.setConfirmDeletion();
+        deleteContactDialog.removeContact();
+        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(),"No result message is not visible");
+
     }
 }
