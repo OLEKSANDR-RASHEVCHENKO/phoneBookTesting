@@ -36,4 +36,28 @@ public class LoginTest extends TestBase{
             Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
 }
 
+@Test
+    public void userCannotLoginWithInvalidPassword(){
+        String email = "newtest@gmail.com";
+        String password = "newtestgmail.com";
+
+        loginPage = new LoginPage(app.driver);
+        loginPage.login(email, password);
+
+        contactsPage = new ContactsPage(app.driver);
+        Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
+
+}
+
+@Test
+    public  void userCannotLoginWithInvalidData(){
+    String email = "newtestgmail.com";
+    String password = "newtestgmail.com";
+
+    loginPage = new LoginPage(app.driver);
+    loginPage.login(email, password);
+
+    contactsPage = new ContactsPage(app.driver);
+    Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
+}
 }
