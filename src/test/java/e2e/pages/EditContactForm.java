@@ -22,6 +22,14 @@ public class EditContactForm extends ContactInfoPage {
     @FindBy(xpath = "//textarea[@name='input-ec-description']")
     WebElement descriptionInput;
 
+    public void waitForOpen(){
+        getWait().forVisibility(firstNameInput);
+        getWait().forVisibility(lastNameInput);
+        getWait().forVisibility(descriptionInput);
+        getWait().forVisibility(saveButton);
+        getWait().forClickable(saveButton);
+    }
+
     public void setFirstNameInput(String firstName) {
         setInput(firstNameInput, firstName);
     }
@@ -34,11 +42,9 @@ public class EditContactForm extends ContactInfoPage {
         setInput(descriptionInput, description);
     }
 
-    public void saveChanges() throws InterruptedException {
-        Assert.assertTrue(isElementDisplayed(saveButton),"Save contact button is not visible");
+    public void saveChanges(){
         saveButton.click();
-        Thread.sleep(2000);
-        Assert.assertFalse(isElementDisplayed(descriptionInput), "Edit contact form was open");
+        getWait().forInvisibility(saveButton);
     }
 
 }
