@@ -47,6 +47,6 @@ public class Locators {
     WebElement elementVariantClassPasswordTwo = driver.findElement(By.xpath("//*[contains(@class, 'form-control']"));
     WebElement elementVariantClassPasswordThree = driver.findElement(By.cssSelector("[@class= 'form-control rounded-pill ng-untouched ng-pristine ng-invalid']"));
     WebElement elementVariantClassPasswordFour = driver.findElement(By.cssSelector(".form-control.rounded-pill.ng-untouched.ng-pristine.ng-invalid"));
-    WebElement elementVariantClassPaswordFive = driver.findElement(By.id("form-control rounded-pill ng-untouched ng-pristine ng-invalid"));
+    WebElement elementVariantClassPasswordFive = driver.findElement(By.id("form-control rounded-pill ng-untouched ng-pristine ng-invalid"));
 
 }
