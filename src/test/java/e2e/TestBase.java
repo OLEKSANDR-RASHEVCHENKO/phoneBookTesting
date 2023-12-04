@@ -1,5 +1,6 @@
 package e2e;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 
@@ -11,7 +12,7 @@ public class TestBase {
         app.init();
     }
 
-    @BeforeMethod
+    @AfterMethod
     public void tearDown(){
         app.stop();
     }
