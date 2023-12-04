@@ -18,9 +18,18 @@ public class ContactInfoPage extends ContactsPage{
     @FindBy(xpath = "//div[@id='contact-last-name']")
     WebElement lastNameField;
     @FindBy(xpath = "//div[@id='contact-description']")
-    WebElement DescriptionField;
+    WebElement descriptionField;
     @FindBy(xpath = "//button[@id='btn-edit-contact']")
     WebElement editButton;
+
+    public void waitForLoading(){
+        getWait().forVisibility(firstNameField);
+        getWait().forVisibility(lastNameField);
+        getWait().forVisibility(descriptionField);
+        getWait().forVisibility(editButton);
+        getWait().forVisibility(editButton);
+
+    }
 
     public void openTab(ContactInfoTabs tab){
         driver.findElement(By.xpath("//*[@id='ngb-nav-"+tab.value+"']")).click();
@@ -35,7 +44,7 @@ public class ContactInfoPage extends ContactsPage{
     }
 
     public String getDescription(){
-        return DescriptionField.getText();
+        return descriptionField.getText();
     }
 
     public EditContactForm openEditContactForm(){

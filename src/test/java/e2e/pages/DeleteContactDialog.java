@@ -17,15 +17,21 @@ public class DeleteContactDialog extends ContactsPage{
     @FindBy(xpath = "//*[@id='submit-remove']")
     WebElement removeContactButton;
 
+    public void waitForOpen(){
+        getWait().forVisibility(dialog);
+        getWait().forInVisibility(confirmDeletionCheckbox);
+        getWait().forInVisibility(removeContactButton);
+
+    }
+
     public void setConfirmDeletion(){
-        Assert.assertTrue(isElementDisplayed(dialog));
         confirmDeletionCheckbox.click();
     }
 
-    public void removeContact() throws InterruptedException {
+    public void removeContact()  {
+        getWait().forClickable(removeContactButton);
         removeContactButton.click();
-        Thread.sleep(2000);
-        Assert.assertFalse(isElementDisplayed(dialog));
+        getWait().forInVisibility(dialog);
     }
 
 
