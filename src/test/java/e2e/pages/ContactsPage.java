@@ -18,12 +18,12 @@ public class ContactsPage extends BasePage {
     @FindBy(xpath = "//div[@class='collapse navbar-collapse']//*[@href='/']")
     WebElement contactsButton;
 
-    @FindBy(xpath = "//*[@href='/contacts']")
+    @FindBy(xpath = "//a[@href = '/contacts']")
     WebElement addContactButton;
 
     @FindBy(xpath = "//select[@id='langSelect']")
     WebElement languageDropdown;
-    @FindBy(xpath = "//*[@id='contacts-list']//*[@href='/']")
+    @FindBy(xpath = "//*[@id='contacts-list']")
     WebElement contactsList;
 
     @FindBy(xpath = "//*[@class='list-group']")

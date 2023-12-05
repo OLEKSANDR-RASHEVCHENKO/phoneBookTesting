@@ -59,7 +59,7 @@ public class UserCanWorkWithContactTest extends TestBase {
 
         //Check created contact
         contactInfoPage = new ContactInfoPage(app.driver);
-        contactsPage.waitForLoading();
+        //contactsPage.waitForLoading();
         checkContactData(contactInfoPage, firstName, lastName, description);
 
         // edit contact
@@ -94,7 +94,6 @@ public class UserCanWorkWithContactTest extends TestBase {
         deleteContactDialog.removeContact();
 
         //check that contact was deleted
-        contactsPage.waitForLoading();
         Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(), "No result message is not visible");
     }
 }
