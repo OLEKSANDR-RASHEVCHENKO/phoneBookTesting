@@ -1,5 +1,6 @@
 package e2e.pages;
 
+import e2e.Wait.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,7 +42,7 @@ public class ContactsPage extends BasePage {
     @FindBy(xpath = "//*[text()='Logout']")
     WebElement logoutButton;
 
-    public void waitForLoading() {
+    public void waitForLoading(){
         getWait().forVisibility(header);
         getWait().forVisibility(contactsButton);
         getWait().forVisibility(addContactButton);
@@ -65,6 +66,15 @@ public class ContactsPage extends BasePage {
         return new AddContactDialog(driver);
     }
 
+    public  void selectLanguage (String language){
+        getSelect(languageDropdown).selectByVisibleText(language);
+    }
+
+    public String getLanguage(){
+        return getSelect(languageDropdown).getFirstSelectedOption().getText();
+    }
+
+
     public DeleteContactDialog openDeleteDialog(){
         getWait().forClickable(deleteButton);
         deleteButton.click();
@@ -76,8 +86,9 @@ public class ContactsPage extends BasePage {
     }
 
     public  boolean isNoResultMassageDisplayed(){
+        getWait().forVisibility(noResultsMassage);
         return isElementDisplayed(noResultsMassage);
     }
 
+    }
 
-}
