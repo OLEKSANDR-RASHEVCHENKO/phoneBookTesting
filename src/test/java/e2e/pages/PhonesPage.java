@@ -8,6 +8,7 @@ public class PhonesPage extends ContactInfoPage{
     public PhonesPage(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(xpath = "//*[@formcontrolname='searchInput']")
     WebElement searchInput;
 
