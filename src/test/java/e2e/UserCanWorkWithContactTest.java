@@ -92,7 +92,6 @@ public class UserCanWorkWithContactTest extends TestBase {
         deleteContactDialog.removeContact();
 
         // check that deleted contact was deleted
-        contactsPage.waitForLoading();
         Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(),"No result message is not visible");
     }
 }
