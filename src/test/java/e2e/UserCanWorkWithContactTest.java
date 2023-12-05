@@ -1,6 +1,7 @@
 package e2e;
 
 import com.github.javafaker.Faker;
+import e2e.enums.ContactInfoTabs;
 import e2e.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -24,7 +25,7 @@ public class UserCanWorkWithContactTest extends TestBase {
     }
 
     @Test
-    public void userCanWorkWithContactTest() throws InterruptedException {
+    public void userCanWorkWithContactTest() {
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
         String language = "English";
@@ -85,7 +86,6 @@ public class UserCanWorkWithContactTest extends TestBase {
         deleteContactDialog.setConfirmDeletion();
         deleteContactDialog.removeContact();
         // check that contact was deleted
-        contactsPage.waitForLoading();
         Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(),"No result message is not visible");
     }
 }
