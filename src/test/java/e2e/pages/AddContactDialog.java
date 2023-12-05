@@ -35,6 +35,14 @@ public class AddContactDialog extends ContactsPage{
     @FindBy(xpath = "//*[@id='form-error-firstName']")
     WebElement errorMessage;
 
+    public void waitForOpen(){
+        getWait().forVisibility(dialog);
+        getWait().forVisibility(firstNameInput);
+        getWait().forVisibility(lastNameInput);
+        getWait().forVisibility(descriptionInput);
+        getWait().forVisibility(saveButton);
+    }
+
     public void setFirstNameInput(String firstName){
         setInput(firstNameInput, firstName);
     }
@@ -55,9 +63,10 @@ public class AddContactDialog extends ContactsPage{
 
     public void saveContact(){
         try {
+            getWait().forClickable(saveButton);
             saveButton.click();
-        }
-        catch (StaleElementReferenceException e){
+            getWait().forInvisibility(dialog);
+        }catch (StaleElementReferenceException e){
             e.printStackTrace();
         }
 
