@@ -27,6 +27,7 @@ public class UserCanWorkWithContactTest extends TestBase {
     public void userCanWorkWithContactTest() throws InterruptedException {
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
+        String language = "English";
 
         String firstName = faker.internet().uuid();
         String lastName = faker.internet().uuid();
@@ -44,6 +45,9 @@ public class UserCanWorkWithContactTest extends TestBase {
         // check that user was logged
         contactsPage = new ContactsPage(app.driver);
         contactsPage.waitForLoading();
+        contactsPage.selectLanguage(language);
+        contactsPage.getLanguage();
+        Assert.assertEquals(contactsPage.getLanguage(), language);
 
         // add contact
         addContactDialog = contactsPage.openAddContactDialog();
@@ -82,7 +86,7 @@ public class UserCanWorkWithContactTest extends TestBase {
         deleteContactDialog.setConfirmDeletion();
         deleteContactDialog.removeContact();
         // check that contact was deleted
-        contactsPage.waitForLoading();
+
         Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(),"No result message is not visible");
     }
 }
