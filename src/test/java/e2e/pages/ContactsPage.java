@@ -18,7 +18,7 @@ public class ContactsPage extends BasePage {
     @FindBy(xpath = "//div[@class='collapse navbar-collapse']//*[@href='/']")
     WebElement contactsButton;
 
-    @FindBy(xpath = "//a[@href = '/contacts']")
+    @FindBy(xpath = "//a[@href='/contacts']")
     WebElement addContactButton;
 
     @FindBy(xpath = "//select[@id='langSelect']")
