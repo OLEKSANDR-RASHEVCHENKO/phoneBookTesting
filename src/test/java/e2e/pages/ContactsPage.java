@@ -17,7 +17,7 @@ public class ContactsPage extends BasePage{
     public WebElement header;
     @FindBy(xpath = "//div[@class='collapse navbar-collapse']//*[@href='/']")
     WebElement contactsButton;
-    @FindBy(xpath ="//select[@id='langSelect")
+    @FindBy(xpath ="//select[@id='langSelect']")
     WebElement languageDropDown;
     @FindBy(xpath = "//input[@formcontrolname='searchInput']")
     WebElement searchInput;
@@ -59,6 +59,16 @@ public class ContactsPage extends BasePage{
         return new AddContactDialog(driver);
     }
 
+    public void selectLanguage(String language){
+        getSelect(languageDropDown).selectByVisibleText(language);
+    }
+
+    public String getLanguage(){
+        return getSelect(languageDropDown).getFirstSelectedOption().getText();
+    }
+
+
+
     public DeleteContactDialog openDeleteDialog(){
         getWait().forClickable(deleteButton);
         deleteButton.click();
@@ -71,6 +81,7 @@ public class ContactsPage extends BasePage{
     }
 
     public boolean isNoResultMessageDisplayed(){
+        getWait().forVisibility(noResultsMessage);
         return isElementDisplayed(noResultsMessage);
     }
 
