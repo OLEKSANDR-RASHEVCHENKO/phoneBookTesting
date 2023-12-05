@@ -25,6 +25,8 @@ public class AddPhoneDialog extends PhonesPage {
     public void waitForOpen() {
         getWait().forVisibility(countryCode);
         getWait().forVisibility(phoneNumber);
+        getWait().forVisibility(phoneNumberField);
+        getWait().forVisibility(saveButton);
     }
 
     public void selectCountryCode(String country) {
@@ -33,16 +35,19 @@ public class AddPhoneDialog extends PhonesPage {
 
     public String getLCountry() {
         return getSelect(countryCode).getFirstSelectedOption().getText();
-
     }
 
     public String getPhoneNumber() {
-        return phoneNumber.getText();
+        return phoneNumberField.getText();
     }
 
     public void setPhoneNumber(WebElement input, String value) {
         input.click();
         input.clear();
         input.sendKeys(value);
+    }
+    public void savePhone() throws InterruptedException {
+        saveButton.click();
+        getWait().forInvisibility(saveButton);
     }
 }
