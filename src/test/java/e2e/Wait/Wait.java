@@ -26,14 +26,14 @@ public class Wait {
         try {
             setWait().until(ExpectedConditions.visibilityOf(element));
         } catch (TimeoutException e){
-            e.printStackTrace();
+            throw new TimeoutException(element.getAccessibleName() + " Is not visible more than " + TIMEOUT.toString());
         }
     }
-    public void forAllVisibility(List<WebElement> element){
+    public void forAllVisibility(List<WebElement> elements){
         try {
-            setWait().until(ExpectedConditions.visibilityOfAllElements(element));
+            setWait().until(ExpectedConditions.visibilityOfAllElements(elements));
         } catch (TimeoutException e){
-            e.printStackTrace();
+            throw new TimeoutException(elements.size() + " Are not visible more than " + TIMEOUT.toString());
         }
     }
 
@@ -41,7 +41,7 @@ public class Wait {
         try {
             setWait().until(ExpectedConditions.invisibilityOf(element));
         } catch (TimeoutException e) {
-            e.printStackTrace();
+            throw new TimeoutException(element.getAccessibleName() + " is  visible more than " + TIMEOUT.toString());
         }
     }
 
@@ -49,7 +49,7 @@ public class Wait {
         try {
             setWait().until(ExpectedConditions.elementToBeClickable(element));
         } catch (TimeoutException e) {
-            e.printStackTrace();
+            throw new TimeoutException(element.getAccessibleName() + " Is not clickable more than " + TIMEOUT.toString());
         }
     }
 }

@@ -9,7 +9,7 @@ import java.time.Duration;
 public class ApplicationManager {
     public WebDriver driver;
 
-    protected void init(){
+    public void init(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get("http://phonebook.telran-edu.de:8080/");
@@ -17,7 +17,7 @@ public class ApplicationManager {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    protected void stop(){
+    public void stop(){
         driver.quit();
     }
 }

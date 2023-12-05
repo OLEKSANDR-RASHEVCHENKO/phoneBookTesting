@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import javax.security.auth.callback.LanguageCallback;
 import java.util.List;
 
 public class ContactsPage extends BasePage {
@@ -13,14 +14,14 @@ public class ContactsPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//div[@class='collapse navbar-collapse']")
+    @FindBy(xpath = "//*div[@class='collapse navbar-collapse']")
     public WebElement header;
-    @FindBy(xpath = "//div[@class='collapse navbar-collapse']//*[@href='/']")
+    @FindBy(xpath = "//*div[@class='collapse navbar-collapse']//*[@href='/']")
     WebElement contactsButton;
     @FindBy(xpath = "//*[@href='/contacts']")
     WebElement addContactButton;
 
-    @FindBy(xpath = "//select[@id='langSelect']")
+    @FindBy(xpath = "//*select[@id='langSelect']")
     WebElement languageDropdown;
     @FindBy(xpath = "//*[@id='contacts-list']")
     WebElement contactsList;
@@ -31,7 +32,7 @@ public class ContactsPage extends BasePage {
     @FindBy(xpath = "//*[@formcontrolname='searchInput']")
     WebElement searchInput;
 
-    @FindBy(xpath = "//*[@ng-reflect-router-link='/account']")
+    @FindBy(xpath = "//*[@ng-reflect-router-link='account']")
     WebElement accountButton;
 
 
@@ -44,7 +45,7 @@ public class ContactsPage extends BasePage {
     WebElement logoutButton;
 
     public void waitForLoading(){
-        getWait().forInVisibility(header);
+        getWait().forVisibility(header);
         getWait().forVisibility(contactsButton);
         getWait().forVisibility(addContactButton);
         getWait().forVisibility(contactsList);
@@ -75,6 +76,15 @@ public class ContactsPage extends BasePage {
         return new AddContactDialog(driver);
     }
 
+    public void selectLanguage(String language){
+        getSelect(languageDropdown).deselectByVisibleText(language);
+    }
+
+    public String getLanguage(){
+        return getSelect(languageDropdown).getFirstSelectedOption().getText();
+
+    }
+
     public DeleteContactDialog openDeleteDialog(){
         getWait().forClickable(deleteButton);
         deleteButton.click();
@@ -87,6 +97,7 @@ public class ContactsPage extends BasePage {
     }
 
     public boolean isNoResultDisplayed(){
+        getWait().forInVisibility(noResultMessage);
         return isElementDisplayed(noResultMessage);
     }
 

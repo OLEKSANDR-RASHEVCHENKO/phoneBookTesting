@@ -17,12 +17,12 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@name='password']")
     WebElement passwordInput;
 
-    @FindBy(xpath = "//*[@type= 'submit']")
+    @FindBy(xpath = "//*[@type='submit']")
     WebElement loginButton;
 
     public void waitForLoading(){
         getWait().forVisibility(emailInput);
-        getWait().forInVisibility(passwordInput);
+        getWait().forVisibility(passwordInput);
         getWait().forVisibility(loginButton);
 
     }

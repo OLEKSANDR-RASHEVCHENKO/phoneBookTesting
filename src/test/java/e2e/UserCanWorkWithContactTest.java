@@ -36,6 +36,7 @@ public class UserCanWorkWithContactTest extends TestBase{
         String editFirstName = faker.internet().uuid();
         String editLastName = faker.internet().uuid();
         String editDescription = faker.lorem().sentence();
+        String language = "English";
 
         // login us user
         loginPage = new LoginPage(app.driver);
@@ -45,6 +46,11 @@ public class UserCanWorkWithContactTest extends TestBase{
         // check that user was logged
         contactsPage = new ContactsPage(app.driver);
         contactsPage.waitForLoading();
+        contactsPage.selectLanguage(language);
+
+
+        Assert.assertEquals(contactsPage.getLanguage(), language);
+
 
         // add contact
         addContactDialog = contactsPage.openAddContactDialog();
@@ -86,7 +92,6 @@ public class UserCanWorkWithContactTest extends TestBase{
         deleteContactDialog.removeContact();
 
         //check that contact was
-        contactsPage.waitForLoading();
         Assert.assertTrue(addContactDialog.isNoResultDisplayed(),"No result message is not visible");
     }
 
