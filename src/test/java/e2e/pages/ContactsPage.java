@@ -60,6 +60,14 @@ public class ContactsPage extends BasePage {
         return new AddContactDialog(driver);
     }
 
+    public void selectLanguage(String language){
+        getSelect(languageDropdown).selectByVisibleText(language);
+    }
+
+    public String getLanguage(){
+        return getSelect(languageDropdown).getFirstSelectedOption().getText();
+    }
+
     public DeleteContactDialog openDeleteDialog(){
         deleteButton.click();
         return new DeleteContactDialog(driver);
@@ -70,6 +78,7 @@ public class ContactsPage extends BasePage {
     }
 
     public boolean isNoResultMessageDisplayed(){
+        getWait().forVisibility(noResultsMessage);
         return isElementDisplayed(noResultsMessage);
     }
 }
