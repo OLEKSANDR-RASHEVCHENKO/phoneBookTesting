@@ -14,14 +14,14 @@ public class ContactsPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//*div[@class='collapse navbar-collapse']")
+    @FindBy(xpath = "//*[@class='collapse navbar-collapse']")
     public WebElement header;
-    @FindBy(xpath = "//*div[@class='collapse navbar-collapse']//*[@href='/']")
+    @FindBy(xpath = "//*[@class='collapse navbar-collapse']//*[@href='/contacts']")
     WebElement contactsButton;
     @FindBy(xpath = "//*[@href='/contacts']")
     WebElement addContactButton;
 
-    @FindBy(xpath = "//*select[@id='langSelect']")
+    @FindBy(xpath = "//*[@id='langSelect']")
     WebElement languageDropdown;
     @FindBy(xpath = "//*[@id='contacts-list']")
     WebElement contactsList;
