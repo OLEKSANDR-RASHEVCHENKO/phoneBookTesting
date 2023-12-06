@@ -1,6 +1,7 @@
 package e2e;
 
 import com.github.javafaker.Faker;
+import e2e.enums.ContactInfoTabs;
 import e2e.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -28,6 +29,8 @@ public class UserCanWorkWithContactTest extends TestBase {
     public void userCanWorkWithContactTest() throws InterruptedException {
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
+        String language = "English";
+
 
         String firstName =faker.internet().uuid();
         String lastName =faker.internet().uuid();
@@ -43,7 +46,11 @@ public class UserCanWorkWithContactTest extends TestBase {
         loginPage.login(email,password);
 
         // Check that user was logged " Проверьте, что пользователь залогинился "
+
         contactsPage = new ContactsPage(app.driver);
+        contactsPage.waitForLoading();
+        contactsPage.selectLanguage(language);
+        Assert.assertEquals(contactsPage.getLanguage(),language);
 
 
         // add contact " добавить контакт "
@@ -55,6 +62,7 @@ public class UserCanWorkWithContactTest extends TestBase {
         // check created contact " Создать новый контакт "
 
         contactInfoPage = new ContactInfoPage(app.driver);
+        contactInfoPage.openTab(ContactInfoTabs.EMAILS);
         contactInfoPage.waitForLoading();
         checkContactData(contactInfoPage,firstName,lastName,description);
 
@@ -90,7 +98,7 @@ public class UserCanWorkWithContactTest extends TestBase {
         deleteContactDialog.removeContact();
 
         //check that contact was deleted
-        contactsPage.waitForLoading();
+
         Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(), "No result message is not visible");
 
     }
