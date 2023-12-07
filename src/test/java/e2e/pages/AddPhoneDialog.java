@@ -1,6 +1,5 @@
 package e2e.pages;
 
-import com.github.javafaker.PhoneNumber;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,45 +8,43 @@ public class AddPhoneDialog extends PhonesPage {
     public AddPhoneDialog(WebDriver driver) {
         super(driver);
     }
+    @FindBy(xpath = "//*[@for='cc-select']")
+    WebElement countryCodeLabel;
 
     @FindBy(xpath = "//*[@id='cc-select']")
-    WebElement countryCode;
+    WebElement countryCodeDropDown;
 
     @FindBy(xpath = "//*[@for='selected-cc']")
-    WebElement phoneNumber;
+    WebElement phoneNumberField;
 
     @FindBy(xpath = "//*[@id='selected-cc']")
-    WebElement phoneNumberField;
+    WebElement phoneNumberInput;
 
     @FindBy(xpath = "//*[@type='submit']")
     WebElement saveButton;
 
     public void waitForOpen() {
-        getWait().forVisibility(countryCode);
-        getWait().forVisibility(phoneNumber);
+        getWait().forVisibility(countryCodeLabel);
+        getWait().forVisibility(countryCodeDropDown);
         getWait().forVisibility(phoneNumberField);
+        getWait().forVisibility(phoneNumberInput);
         getWait().forVisibility(saveButton);
     }
 
     public void selectCountryCode(String country) {
-        getSelect(countryCode).selectByVisibleText(country);
+        getSelect(countryCodeDropDown).selectByVisibleText(country);
     }
 
-    public String getLCountry() {
-        return getSelect(countryCode).getFirstSelectedOption().getText();
+    public String getCountry() {
+        return getSelect(countryCodeDropDown).getFirstSelectedOption().getText();
     }
 
-    public String getPhoneNumber() {
-        return phoneNumberField.getText();
-    }
-
-    public void setPhoneNumber(WebElement input, String value) {
-        input.click();
-        input.clear();
-        input.sendKeys(value);
+    public void setPhoneNumberInput(String phoneNumber) {
+        setInput(phoneNumberInput, phoneNumber);
     }
     public void savePhone() throws InterruptedException {
         saveButton.click();
         getWait().forInvisibility(saveButton);
     }
+
 }
