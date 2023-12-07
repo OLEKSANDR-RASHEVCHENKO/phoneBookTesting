@@ -6,7 +6,7 @@ import e2e.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class UserCanWorkWithAddressTest extends TestBase{
+public class UserCanWorkWithAddressTest extends TestBase {
     LoginPage loginPage;
     ContactsPage contactsPage;
     AddContactDialog addContactDialog;
@@ -16,25 +16,28 @@ public class UserCanWorkWithAddressTest extends TestBase{
     AddressesInfoPage addressesInfoPage;
     AddAddressDialog addAddressDialog;
     Faker faker = new Faker();
-    private void checkContactData(ContactInfoPage page,String firsName,String lastName,String description){
-        String actualFirstName=page.getFirstName();
-        String actualLastName=page.getLastName();
-        String actualDescription=page.getDescription();
-        Assert.assertEquals(actualFirstName,firsName,actualFirstName+ "is not equal "+firsName);
-        Assert.assertEquals(actualLastName,lastName,actualLastName+ "is not equal "+lastName);
-        Assert.assertEquals(actualDescription,description,actualDescription+ "is not equal "+description);
+
+    private void checkContactData(ContactInfoPage page, String firsName, String lastName, String description) {
+        String actualFirstName = page.getFirstName();
+        String actualLastName = page.getLastName();
+        String actualDescription = page.getDescription();
+        Assert.assertEquals(actualFirstName, firsName, actualFirstName + "is not equal " + firsName);
+        Assert.assertEquals(actualLastName, lastName, actualLastName + "is not equal " + lastName);
+        Assert.assertEquals(actualDescription, description, actualDescription + "is not equal " + description);
     }
-    private void checkAddressData(AddressesInfoPage page,String country,String city,String postCode,String street){
+
+    private void checkAddressData(AddressesInfoPage page, String country, String city, String postCode, String street) {
         String actualCountryName = page.getCountry();
         String actualCityName = page.getCity();
         String actualPostCode = page.getPostCode();
         String actualStreetName = page.getStreet();
-        Assert.assertEquals(actualCountryName,country,actualCountryName+ "is not equal "+country);
-        Assert.assertEquals(actualCityName,city,actualCityName+ "is not equal "+city);
-        Assert.assertEquals(actualPostCode,postCode,actualPostCode+ "is not equal "+postCode);
-        Assert.assertEquals(actualStreetName,street,actualStreetName+ "is not equal "+street);
+        Assert.assertEquals(actualCountryName, country, actualCountryName + "is not equal " + country);
+        Assert.assertEquals(actualCityName, city, actualCityName + "is not equal " + city);
+        Assert.assertEquals(actualPostCode, postCode, actualPostCode + "is not equal " + postCode);
+        Assert.assertEquals(actualStreetName, street, actualStreetName + "is not equal " + street);
 
     }
+
     @Test
     public void userCanWorkWithContactTest() throws InterruptedException {
         String email = "newTest@gmail.com";
@@ -54,29 +57,29 @@ public class UserCanWorkWithAddressTest extends TestBase{
         String editDescription = faker.lorem().sentence();
 
         //logged as user
-        loginPage=new LoginPage(app.driver);
+        loginPage = new LoginPage(app.driver);
         //loginPage.waitForLoading();
-        loginPage.login(email,password);
+        loginPage.login(email, password);
         //check that user was logged
         contactsPage = new ContactsPage(app.driver);
         //contactsPage.waitForLoading();
         contactsPage.selectLanguage(language);
         String actualLanguage = contactsPage.getLanguage();
-        Assert.assertEquals(actualLanguage,language);
+        Assert.assertEquals(actualLanguage, language);
         //add contact
 
-        addContactDialog=contactsPage.openAddContactDialog();
+        addContactDialog = contactsPage.openAddContactDialog();
         //addContactDialog.waitForOpen();
-        addContactDialog.setAddContactForm(firsName,lastName,description);
+        addContactDialog.setAddContactForm(firsName, lastName, description);
         addContactDialog.saveContact();
         //check  create contact
-        contactInfoPage=new ContactInfoPage(app.driver);
+        contactInfoPage = new ContactInfoPage(app.driver);
         //contactInfoPage.waitForLoading();
-        checkContactData(contactInfoPage,firsName,lastName,description);
+        checkContactData(contactInfoPage, firsName, lastName, description);
 
         //addAddress
         addressesInfoPage = new AddressesInfoPage(app.driver);
-        addressesInfoPage.openTab(ContactInfoTabs.ADRESSES);
+        addressesInfoPage.openTab(ContactInfoTabs.ADDRESSES);
         addressesInfoPage.clickOnAddressButton();
         //addressesInfoPage.waitForLoading();
         addAddressDialog = new AddAddressDialog(app.driver);
@@ -85,10 +88,6 @@ public class UserCanWorkWithAddressTest extends TestBase{
         addAddressDialog.setPostCode(postCode);
         addAddressDialog.setStreet(street);
         addAddressDialog.addressAddSaveButtonClick();
-        checkAddressData(addressesInfoPage,country,city,postCode,street);
-
-
-
+        checkAddressData(addressesInfoPage, country, city, postCode, street);
     }
-
 }

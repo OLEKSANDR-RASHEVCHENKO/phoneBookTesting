@@ -31,8 +31,10 @@ public class UserCanAddAddressTest extends TestBase {
         loginPage.waitForLoading();
         loginPage.login(email, password);
 
-        // open contacts page
-        contactInfoPage.openContactsPage();
+        //open contacts page
+        contactsPage = new ContactsPage(app.driver);
         contactsPage.waitForLoading();
+        contactInfoPage.openContactsPage();
+
     }
 }
