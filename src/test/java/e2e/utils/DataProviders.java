@@ -17,4 +17,13 @@ public class DataProviders {
         list.add(new Object[]{faker.internet().uuid(),"Mikhailov","I am a teacher"});
         return list.iterator();
     }
+
+    @DataProvider
+    public Iterator<Object[]> invalidLoginData(){
+        List<Object[]> list = new ArrayList<>();
+        list.add(new Object[]{faker.name().firstName(),faker.name().lastName()});
+        list.add(new Object[]{faker.internet().uuid(),faker.internet().uuid()});
+        list.add(new Object[]{faker.internet().uuid(),"Mikhailov"});
+        return list.iterator();
+    }
 }
