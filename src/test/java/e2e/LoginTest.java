@@ -3,6 +3,7 @@ package e2e;
 import e2e.pages.BasePage;
 import e2e.pages.ContactsPage;
 import e2e.pages.LoginPage;
+import e2e.utils.DataProviders;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -22,8 +23,8 @@ public class LoginTest extends TestBase {
         contactsPage.waitForLoading();
     }
 
-    @Test
-    public void userCannotLoginWithInvalidEmail(){
+    @Test(dataProvider = "invalidDataForLogin",dataProviderClass = DataProviders.class)
+    public void userCannotLoginWithInvalidEmail(String userName,String password){
         String email = "newtestgmail.com";
         String password = "newtest@gmail.com";
 
