@@ -2,6 +2,7 @@ package e2e;
 
 import com.github.javafaker.Faker;
 import e2e.pages.*;
+import e2e.utils.DataProviders;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -26,15 +27,15 @@ public class UserCanWorkWithContactTest extends TestBase{
         Assert.assertEquals(actualDescription, description, actualDescription + "is not equal" + description);
     }
 
-    @Test
-    public void userCanWorkWithContactTest() throws InterruptedException {
+    @Test(dataProvider = "newContact", dataProviderClass = DataProviders.class) //говорим тесту к какому методу обращаться и где он лежит в каком классе
+    public void userCanWorkWithContactTest(String firstName, String lastName, String description) throws InterruptedException {
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
         String language = "English";
 
-        String firstName = faker.internet().uuid(); // faker генерирует рандомные данные через генератор uuid
-        String lastName = faker.internet().uuid();
-        String description = faker.lorem().sentence(); // рандомный текст
+        //String firstName = faker.internet().uuid(); // faker генерирует рандомные данные через генератор uuid
+        //String lastName = faker.internet().uuid();
+        //String description = faker.lorem().sentence(); // рандомный текст
 
         String  editFirstName = faker.internet().uuid();
         String  editLastName = faker.internet().uuid();
