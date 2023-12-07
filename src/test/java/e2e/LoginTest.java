@@ -28,10 +28,10 @@ public class LoginTest extends TestBase {
         contactsPage.waitForLoading();
     }
 
-    @Test
-    public void userCannotLoginWithInvalidEmail() {
-        String email = "newtestgmail.com";
-        String password = "newtest@gmail.com";
+    @Test(dataProvider = "invalidLogin", dataProviderClass = DataProvider.class )
+    public void userCannotLogin(String email, String password) {
+        //String email = "newtestgmail.com";
+        //String password = "newtest@gmail.com";
 
         loginPage = new LoginPage(app.driver);
         loginPage.login(email, password);
