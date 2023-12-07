@@ -7,7 +7,7 @@ import lombok.Getter;
     INFO("2"),
     PHONES("3"),
     EMAILS("4"),
-    ADDRESSES("5");
+    ADRESSES("5");
     public final String value;
 
     ContactInfoTabs(String value){

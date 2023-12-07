@@ -32,7 +32,7 @@ public class ContactInfoPage extends ContactsPage{
         driver.findElement(By.xpath("//*[@id='ngb-nav-"+tab.value+"']")).click();
     }
 
-    public String getFirstName(){ return firstNameField.getText();
+    public String getFirstName() { return firstNameField.getText();
     }
 
     public String getLastName(){ return lastNameField.getText();

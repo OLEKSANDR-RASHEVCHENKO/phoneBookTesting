@@ -60,10 +60,20 @@ public class ContactsPage extends BasePage {
         return new AddContactDialog(driver);
     }
 
+    public void selectLanguage(String language) {
+        getSelect(languageDropdown).selectByVisibleText(language);
+
+    }
+
+    public String getLanguage() {
+        return getSelect(languageDropdown).getFirstSelectedOption().getText();
+    }
+
     public DeleteContactDialog openDeleteDialog(){
         deleteButton.click();
         return new DeleteContactDialog(driver);
     }
+
 
     public void filterByContact(String contactValue){
         searchInput.sendKeys(contactValue);
