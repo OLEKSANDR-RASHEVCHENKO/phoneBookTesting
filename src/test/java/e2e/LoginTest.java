@@ -24,9 +24,7 @@ public class LoginTest extends TestBase {
     }
 
     @Test(dataProvider = "invalidDataForLogin",dataProviderClass = DataProviders.class)
-    public void userCannotLoginWithInvalidEmail(String userName,String password){
-        String email = "newtestgmail.com";
-        String password = "newtest@gmail.com";
+    public void userCannotLoginWithInvalidEmail(String email,String password){
 
         loginPage = new LoginPage(app.driver);
         loginPage.login(email,password);
