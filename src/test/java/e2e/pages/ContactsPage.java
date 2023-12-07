@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -67,7 +68,17 @@ public class ContactsPage extends BasePage {
     public AddContactDialog openAddContactDialog(){
         addContactButton.click();
         return new AddContactDialog(driver);
+
     }
+    public void getSelectlanguage(){
+        getSelect(languageDropdown).selectByVisibleText(language);
+
+    }
+    public  String getLanguage(){
+        return getSelect((languageDropdown).getFirstSelect)
+    }
+
+
 
     public DeleteContactDialog openDeleteDialog(){
         getWait().forClickable(deleteButton);
