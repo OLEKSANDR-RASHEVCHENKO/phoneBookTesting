@@ -2,11 +2,12 @@ package e2e;
 
 import e2e.pages.ContactsPage;
 import e2e.pages.LoginPage;
-import org.testng.Assert;
+import e2e.utils.DataProviders;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LoginTest extends TestBase {
-    LoginPage LoginPage;
+    LoginPage loginPage;
     ContactsPage contactsPage;
 
 
@@ -15,8 +16,8 @@ public class LoginTest extends TestBase {
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
 
-        LoginPage = new LoginPage(app.driver);
-        LoginPage.login(email, password);
+        loginPage = new LoginPage(app.driver);
+        loginPage.login(email, password);
 
         contactsPage = new ContactsPage(app.driver);
         contactsPage.waitForLoading();
@@ -30,19 +31,18 @@ public class LoginTest extends TestBase {
         String email = "newtestgmail.com";
         String password = "newtest@gmail.com";
 
-        LoginPage = new LoginPage(app.driver);
-        LoginPage.login(email, password);
-        LoginPage.waitForLoading();
+        loginPage = new LoginPage(app.driver);
+        loginPage.login(email, password);
+        loginPage.waitForLoading();
     }
 
-    @Test
-    public void userCannotWithInvalidPassword() {
-        String email = "newtest@gmail.com";
-        String password = "newtestgmail.com";
+    @Test(dataProvider = "invalidLoginData", dataProviderClass = DataProviders.class)
+    public void userCannotWithInvalidPassword(String email,String password) {
+        //String email = "newtest@gmail.com";
+        //String password = "newtestgmail.com";
 
-        LoginPage = new LoginPage(app.driver);
-        LoginPage.login(email, password);
-        LoginPage.waitForLoading();
-
+        loginPage = new LoginPage(app.driver);
+        loginPage.login(email, password);
+        loginPage.waitForLoading();
     }
 }

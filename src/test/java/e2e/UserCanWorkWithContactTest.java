@@ -84,7 +84,7 @@ public class UserCanWorkWithContactTest extends TestBase {
         editContactForm.saveChanges();
         //addAddress
         addressesInfoPage = new AddressesInfoPage(app.driver);
-        addressesInfoPage.openTab(ContactInfoTabs.ADRESSES);
+        addressesInfoPage.openTab(ContactInfoTabs.ADDRESSES);
         addressesInfoPage.clickOnAddressButton();
         //addressesInfoPage.waitForLoading();
         addAddressDialog = new AddAddressDialog(app.driver);
