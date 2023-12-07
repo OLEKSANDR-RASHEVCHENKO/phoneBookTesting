@@ -14,42 +14,35 @@ public class AddEmailDialog extends EmailPage {
     @FindBy(xpath = "//*[@role='dialog']")
     WebElement dialog;
 
-    @FindBy(xpath = "//*[@id='input-email']")
-    WebElement addEmailButton;
-
-
 
     @FindBy(xpath = "//*[@id='input-email']")
-    WebElement emailInput;
+    WebElement emailField;
+
+    @FindBy(xpath = "//*[@class='btn btn-primary']")
+    WebElement saveButton;
 
 
     public void waitForOpen(){
         getWait().forVisibility(dialog);
-        getWait().forVisibility(addEmailButton);
-        getWait().forVisibility(emailInput);
-        getWait().forVisibility(saveButton);
+        getWait().forVisibility(emailField);
+        getWait().forClickable(saveButton);
 
     }
 
-    public void setAddEmailButton(String addEmailButton){
-        setInput(addEmailButton);
+
+   // public void setEmailFieldInput(String emailField){
+      //  setInput(emailFieldInput,emailField);
+    //}
+
+
+
+    public void setAddContactForm(String emailField, String emailInput){
+
+      //  setEmailField(emailField);
+      //  setEmailInput(emailInput);
     }
 
-    public void setLastNameInput(String lastName){
-        setInput(lastNameInput, lastName);
-    }
-
-    public void setDescription(String description){
-        setInput(descriptionInput, description);
-    }
-
-    public void setAddContactForm(String firstName, String lastName, String description){
-        setAddEmailButton(addEmailButton);
-        setLastNameInput(lastName);
-        setDescription(description);
-    }
-
-    public void saveContact(){
+    public void saveEmail(){
         try {
             getWait().forClickable(saveButton);
             saveButton.click();

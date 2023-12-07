@@ -4,7 +4,6 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 public class AddContactDialog extends ContactsPage{
 
@@ -46,15 +45,15 @@ public class AddContactDialog extends ContactsPage{
     }
 
     public void setFirstNameInput(String firstName){
-        setInput(firstNameInput, firstName);
+        setInput(firstNameInput,firstName);
     }
 
     public void setLastNameInput(String lastName){
-        setInput(lastNameInput, lastName);
+        setInput(lastNameInput,lastName);
     }
 
     public void setDescription(String description){
-        setInput(descriptionInput, description);
+        setInput(descriptionInput,description);
     }
 
     public void setAddContactForm(String firstName, String lastName, String description){
