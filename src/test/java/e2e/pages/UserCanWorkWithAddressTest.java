@@ -1,12 +1,13 @@
-package e2e;
+package e2e.pages;
 
 import com.github.javafaker.Faker;
+import e2e.TestBase;
 import e2e.enums.ContactInfoTabs;
 import e2e.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class UserCanWorkWithContactTest extends TestBase {
+public class UserCanWorkWithAddressTest extends TestBase {
     LoginPage loginPage;
     ContactsPage contactsPage;
     AddContactDialog addContactDialog;
@@ -74,14 +75,6 @@ public class UserCanWorkWithContactTest extends TestBase {
         //contactInfoPage.waitForLoading();
         checkContactData(contactInfoPage,firsName,lastName,description);
 
-
-        // edit contact
-        editContactForm=contactInfoPage.openEditContactForm();
-        //editContactForm.waitForOpen();
-        editContactForm.setFirstNameInput(editFirstName);
-        editContactForm.setLastNameInput(editLastName);
-        editContactForm.setDescriptionInput(editDescription);
-        editContactForm.saveChanges();
         //addAddress
         addressesInfoPage = new AddressesInfoPage(app.driver);
         addressesInfoPage.openTab(ContactInfoTabs.ADRESSES);
@@ -95,30 +88,6 @@ public class UserCanWorkWithContactTest extends TestBase {
         addAddressDialog.addressAddSaveButtonClick();
         checkAddressData(addressesInfoPage,country,city,postCode,street);
 
-
-
-
-
-        //check edited contact
-        //contactInfoPage.waitForLoading();
-        //checkContactData(contactInfoPage,editFirstName,editLastName,editDescription);
-
-        //open contacts page
-        contactInfoPage.openContactsPage();
-        contactsPage.waitForLoading();
-        //find contact by firstname
-        contactsPage.filterByContact(editFirstName);
-        contactsPage.waitForLoading();
-        int actualContactCountRow = contactsPage.getContactCount();
-        Assert.assertEquals(actualContactCountRow,1,"Contact count row after filter should be 1 ");
-
-        //delete contact
-        deleteContactDialog=contactsPage.openDeleteDialog();
-        deleteContactDialog.waitForOpen();
-        deleteContactDialog.setConfirmDeletion();
-        deleteContactDialog.removeContact();
-
-        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(),"No result message is not visible");
 
 
     }
