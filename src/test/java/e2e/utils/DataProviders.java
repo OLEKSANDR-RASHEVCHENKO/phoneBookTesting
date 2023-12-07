@@ -21,4 +21,13 @@ public class DataProviders {
         list.add(new Object[]{faker.internet().uuid(),"Skvarnyk","Student"});
         return list.listIterator(); // метод перебирает с поочередно с первого по последний
     }
+
+    @DataProvider
+    public Iterator<Object[]> userCannotLogin(){
+        List<Object[]> list = new ArrayList<>();
+        list.add(new Object[]{"newtestgmail.com","newtestgmail.com"});
+        list.add(new Object[]{"newtestgmail.com","newtest@gmail.com"});
+        list.add(new Object[]{"newtestgmail.com","newtestgmail.com"});
+        return list.listIterator(); // метод перебирает с поочередно с первого по последний
+    }
 }
