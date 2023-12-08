@@ -21,7 +21,6 @@ public class ContactInfoPage extends ContactsPage {
     @FindBy(xpath = "//button[@id='btn-edit-contact']")
     WebElement editButton;
 
-
     public void waitForLoading(){
         getWait().forVisibility(firstNameField);
         getWait().forVisibility(lastNameField);
@@ -52,4 +51,3 @@ public class ContactInfoPage extends ContactsPage {
         return new EditContactForm(driver);
     }
 }
-

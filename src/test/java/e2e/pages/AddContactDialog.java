@@ -69,6 +69,5 @@ public class AddContactDialog extends ContactsPage{
         }catch (StaleElementReferenceException e){
             e.printStackTrace();
         }
-
     }
 }

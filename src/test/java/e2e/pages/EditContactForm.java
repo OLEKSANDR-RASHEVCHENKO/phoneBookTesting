@@ -43,12 +43,8 @@ public class EditContactForm extends ContactInfoPage {
         setInput(descriptionInput, description);
     }
 
-    public void saveChanges() throws InterruptedException {
-
-
-
+    public void saveChanges() {
         saveButton.click();
         getWait().forInvisibility(saveButton);
-
     }
 }

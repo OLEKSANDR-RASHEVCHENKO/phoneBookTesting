@@ -75,7 +75,7 @@ public class UserCanWorkWithContactTest extends TestBase {
         checkContactData(contactInfoPage, editFirstName, editLastName, editDescription);
 
         //open contacts page
-        contactInfoPage.openContactPage();
+        contactInfoPage.openContactsPage();
         contactsPage.waitForLoading();
 
         //filter by contact name
@@ -96,7 +96,7 @@ public class UserCanWorkWithContactTest extends TestBase {
 
         //check that contact was deleted
 
-        Assert.assertTrue(contactsPage.isNoResultMassageDisplayed(),"No result massage is not visible");
+        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(),"No result massage is not visible");
 
 
     }

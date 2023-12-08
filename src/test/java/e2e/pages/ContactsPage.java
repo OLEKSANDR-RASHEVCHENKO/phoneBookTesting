@@ -1,6 +1,5 @@
 package e2e.pages;
 
-import e2e.Wait.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,10 +15,8 @@ public class ContactsPage extends BasePage {
 
     @FindBy(xpath = "//div[@class='collapse navbar-collapse']")
     public WebElement header;
-
     @FindBy(xpath = "//div[@class='collapse navbar-collapse']//*[@href='/']")
     WebElement contactsButton;
-
     @FindBy(xpath = "//*[@href='/contacts']")
     WebElement addContactButton;
     @FindBy(xpath = "//select[@id='langSelect']")
@@ -27,18 +24,15 @@ public class ContactsPage extends BasePage {
     @FindBy(xpath = "//*[@id='contacts-list']")
     WebElement contactsList;
     @FindBy(xpath = "//*[@class='list-group']")
-    List <WebElement> contactRows;
+    List<WebElement> contactRows;
     @FindBy(xpath = "//*[@formcontrolname='searchInput']")
     WebElement searchInput;
     @FindBy(xpath = "//*[@ng-reflect-router-link='/account']")
     WebElement accountButton;
     @FindBy(xpath = "//*[@src='/assets/icons/trash.svg']")
     WebElement deleteButton;
-
     @FindBy(xpath = "//*[@type='warning']")
-    WebElement noResultsMassage;
-
-
+    WebElement noResultsMessage;
     @FindBy(xpath = "//*[text()='Logout']")
     WebElement logoutButton;
 
@@ -52,8 +46,7 @@ public class ContactsPage extends BasePage {
         getWait().forClickable(contactsButton);
     }
 
-
-    public void openContactPage () {
+    public void openContactsPage(){
         contactsButton.click();
     }
 
@@ -66,14 +59,13 @@ public class ContactsPage extends BasePage {
         return new AddContactDialog(driver);
     }
 
-    public  void selectLanguage (String language){
+    public void selectLanguage(String language){
         getSelect(languageDropdown).selectByVisibleText(language);
     }
 
     public String getLanguage(){
         return getSelect(languageDropdown).getFirstSelectedOption().getText();
     }
-
 
     public DeleteContactDialog openDeleteDialog(){
         getWait().forClickable(deleteButton);
@@ -85,10 +77,8 @@ public class ContactsPage extends BasePage {
         searchInput.sendKeys(contactValue);
     }
 
-    public  boolean isNoResultMassageDisplayed(){
-        getWait().forVisibility(noResultsMassage);
-        return isElementDisplayed(noResultsMassage);
+    public boolean isNoResultMessageDisplayed(){
+        getWait().forVisibility(noResultsMessage);
+        return isElementDisplayed(noResultsMessage);
     }
-
-    }
-
+}

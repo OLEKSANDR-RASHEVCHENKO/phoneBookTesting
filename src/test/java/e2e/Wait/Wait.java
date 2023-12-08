@@ -9,9 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-
-public class Wait {
-
+public class Wait{
     public WebDriver driver;
     Duration TIMEOUT = Duration.ofSeconds(10);
 
@@ -27,7 +25,7 @@ public class Wait {
         try {
             setWait().until(ExpectedConditions.visibilityOf(element));
         } catch (TimeoutException e){
-            throw new TimeoutException(element.getAccessibleName() + "is not visible more than " + TIMEOUT.toString());
+            throw new TimeoutException(element.getAccessibleName() + " is not visible more than " + TIMEOUT.toString());
         }
     }
 
@@ -35,7 +33,7 @@ public class Wait {
         try {
             setWait().until(ExpectedConditions.visibilityOfAllElements(elements));
         } catch (TimeoutException e){
-           throw new TimeoutException(elements.size() + "is not visible more than " + TIMEOUT.toString());
+            throw new TimeoutException(elements.size() + " are not visible more than " + TIMEOUT.toString());
         }
     }
 
@@ -51,7 +49,7 @@ public class Wait {
         try {
             setWait().until(ExpectedConditions.elementToBeClickable(element));
         } catch (TimeoutException e){
-            e.printStackTrace();
+            throw new TimeoutException(element.getAccessibleName() + " is not clickable more than " + TIMEOUT.toString());
         }
     }
 }
