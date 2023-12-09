@@ -61,18 +61,18 @@ public class ContactsPage extends BasePage {
     }
 
     public AddContactDialog openAddContactDialog() {
-
         addContactButton.click();
         return new AddContactDialog(driver);
     }
 
-    public void selectLanguage(String language){
+    public void selectLanguage(String language) {
         getSelect(languageDropdown).selectByVisibleText(language);
     }
 
-    public String getLanguage(){
-       return getSelect(languageDropdown).getFirstSelectedOption().getText();
+    public String getLanguage() {
+        return getSelect(languageDropdown).getFirstSelectedOption().getText();
     }
+
     public DeleteContactDialog openDeleteDialog() {
         getWait().forClickable(deleteButton);
         deleteButton.click();
@@ -87,5 +87,4 @@ public class ContactsPage extends BasePage {
         getWait().forVisibility(noResultsMessage);
         return isElementDisplayed(noResultsMessage);
     }
-
 }

@@ -35,10 +35,7 @@ public class UserCanWorkWithAddressTest extends TestBase {
         Assert.assertEquals(actualCityName, city, actualCityName + "is not equal " + city);
         Assert.assertEquals(actualPostCode, postCode, actualPostCode + "is not equal " + postCode);
         Assert.assertEquals(actualStreetName, street, actualStreetName + "is not equal " + street);
-
     }
-
-
 
     @Test
     public void userCanWorkWithContactTest() throws InterruptedException {
