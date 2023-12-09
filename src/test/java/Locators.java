@@ -8,7 +8,7 @@ public class Locators {
 
     //name
     WebElement elementVariantNameEmailOne = driver.findElement(By.xpath("//*[@name='email']"));
-    WebElement elementVariantNameEmailTwo = driver.findElement(By.cssSelector("//*[@name='email']"));
+    WebElement elementVariantNameEmailTwo = driver.findElement(By.xpath("//*[@name='email']"));
     WebElement elementVariantNameEmailThree = driver.findElement(By.name("email"));
 
     //id
@@ -26,20 +26,18 @@ public class Locators {
     WebElement elementVariantClassFive = driver.findElement(By.id("from-control mb-2 rounded-pill ng-untouched ng-pristine ng-invalid"));
 
 
-
-
-
     //Password
+
+
     //name
     WebElement elementVariantNamePasswordOne = driver.findElement(By.xpath("//*[@name='password']"));
-    WebElement elementVariantNamePasswordTwo = driver.findElement(By.cssSelector("//*[@name='password']"));
+    WebElement elementVariantNamePasswordTwo = driver.findElement(By.xpath("//*[@name='password']"));
     WebElement elementVariantNamePasswordThree = driver.findElement(By.name("password"));
 
-    //id
-    WebElement elementPlaceHolderOne = driver.findElement(By.xpath("//*[placeholder='Password']"));
-    WebElement elementPlaceHolderTwo = driver.findElement(By.cssSelector("['Password']"));
+    //placeholder
+    WebElement elementPlaceHolderOne = driver.findElement(By.xpath("//*[@placeholder='Password']"));
     WebElement elementPlaceHolderThree = driver.findElement(By.cssSelector("#Password"));
-    WebElement elementPlaceHolderFour = driver.findElement(By.id("Password"));
+    WebElement elementPlaceHolderFour = driver.findElement(By.name("Password"));
 
     //class -bad practice
 
@@ -47,6 +45,4 @@ public class Locators {
     WebElement elementVariantClassPasswordTwo = driver.findElement(By.xpath("//*[contains(@class, 'form-control']"));
     WebElement elementVariantClassPasswordThree = driver.findElement(By.cssSelector("[@class= 'form-control rounded-pill ng-untouched ng-pristine ng-invalid']"));
     WebElement elementVariantClassPasswordFour = driver.findElement(By.cssSelector(".form-control.rounded-pill.ng-untouched.ng-pristine.ng-invalid"));
-    WebElement elementVariantClassPasswordFive = driver.findElement(By.id("form-control rounded-pill ng-untouched ng-pristine ng-invalid"));
-
 }
