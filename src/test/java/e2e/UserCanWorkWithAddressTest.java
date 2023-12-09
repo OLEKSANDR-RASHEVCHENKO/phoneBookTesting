@@ -38,6 +38,8 @@ public class UserCanWorkWithAddressTest extends TestBase {
 
     }
 
+
+
     @Test
     public void userCanWorkWithContactTest() throws InterruptedException {
         String email = "newTest@gmail.com";
@@ -76,6 +78,7 @@ public class UserCanWorkWithAddressTest extends TestBase {
         contactInfoPage = new ContactInfoPage(app.driver);
         //contactInfoPage.waitForLoading();
         checkContactData(contactInfoPage, firsName, lastName, description);
+
 
         //addAddress
         addressesInfoPage = new AddressesInfoPage(app.driver);

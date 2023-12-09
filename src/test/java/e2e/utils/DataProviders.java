@@ -14,8 +14,9 @@ public class DataProviders {
     public Iterator<Object[]>newContact(){
         List<Object[]> list = new ArrayList<>();
         list.add(new Object[]{faker.name().firstName(),faker.name().lastName(),faker.lorem().paragraph()});
-        list.add(new Object[]{"Nata","Koval","QaPro"});
-        list.add(new Object[]{"Olena","Rev","QaPro"});
+        list.add(new Object[]{faker.internet().uuid(),faker.internet().uuid(),faker.lorem().sentence()});
+        list.add(new Object[]{"Natalie","Kovalchuk","I am a student"});
+        list.add(new Object[]{faker.internet().uuid(),"Kovalchuk","I am a student"});
         return list.iterator();
 
     }
