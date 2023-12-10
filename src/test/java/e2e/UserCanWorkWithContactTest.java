@@ -2,6 +2,7 @@ package e2e;
 
 import com.github.javafaker.Faker;
 import e2e.pages.*;
+import e2e.utils.DataProviders;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -22,15 +23,15 @@ public class UserCanWorkWithContactTest extends TestBase{
         Assert.assertEquals(actualLastName, lastName, actualLastName + " is not equal " + lastName);
         Assert.assertEquals(actualDescription, description, actualDescription + " is not equal " + description);
     }
-    @Test
-    public void userCanWorkWithContactTest() throws InterruptedException {
+    @Test(dataProvider = "newContact",dataProviderClass = DataProviders.class)
+    public void userCanWorkWithContactTest(String firstName, String lastName,String description){
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
         String language = "English";
 
-        String firstName = faker.internet().uuid();
-        String lastName = faker.internet().uuid();
-        String description = faker.lorem().sentence();
+//        String firstName = faker.internet().uuid();
+//        String lastName = faker.internet().uuid();
+//        String description = faker.lorem().sentence();
 
         String editFirstName = faker.internet().uuid();
         String editLastName = faker.internet().uuid();

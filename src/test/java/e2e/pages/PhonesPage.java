@@ -20,4 +20,12 @@ public class PhonesPage extends ContactInfoPage{
     WebElement saveButton;
 
 
+    public void waitForLoading(){
+        getWait().forVisibility(searchInput);
+        getWait().forVisibility(addPhoneNumber);
+    }
+
+
+
+
 }
