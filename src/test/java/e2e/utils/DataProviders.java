@@ -18,4 +18,16 @@ public class DataProviders {
         list.add(new Object[]{faker.internet().uuid(),"Pakhamovich", "I'am a idiot"});
         return list.iterator();
     }
+
+    @DataProvider
+    public Iterator<Object[]> invalidLogin(){
+        List<Object[]> list = new ArrayList<>();
+        list.add(new Object[]{"newtest@gmail.com","newtest@gmail.com"});
+        list.add(new Object[]{"newtest1@gmail.com","newtest@gmail.com"});
+        list.add(new Object[]{"newtest@gmail.com","newtest22@gmail.com"});
+        list.add(new Object[]{"new1test@gmail.com","newtest23@gmail.com"});
+        return list.iterator();
+    }
+
+
 }
