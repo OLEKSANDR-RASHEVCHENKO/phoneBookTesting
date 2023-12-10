@@ -19,6 +19,12 @@ public class LoginPage extends BasePage{
     @FindBy (xpath = "//*[@type='submit']")// short annotation ,  способ по кот мы хотим
     WebElement loginButton;
 
+    public void waitForLoading(){ //только для эл. кот видимые,
+        getWait().forVisibility(emailInput);
+        getWait().forVisibility(passwordInput);
+        getWait().forVisibility(loginButton);
+    }
+
     //described method
     public void login(String email, String password){
         emailInput.sendKeys(email);

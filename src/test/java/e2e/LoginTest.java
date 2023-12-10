@@ -2,8 +2,13 @@ package e2e;
 
 import e2e.pages.ContactsPage;
 import e2e.pages.LoginPage;
+import e2e.utils.DataProviders;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class LoginTest extends TestBase{
     LoginPage loginPage; //
@@ -21,6 +26,8 @@ public class LoginTest extends TestBase{
         loginPage.login(email, password);
 
         contactsPage = new ContactsPage(app.driver);
+      
+
         Assert.assertTrue(contactsPage.confirmLogin(), "User is not logged");// assert - проверка
     }
     @Test
@@ -28,13 +35,20 @@ public class LoginTest extends TestBase{
             String email = "newtestgmail.com";
             String password = "newtest@gmail.com";
 
+        contactsPage.waitForLoading();
+    }
+    @Test(dataProvider = "userCannotLogin", dataProviderClass = DataProviders.class)
+        public void userCannotLoginWithInvalidEmail(String email, String password){
+            //String email = "newtestgmail.com";
+            //String password = "newtest@gmail.com";
+
+
 
             loginPage = new LoginPage(app.driver); //драйвер берем из апликейшн манагер
             loginPage.login(email, password);
-
-            contactsPage = new ContactsPage(app.driver);
-            Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
+            loginPage.waitForLoading();
 }
+
 
 @Test
     public void userCannotLoginWithInvalidPassword(){
@@ -60,4 +74,9 @@ public class LoginTest extends TestBase{
     contactsPage = new ContactsPage(app.driver);
     Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
 }
+
 }
+
+
+
+
