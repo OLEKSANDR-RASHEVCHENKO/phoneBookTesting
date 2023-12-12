@@ -57,23 +57,24 @@ public class UserCanWorkWithContactTest extends TestBase {
         loginPage=new LoginPage(app.driver);
         //loginPage.waitForLoading();
         loginPage.login(email,password);
+
         //check that user was logged
         contactsPage = new ContactsPage(app.driver);
         //contactsPage.waitForLoading();
         contactsPage.selectLanguage(language);
         String actualLanguage = contactsPage.getLanguage();
         Assert.assertEquals(actualLanguage,language);
-        //add contact
 
+        //add contact
         addContactDialog=contactsPage.openAddContactDialog();
         //addContactDialog.waitForOpen();
         addContactDialog.setAddContactForm(firsName,lastName,description);
         addContactDialog.saveContact();
+
         //check  create contact
         contactInfoPage=new ContactInfoPage(app.driver);
         //contactInfoPage.waitForLoading();
         checkContactData(contactInfoPage,firsName,lastName,description);
-
 
         // edit contact
         editContactForm=contactInfoPage.openEditContactForm();
@@ -82,6 +83,7 @@ public class UserCanWorkWithContactTest extends TestBase {
         editContactForm.setLastNameInput(editLastName);
         editContactForm.setDescriptionInput(editDescription);
         editContactForm.saveChanges();
+
         //addAddress
         addressesInfoPage = new AddressesInfoPage(app.driver);
         addressesInfoPage.openTab(ContactInfoTabs.ADDRESSES);
@@ -106,6 +108,7 @@ public class UserCanWorkWithContactTest extends TestBase {
         //open contacts page
         contactInfoPage.openContactsPage();
         contactsPage.waitForLoading();
+
         //find contact by firstname
         contactsPage.filterByContact(editFirstName);
         contactsPage.waitForLoading();
@@ -119,8 +122,6 @@ public class UserCanWorkWithContactTest extends TestBase {
         deleteContactDialog.removeContact();
 
         Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(),"No result message is not visible");
-
-
     }
 
 }

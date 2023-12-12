@@ -66,12 +66,13 @@ public class UserCanWorkWithAddressTest extends TestBase {
         contactsPage.selectLanguage(language);
         String actualLanguage = contactsPage.getLanguage();
         Assert.assertEquals(actualLanguage, language);
-        //add contact
 
+        //add contact
         addContactDialog = contactsPage.openAddContactDialog();
         //addContactDialog.waitForOpen();
         addContactDialog.setAddContactForm(firsName, lastName, description);
         addContactDialog.saveContact();
+
         //check  create contact
         contactInfoPage = new ContactInfoPage(app.driver);
         //contactInfoPage.waitForLoading();
