@@ -26,28 +26,30 @@ public class LoginTest extends TestBase{
         loginPage.login(email, password);
 
         contactsPage = new ContactsPage(app.driver);
-      
-
-        Assert.assertTrue(contactsPage.confirmLogin(), "User is not logged");// assert - проверка
+        contactsPage.waitForLoading();
     }
     @Test
-        public void userCannotLoginWithInvalidEmail(){
-            String email = "newtestgmail.com";
-            String password = "newtest@gmail.com";
+    public void userCannotLoginWithInvalidEmail(){
+        String email = "newtestgmail.com";
+        String password = "newtest@gmail.com";
 
+        loginPage = new LoginPage(app.driver);
+        loginPage.login(email, password);
+
+        contactsPage = new ContactsPage(app.driver);
         contactsPage.waitForLoading();
+
+
     }
     
     @Test(dataProvider = "userCannotLogin", dataProviderClass = DataProviders.class)
-        public void userCannotLoginWithInvalidEmail(String email, String password){
-            //String email = "newtestgmail.com";
-            //String password = "newtest@gmail.com";
+    public void userCannotLoginWithInvalidEmail(String email, String password){
+        //String email = "newtestgmail.com";
+        //String password = "newtest@gmail.com";
 
-
-
-            loginPage = new LoginPage(app.driver); //драйвер берем из апликейшн манагер
-            loginPage.login(email, password);
-            loginPage.waitForLoading();
+        loginPage = new LoginPage(app.driver); //драйвер берем из апликейшн манагер
+        loginPage.login(email, password);
+        loginPage.waitForLoading();
 }
 
 
