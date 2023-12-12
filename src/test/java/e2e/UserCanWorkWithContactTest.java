@@ -11,6 +11,7 @@ public class UserCanWorkWithContactTest extends TestBase {
     LoginPage loginPage;
     ContactsPage contactsPage;
     AddContactDialog addContactDialog;
+
     ContactInfoPage contactInfoPage;
     EditContactForm editContactForm;
     DeleteContactDialog deleteContactDialog;
@@ -18,9 +19,9 @@ public class UserCanWorkWithContactTest extends TestBase {
     Faker faker = new Faker();
 
     private void checkContactData(ContactInfoPage page,String firstName,String lastName,String description){
-        String actualFirstName = contactInfoPage.getFirstName();
-        String actualLastName = contactInfoPage.getLastName();
-        String actualDescription = contactInfoPage.getDescription();
+        String actualFirstName = page.getFirstName();
+        String actualLastName = page.getLastName();
+        String actualDescription = page.getDescription();
         Assert.assertEquals(actualFirstName,firstName,actualFirstName + " is not equal " + firstName);
         Assert.assertEquals(actualLastName,lastName,actualLastName + " is not equal " + lastName);
         Assert.assertEquals(actualDescription,description,actualDescription + " is not equal " + description);
@@ -62,12 +63,14 @@ public class UserCanWorkWithContactTest extends TestBase {
         addContactDialog.setAddContactForm(firstName,lastName,description);
         addContactDialog.saveContact();
 
+
+
         // check created contact " Создать новый контакт "
 
         contactInfoPage = new ContactInfoPage(app.driver);
-        contactInfoPage.openTab(ContactInfoTabs.EMAILS);
         contactInfoPage.waitForLoading();
         checkContactData(contactInfoPage,firstName,lastName,description);
+        //contactInfoPage.openTab(ContactInfoTabs.EMAILS);
 
 
         // edit contact " изменить контакт "

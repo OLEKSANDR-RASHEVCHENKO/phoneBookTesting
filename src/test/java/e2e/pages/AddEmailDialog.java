@@ -30,16 +30,16 @@ public class AddEmailDialog extends EmailPage {
     }
 
 
-   // public void setEmailFieldInput(String emailField){
-      //  setInput(emailFieldInput,emailField);
-    //}
+    public void setEmailFieldInput(String emailField){
+      //setInput(emailFieldInput,emailField);
+    }
 
 
 
     public void setAddContactForm(String emailField, String emailInput){
 
-      //  setEmailField(emailField);
-      //  setEmailInput(emailInput);
+       // setEmailField(emailField);
+       // setEmailInput(emailInput);
     }
 
     public void saveEmail(){

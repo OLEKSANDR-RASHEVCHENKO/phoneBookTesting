@@ -69,6 +69,11 @@ public class ContactsPage extends BasePage {
         return new AddContactDialog(driver);
     }
 
+    public AddEmailDialog openAddEmailDialog(){
+        addContactButton.click();
+        return new AddEmailDialog(driver);
+    }
+
     //
 
     public void selectLanguage(String language){
