@@ -1,7 +1,6 @@
 package e2e;
 
 import com.github.javafaker.Faker;
-import e2e.enums.ContactInfoTabs;
 import e2e.pages.*;
 import e2e.utils.DataProviders;
 import org.testng.Assert;

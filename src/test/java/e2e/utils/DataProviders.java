@@ -12,9 +12,9 @@ public class DataProviders {
     @DataProvider
     public Iterator<Object[]> newContact(){
         List<Object[]> list = new ArrayList<>();
-        list.add(new Object[]{faker.name().firstName(),faker.name().lastName(),faker.lorem().paragraph()});
-        list.add(new Object[]{faker.internet().uuid(),faker.internet().uuid(),faker.lorem().sentence()});
-        list.add(new Object[]{faker.internet().uuid(),"Mikhailov","I am a teacher"});
+        list.add(new Object[]{faker.internet().uuid(),faker.name().lastName(),faker.lorem().paragraph()});
+//        list.add(new Object[]{faker.internet().uuid(),faker.internet().uuid(),faker.lorem().sentence()});
+//        list.add(new Object[]{faker.internet().uuid(),"Mikhailov","I am a teacher"});
         return list.iterator();
     }
 
