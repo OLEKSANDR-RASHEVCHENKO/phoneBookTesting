@@ -55,7 +55,9 @@ public class ContactsPage extends BasePage {
         getWait().forClickable(addContactButton);
         getWait().forClickable(contactsButton);
     }
-
+    public boolean confirmLogin() {
+        return header.isDisplayed();
+    }
     // открыть страницу контактов
     public void openContactsPage(){
         contactsButton.click();

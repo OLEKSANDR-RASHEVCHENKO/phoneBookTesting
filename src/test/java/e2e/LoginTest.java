@@ -29,7 +29,7 @@ public class LoginTest extends TestBase{
         contactsPage.waitForLoading();
     }
     @Test
-    public void userCannotLoginWithInvalidEmail(){
+    public void userCannotLoginInvalidEmail(){
         String email = "newtestgmail.com";
         String password = "newtest@gmail.com";
 
@@ -37,7 +37,7 @@ public class LoginTest extends TestBase{
         loginPage.login(email, password);
 
         contactsPage = new ContactsPage(app.driver);
-        contactsPage.waitForLoading();
+        Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
 
 
     }
@@ -55,7 +55,7 @@ public class LoginTest extends TestBase{
 
 
 @Test
-    public void userCannotLoginWithInvalidPassword(){
+    public void userCannotLoginInvalidPassword(){
         String email = "newtest@gmail.com";
         String password = "newtestgmail.com";
 
@@ -63,7 +63,7 @@ public class LoginTest extends TestBase{
         loginPage.login(email, password);
 
         contactsPage = new ContactsPage(app.driver);
-        contactsPage.waitForLoading();
+        Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
 
 }
 
@@ -76,7 +76,7 @@ public class LoginTest extends TestBase{
     loginPage.login(email, password);
 
     contactsPage = new ContactsPage(app.driver);
-    contactsPage.waitForLoading();
+    Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
 }
 
 }
