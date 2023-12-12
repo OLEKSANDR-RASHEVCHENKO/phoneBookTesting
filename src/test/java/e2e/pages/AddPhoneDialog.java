@@ -42,6 +42,7 @@ public class AddPhoneDialog extends PhonesPage {
     public void setPhoneNumberInput(String phoneNumber) {
         setInput(phoneNumberInput, phoneNumber);
     }
+
     public void savePhone() throws InterruptedException {
         saveButton.click();
         getWait().forInvisibility(saveButton);
