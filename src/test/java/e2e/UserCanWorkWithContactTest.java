@@ -71,7 +71,6 @@ public class UserCanWorkWithContactTest extends TestBase {
 
 
         //check edited contact
-        contactsPage.waitForLoading();
         checkContactData(contactInfoPage, editFirstName, editLastName, editDescription);
 
         //open contacts page
@@ -91,13 +90,10 @@ public class UserCanWorkWithContactTest extends TestBase {
         deleteContactDialog.waitForOpen();
         deleteContactDialog.setConfirmDeletion();
         deleteContactDialog.removeContact();
-        contactsPage.waitForLoading();
-
 
         //check that contact was deleted
 
         Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(),"No result massage is not visible");
-
 
     }
 }
