@@ -21,7 +21,6 @@ public class LoginTest extends TestBase{
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
 
-
         loginPage = new LoginPage(app.driver); //драйвер берем из апликейшн манагер
         loginPage.login(email, password);
 
@@ -29,16 +28,14 @@ public class LoginTest extends TestBase{
         contactsPage.waitForLoading();
     }
     @Test(dataProvider = "userCannotLogin", dataProviderClass = DataProviders.class)
-        public void userCannotLoginWithInvalidEmail(String email, String password){
-            //String email = "newtestgmail.com";
-            //String password = "newtest@gmail.com";
+    public void userCannotLoginWithInvalidEmail(String email, String password){
+        //String email = "newtestgmail.com";
+        //String password = "newtest@gmail.com";
 
-
-            loginPage = new LoginPage(app.driver); //драйвер берем из апликейшн манагер
-            loginPage.login(email, password);
-            loginPage.waitForLoading();
+        loginPage = new LoginPage(app.driver); //драйвер берем из апликейшн манагер
+        loginPage.login(email, password);
+        loginPage.waitForLoading();
 }
-
 
 
 }
