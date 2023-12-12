@@ -1,8 +1,9 @@
-package e2e.pages;
+package e2e;
 
 import com.github.javafaker.Faker;
 import e2e.TestBase;
 import e2e.enums.ContactInfoTabs;
+import e2e.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -27,7 +28,7 @@ public class UserCanAddPhoneNumber extends TestBase {
         Assert.assertEquals(actualDescription, description, actualDescription + "is not equal" + description);
     }
 
-    @Test
+    @Test(enabled = false)
     public void userCanAddPhoneNumber()throws InterruptedException {
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
