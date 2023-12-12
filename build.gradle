@@ -22,6 +22,7 @@ test {
 }
 task testSmoke(type: Test){
     useTestNG(){
-        suites 'path to suites'
+        suites 'src/test/resources/testngSmoke.xml'
+//        suites 'src/test/resources/testngNoSmoke.xml'
     }
 }
