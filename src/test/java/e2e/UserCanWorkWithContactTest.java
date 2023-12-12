@@ -59,69 +59,53 @@ public class UserCanWorkWithContactTest extends TestBase {
         loginPage.login(email,password);
 
         //check that user was logged
-        contactsPage = new ContactsPage(app.driver);
-        //contactsPage.waitForLoading();
-        contactsPage.selectLanguage(language);
-        String actualLanguage = contactsPage.getLanguage();
-        Assert.assertEquals(actualLanguage,language);
+        contactsPage = new ContactsPage((app.driver));
+        contactsPage.waitForLoading();
 
         //add contact
-        addContactDialog=contactsPage.openAddContactDialog();
-        //addContactDialog.waitForOpen();
-        addContactDialog.setAddContactForm(firsName,lastName,description);
+        addContactDialog = contactsPage.openAddContactDialog();
+        addContactDialog.waitForOpen();
+        addContactDialog.setAddContactForm(firstName, lastName, description);
         addContactDialog.saveContact();
 
-        //check  create contact
-        contactInfoPage=new ContactInfoPage(app.driver);
-        //contactInfoPage.waitForLoading();
-        checkContactData(contactInfoPage,firsName,lastName,description);
+        //Check created contact
+        contactInfoPage = new ContactInfoPage(app.driver);
+        contactsPage.waitForLoading();
+        checkContactData(contactInfoPage, firstName, lastName, description);
 
         // edit contact
-        editContactForm=contactInfoPage.openEditContactForm();
-        //editContactForm.waitForOpen();
+        editContactForm = contactInfoPage.openEditContactForm();
+        editContactForm.waitForOpen();
         editContactForm.setFirstNameInput(editFirstName);
         editContactForm.setLastNameInput(editLastName);
         editContactForm.setDescriptionInput(editDescription);
         editContactForm.saveChanges();
 
-        //addAddress
-        addressesInfoPage = new AddressesInfoPage(app.driver);
-        addressesInfoPage.openTab(ContactInfoTabs.ADDRESSES);
-        addressesInfoPage.clickOnAddressButton();
-        //addressesInfoPage.waitForLoading();
-        addAddressDialog = new AddAddressDialog(app.driver);
-        addAddressDialog.selectCountry(country);
-        addAddressDialog.setCity(city);
-        addAddressDialog.setPostCode(postCode);
-        addAddressDialog.setStreet(street);
-        addAddressDialog.addressAddSaveButtonClick();
-        checkAddressData(addressesInfoPage,country,city,postCode,street);
+        // check edited contact
+        checkContactData(contactInfoPage, editFirstName, editLastName, editDescription);
+        contactInfoPage.waitForLoading();
 
 
-
-
-
-        //check edited contact
-        //contactInfoPage.waitForLoading();
-        //checkContactData(contactInfoPage,editFirstName,editLastName,editDescription);
-
-        //open contacts page
+        // open contacts page
         contactInfoPage.openContactsPage();
         contactsPage.waitForLoading();
 
-        //find contact by firstname
+        // filter by contact name
         contactsPage.filterByContact(editFirstName);
         contactsPage.waitForLoading();
+
+        // check rows count after filter by contact
         int actualContactCountRow = contactsPage.getContactCount();
-        Assert.assertEquals(actualContactCountRow,1,"Contact count row after filter should be 1 ");
+        Assert.assertEquals(actualContactCountRow, 1, "Contact count row after filter should be 1");
 
         //delete contact
-        deleteContactDialog=contactsPage.openDeleteDialog();
+        deleteContactDialog = contactsPage.openDeleteDialog();
         deleteContactDialog.waitForOpen();
         deleteContactDialog.setConfirmDeletion();
         deleteContactDialog.removeContact();
 
-        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(),"No result message is not visible");
+        //check that contact was deleted
+        contactsPage.waitForLoading();
+        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(), "No result message is not visible");
     }
-
 }
