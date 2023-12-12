@@ -18,5 +18,10 @@ dependencies {
 }
 
 test {
-    useJUnitPlatform()
+    useTestNG()
+}
+task testSmoke(type: Test){
+    useTestNG(){
+        suites 'path to suites'
+    }
 }
