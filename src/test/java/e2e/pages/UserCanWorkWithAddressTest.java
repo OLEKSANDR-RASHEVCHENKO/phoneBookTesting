@@ -58,18 +58,20 @@ public class UserCanWorkWithAddressTest extends TestBase {
         loginPage=new LoginPage(app.driver);
         //loginPage.waitForLoading();
         loginPage.login(email,password);
+
         //check that user was logged
         contactsPage = new ContactsPage(app.driver);
         //contactsPage.waitForLoading();
         contactsPage.selectLanguage(language);
         String actualLanguage = contactsPage.getLanguage();
         Assert.assertEquals(actualLanguage,language);
-        //add contact
 
+        //add contact
         addContactDialog=contactsPage.openAddContactDialog();
         //addContactDialog.waitForOpen();
         addContactDialog.setAddContactForm(firsName,lastName,description);
         addContactDialog.saveContact();
+
         //check  create contact
         contactInfoPage=new ContactInfoPage(app.driver);
         //contactInfoPage.waitForLoading();
@@ -87,8 +89,6 @@ public class UserCanWorkWithAddressTest extends TestBase {
         addAddressDialog.setStreet(street);
         addAddressDialog.addressAddSaveButtonClick();
         checkAddressData(addressesInfoPage,country,city,postCode,street);
-
-
 
     }
 
