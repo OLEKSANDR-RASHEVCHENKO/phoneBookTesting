@@ -21,22 +21,63 @@ public class LoginTest extends TestBase{
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
 
+
         loginPage = new LoginPage(app.driver); //драйвер берем из апликейшн манагер
         loginPage.login(email, password);
 
         contactsPage = new ContactsPage(app.driver);
         contactsPage.waitForLoading();
     }
-    @Test(dataProvider = "userCannotLogin", dataProviderClass = DataProviders.class)
-    public void userCannotLoginWithInvalidEmail(String email, String password){
-        //String email = "newtestgmail.com";
-        //String password = "newtest@gmail.com";
+    @Test
+    public void userCannotLoginWithInvalidEmail(){
+        String email = "newtestgmail.com";
+        String password = "newtest@gmail.com";
 
-        loginPage = new LoginPage(app.driver); //драйвер берем из апликейшн манагер
+        loginPage = new LoginPage(app.driver);
         loginPage.login(email, password);
-        loginPage.waitForLoading();
+
+        contactsPage = new ContactsPage(app.driver);
+        contactsPage.waitForLoading();
+
+
+    }
+
+    @Test(dataProvider = "userCannotLogin", dataProviderClass = DataProviders.class)
+        public void userCannotLoginWithInvalidEmail(String email, String password){
+            //String email = "newtestgmail.com";
+            //String password = "newtest@gmail.com";
+
+
+            loginPage = new LoginPage(app.driver); //драйвер берем из апликейшн манагер
+            loginPage.login(email, password);
+            loginPage.waitForLoading();
 }
 
+
+@Test
+    public void userCannotLoginWithInvalidPassword(){
+        String email = "newtest@gmail.com";
+        String password = "newtestgmail.com";
+
+        loginPage = new LoginPage(app.driver);
+        loginPage.login(email, password);
+
+        contactsPage = new ContactsPage(app.driver);
+        contactsPage.waitForLoading();
+
+}
+
+@Test
+    public  void userCannotLoginWithInvalidData(){
+    String email = "newtestgmail.com";
+    String password = "newtestgmail.com";
+
+    loginPage = new LoginPage(app.driver);
+    loginPage.login(email, password);
+
+    contactsPage = new ContactsPage(app.driver);
+    contactsPage.waitForLoading();
+}
 
 }
 
