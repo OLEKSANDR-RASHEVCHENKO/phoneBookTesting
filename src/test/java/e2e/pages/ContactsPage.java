@@ -80,4 +80,11 @@ public class ContactsPage extends BasePage {
         return isElementDisplayed(noResultsMessage);
     }
 
+
+    public void selectLanguage(String language){
+        getSelect(languageDropdown).selectByVisibleText(language);
+    }
+    public String getLanguage(){
+        return getSelect(languageDropdown).getFirstSelectedOption().getText();
+    }
 }
