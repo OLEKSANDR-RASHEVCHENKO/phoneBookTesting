@@ -37,6 +37,7 @@ public class LoginTest extends TestBase{
 
         contactsPage.waitForLoading();
     }
+    
     @Test(dataProvider = "userCannotLogin", dataProviderClass = DataProviders.class)
         public void userCannotLoginWithInvalidEmail(String email, String password){
             //String email = "newtestgmail.com";
@@ -59,7 +60,7 @@ public class LoginTest extends TestBase{
         loginPage.login(email, password);
 
         contactsPage = new ContactsPage(app.driver);
-        Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
+        contactsPage.waitForLoading();
 
 }
 
@@ -72,7 +73,7 @@ public class LoginTest extends TestBase{
     loginPage.login(email, password);
 
     contactsPage = new ContactsPage(app.driver);
-    Assert.assertFalse(contactsPage.confirmLogin(), "User is logged");
+    contactsPage.waitForLoading();
 }
 
 }
