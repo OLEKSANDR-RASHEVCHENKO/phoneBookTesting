@@ -98,6 +98,8 @@ public class ContactsPage extends BasePage {
         getWait().forVisibility(noResultsMessage);
         return  isElementDisplayed(noResultsMessage);
     }
-
+    public void takeScreenshotNoResultMessage(){
+        takeAndCompareScreenshot("contactsPageNoResultMessage", noResultsMessage);
+    }
 
 }

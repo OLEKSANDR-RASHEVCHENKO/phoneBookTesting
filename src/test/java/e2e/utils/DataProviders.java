@@ -25,9 +25,9 @@ public class DataProviders {
     @DataProvider
     public Iterator<Object[]> userCannotLogin(){
         List<Object[]> list = new ArrayList<>();
-        list.add(new Object[]{"newtestgmail.com","newtestgmail.com"});
-        list.add(new Object[]{"newtestgmail.com","newtest@gmail.com"});
-        list.add(new Object[]{"newtestgmail.com","newtestgmail.com"});
+        list.add(new Object[]{"Steew","neteest@gmail.com","with_invalid_email"});
+        list.add(new Object[]{"newtest@gmail.com","356456437","with_invalid_password"});
+        list.add(new Object[]{"12345", "245435", "with_invalid_data"});
         return list.listIterator(); // метод перебирает с поочередно с первого по последний
     }
 }

@@ -41,7 +41,7 @@ public class LoginTest extends TestBase{
     }
 
     @Test(dataProvider = "userCannotLogin", dataProviderClass = DataProviders.class)
-        public void userCannotLoginWithInvalidEmail(String email, String password){
+        public void userCannotLoginWithInvalidEmail(String email, String password, String caseName){
             //String email = "newtestgmail.com";
             //String password = "newtest@gmail.com";
 
@@ -49,6 +49,9 @@ public class LoginTest extends TestBase{
             loginPage = new LoginPage(app.driver); //драйвер берем из апликейшн манагер
             loginPage.login(email, password);
             loginPage.waitForLoading();
+
+            loginPage.waitForLoading();
+            loginPage.takeLoginPageScreenshot(caseName + "_negativ_login_test");
 }
 
 
