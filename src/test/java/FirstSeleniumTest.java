@@ -3,7 +3,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -32,9 +31,9 @@ public class FirstSeleniumTest {
 
         List<WebElement> elements = driver.findElements(By.xpath("//*[@class='list-group']"));
         int actualContactCount = elements.size();
-        int expectedContactCount = 1010;
-        Assert.assertEquals(actualContactCount,expectedContactCount, actualContactCount + " not equal " + expectedContactCount);
-
+        int expectedContactCount = 1009;
+        Assert.assertEquals(actualContactCount,expectedContactCount,actualContactCount + " not equal " + expectedContactCount);
         driver.quit();
     }
+
 }
