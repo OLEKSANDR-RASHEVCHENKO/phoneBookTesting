@@ -46,44 +46,69 @@ public class BasePage {
         input.sendKeys(value);
     }
 
-    protected void takeAndCompareScreenshot(String actualScreenshotName,WebElement element) throws IOException {
-        String referenceImageFilePath = "reference/" + actualScreenshotName + ".png";
-        String tmpFilePath = "reference/tmp_" + actualScreenshotName + ".png";
+    private File takeScreenshot(WebElement element){
         File tmp;
         if (element == null){
             tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            System.out.println("Take screenshot page");
         } else {
             tmp = element.getScreenshotAs(OutputType.FILE);
-        }
-        Files.copy(tmp.toPath(),new File(tmpFilePath).toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-        File referenceImageFile = new File(referenceImageFilePath);
-        if(!referenceImageFile.exists()){
-            throw new RuntimeException("Reference image file does not exist, but there is tmp file, need remove tmp_ from name file" + tmpFilePath);
+            System.out.println("Take screenshot element");
         }
 
+        return  tmp;
+    }
+
+    private double calculateMaxDifferentPercentRation(){
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = screenSize.width;
         int height = screenSize.height;
 
-        double maxDiffPercent = 0.01 * width * height;
+        return  0.01 * width * height;
+    }
 
-        ProcessBuilder pb = new ProcessBuilder("C:\\Program Files\\ImageMagick-7.1.1-Q16\\magick.exe", "compare","-metric","AE",referenceImageFilePath,tmpFilePath,"null:");
-        Process process = pb.start();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+    private Process setCommandCompareToTerminal(String refImgFilePath, String tmpFilePath) throws IOException {
+        ProcessBuilder pb = new ProcessBuilder("C:\\Program Files\\ImageMagick-7.1.1-Q16\\magick.exe", "compare","-metric","AE",refImgFilePath,tmpFilePath,"null:");
+        System.out.println("Set compare command to terminal");
+        return pb.start();
+    }
 
+    private double getDifferenceFromLogs(BufferedReader reader) throws IOException {
         String line;
         double difference = 0;
         while ((line=reader.readLine()) != null){
             difference = Integer.parseInt(line.trim());
         }
-        reader.close();
-        process.destroy();
+        return difference;
+    }
 
-        if (difference > maxDiffPercent){
-            throw new RuntimeException(referenceImageFilePath + " not equal " + tmpFilePath + " difference: " + difference);
+    protected void takeAndCompareScreenshot(String actualScreenshotName,WebElement element) {
+        String referenceImageFilePath = "reference/" + actualScreenshotName + ".png";
+        String tmpFilePath = "reference/tmp_" + actualScreenshotName + ".png";
+        File tmp = takeScreenshot(element);
+        try {
+            Files.copy(tmp.toPath(), new File(tmpFilePath).toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+            File referenceImageFile = new File(referenceImageFilePath);
+            if (!referenceImageFile.exists()) {
+                throw new RuntimeException("Reference image file does not exist, but there is tmp file, need remove tmp_ from name file" + tmpFilePath);
+            }
+
+            double maxDiffPercent = calculateMaxDifferentPercentRation();
+            Process process = setCommandCompareToTerminal(referenceImageFilePath, tmpFilePath);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+
+            double difference = getDifferenceFromLogs(reader);
+            reader.close();
+            process.destroy();
+
+            if (difference > maxDiffPercent) {
+                throw new RuntimeException(referenceImageFilePath + " not equal " + tmpFilePath + " difference: " + difference);
+            }
+
+            Files.deleteIfExists(new File(tmpFilePath).toPath());
+        } catch (IOException e){
+            e.printStackTrace();
         }
-
-        Files.deleteIfExists(new File(tmpFilePath).toPath());
     }
 }

@@ -21,10 +21,9 @@ public class DataProviders {
     @DataProvider
     public Iterator<Object[]> invalidDataForLogin(){
         List<Object[]> list = new ArrayList<>();
-        list.add(new Object[]{"newtest@gmail.com","newtest@gmail.com"});
-        list.add(new Object[]{"ne1111wtest@gmail.com","newtest@gmail.com"});
-        list.add(new Object[]{"newtest@gmail.com","new11111est@gmail.com"});
-        list.add(new Object[]{"123123newtest@gmail.com","new11111est@gmail.com"});
+        list.add(new Object[]{"newtest@gmail.com","aaabbbb","with_inval_id_email"});
+        list.add(new Object[]{"ne1111wtest@gmail.com","aaabbbb","w_ith_invalid_email"});
+        list.add(new Object[]{"newtest@gmail.com","aaabbbbbbb","with_invalid_ema_il"});
         return list.iterator();
     }
 

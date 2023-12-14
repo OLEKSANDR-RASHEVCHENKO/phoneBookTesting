@@ -7,6 +7,8 @@ import e2e.utils.DataProviders;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class LoginTest extends TestBase {
     LoginPage loginPage;
     ContactsPage contactsPage;
@@ -24,11 +26,14 @@ public class LoginTest extends TestBase {
     }
 
     @Test(dataProvider = "invalidDataForLogin",dataProviderClass = DataProviders.class)
-    public void userCannotLoginWithInvalidEmail(String email,String password){
+    public void userCannotLoginWithInvalidEmail(String email,String password,String caseName) throws IOException {
 
         loginPage = new LoginPage(app.driver);
-        loginPage.login(email,password);
         loginPage.waitForLoading();
+        loginPage.login(email,password);
+
+        loginPage.waitForLoading();
+        loginPage.takeLoginPageScreenshot(caseName + "_negative_login_case");
     }
 
 }
