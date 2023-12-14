@@ -11,7 +11,6 @@ import java.util.Objects;
 public class DataProviders {
 
     Faker faker = new Faker();
-
     //[{"Georgiy","Manolov","QA Pro curs"},{"Georgiy","Manolov","QA Pro curs"},{"Georgiy","Manolov","QA Pro curs"}
     @DataProvider
     public Iterator<Object[]> newContact(){
@@ -23,17 +22,14 @@ public class DataProviders {
         list.add(new Object[]{faker.internet().uuid(),"Manolov","QA pro course"});
         return list.iterator();
     }
-
     @DataProvider
     public Iterator<Object[]> userCanNotLoginTest(){
 
         List<Object[]> list = new ArrayList<>();
 
-        list.add(new Object[]{"newtestgmail.com", "newtest@gmail.com"});
-        list.add(new Object[]{"newtest@gmail.com", "newtestgmail.com"});
-        list.add(new Object[]{"newtestgmail.com", "newtestgmail.com"});
-        list.add(new Object[]{"newtestgmail.com", "newtest@gmail.com"});
-
+        list.add(new Object[]{"newtestgmail.com", "newtest@gmail.com","invalid_email"});
+        list.add(new Object[]{"newtest@gmail.com", "newtestgmail.com","invalid_password"});
+        list.add(new Object[]{"12333","437373", "with_invalid_data"});
         return list.iterator();
     }
 }
