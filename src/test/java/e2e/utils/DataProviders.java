@@ -15,7 +15,7 @@ public class DataProviders {
         List<Object[]> list = new ArrayList<>();
         list.add(new Object[]{faker.name().firstName(),faker.name().lastName(),faker.lorem().paragraph()});
         list.add(new Object[]{faker.internet().uuid(),faker.internet().uuid(),faker.lorem().sentence()});
-        list.add(new Object[]{faker.internet().uuid(),"Daniel","Hello"});
+        list.add(new Object[]{faker.internet().uuid(),"Alex","Hello"});
         return list.iterator();
     }
     @DataProvider
