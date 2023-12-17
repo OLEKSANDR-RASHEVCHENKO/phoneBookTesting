@@ -81,27 +81,30 @@ public class BasePage {
     }
 
 
-    protected void takeAndCompareScreenshot(String actualScreenshotName, WebElement element) throws IOException {
+    protected void takeAndCompareScreenshot(String actualScreenshotName, WebElement element)  {
         String referenceImageFilePath = "reference/" + actualScreenshotName + ".png";
         String tmpFilePath = "reference/tmp_" + actualScreenshotName + ".png";
         File tmp = takeScreenshot(element);
+        try {
+            Files.copy(tmp.toPath(), new File(tmpFilePath).toPath(), StandardCopyOption.REPLACE_EXISTING);// копируем скриншот из временной деректории в  референс
+            File referenceImageFile = new File(referenceImageFilePath);
+            if (!referenceImageFile.exists()) {
+                throw new RuntimeException("Reference image file does not exist ,but there is tmp file, need remove tmp_ from name file" + tmpFilePath);
+            }
+            double maxDiffPercent = calculateMaxDifferentPercentRation();
+            Process process = setCompareCommandToTerminal(referenceImageFilePath, tmpFilePath);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));// запускаем ридер + пытаемся получить ошибки+читаем логи
+            double difference = getDifferenceFromLogs(reader);
+            reader.close();
+            process.destroy();
 
-        Files.copy(tmp.toPath(), new File(tmpFilePath).toPath(), StandardCopyOption.REPLACE_EXISTING);// копируем скриншот из временной деректории в  референс
-        File referenceImageFile = new File(referenceImageFilePath);
-        if (!referenceImageFile.exists()) {
-            throw new RuntimeException("Reference image file does not exist ,but there is tmp file, need remove tmp_ from name file" + tmpFilePath);
+            if (difference > maxDiffPercent) {
+                throw new RuntimeException(referenceImageFilePath + " not equal " + tmpFilePath + " difference: " + difference);
+            }// проверяем что погрешность не выходит за рамки
+            //------------------------------------------------------------------------------------------------------------------------
+            Files.deleteIfExists(new File(tmpFilePath).toPath());
+        }catch (IOException e){
+            e.printStackTrace();
         }
-        double maxDiffPercent = calculateMaxDifferentPercentRation();
-        Process process = setCompareCommandToTerminal(referenceImageFilePath,tmpFilePath);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));// запускаем ридер + пытаемся получить ошибки+читаем логи
-        double difference = getDifferenceFromLogs(reader);
-        reader.close();
-        process.destroy();
-
-        if (difference > maxDiffPercent) {
-            throw new RuntimeException(referenceImageFilePath + " not equal " + tmpFilePath + " difference: " + difference);
-        }// проверяем что погрешность не выходит за рамки
-        //------------------------------------------------------------------------------------------------------------------------
-        Files.deleteIfExists(new File(tmpFilePath).toPath());
     }
 }
