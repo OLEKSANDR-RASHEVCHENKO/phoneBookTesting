@@ -35,7 +35,7 @@ public class ContactInfoPage extends ContactsPage{
 
 //метод на все табы через энамы, смотреть по локаторамюю отличаются только цифрой-динамический
     public void openTab(ContactInfoTabs tab){
-        driver.findElement(By.xpath("//*[@id='ngb-nav-"+tab.value+"'")).click();
+        driver.findElement(By.xpath("//*[@ng-reflect-_id='"+tab.value+"']")).click();
 
 }
     // get метод, кот проверяет, создался/сохранился ли новый контакт, сохранились ли валидные данные - выводит содержимое Field

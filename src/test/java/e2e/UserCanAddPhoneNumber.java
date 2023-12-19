@@ -28,7 +28,7 @@ public class UserCanAddPhoneNumber extends TestBase {
         Assert.assertEquals(actualDescription, description, actualDescription + "is not equal" + description);
     }
 
-    @Test(enabled = false)
+    @Test
     public void userCanAddPhoneNumber()throws InterruptedException {
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
@@ -67,7 +67,6 @@ public class UserCanAddPhoneNumber extends TestBase {
         //phone page
         phonesPage = new PhonesPage(app.driver);
         phonesPage.waitForLoading();
-
 
     }
 
