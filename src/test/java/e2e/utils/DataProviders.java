@@ -22,10 +22,9 @@ public class DataProviders {
     @DataProvider
     public Iterator<Object[]> invalidLogin(){
         List<Object[]> list = new ArrayList<>();
-        list.add(new Object[]{"newtest@gmail.com","newtest@gmail.com"});
-        list.add(new Object[]{"newtest1@gmail.com","newtest@gmail.com"});
-        list.add(new Object[]{"newtest@gmail.com","newtest22@gmail.com"});
-        list.add(new Object[]{"new1test@gmail.com","newtest23@gmail.com"});
+        list.add(new Object[]{"newtest1@gmail.com","newtest@gmail.com", "with_invalid_email"});
+        list.add(new Object[]{"newtest@gmail.com","newtest22@gmail.com","with_invalid_password"});
+        list.add(new Object[]{"new1test@gmail.com","newtest23@gmail.com","with_invalid_data"});
         return list.iterator();
     }
 

@@ -73,11 +73,20 @@ public class BasePage {
         return pb.start();
     }
 
-    protected void takeAndCompareScreenshot(String actualScreenshotName, WebElement element) throws IOException {
+    private double getDifferenceFromLogs(BufferedReader reader) throws IOException {
+        String line;
+        double difference = 0;
+        while ((line = reader.readLine()) != null) {
+            difference = Integer.parseInt(line.trim());
+        }
+        return difference;
+    }
+
+    protected void takeAndCompareScreenshot(String actualScreenshotName, WebElement element){
         String referenceImageFilePath = "reference/" + actualScreenshotName + ".png";
         String tmpFilePath = "reference/tmp_" + actualScreenshotName + ".png";
         File tmp = takeScreenshot(element);
-
+        try {
         Files.copy(tmp.toPath(),new File(tmpFilePath).toPath(), StandardCopyOption.REPLACE_EXISTING);
 
         File referenceImageFile = new File(referenceImageFilePath);
@@ -88,12 +97,7 @@ public class BasePage {
         double maxDiffPercent = calculateMaxDifferentPercentRation();
         Process process = setCompareCommandToTerminal(referenceImageFilePath, tmpFilePath);
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-
-        String line;
-        double difference = 0;
-        while ((line = reader.readLine()) != null){
-            difference = Integer.parseInt(line.trim());
-        }
+        double difference = getDifferenceFromLogs(reader);
         reader.close();
         process.destroy();
 
@@ -102,6 +106,9 @@ public class BasePage {
         }
 
         Files.deleteIfExists(new File(tmpFilePath).toPath());
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 
