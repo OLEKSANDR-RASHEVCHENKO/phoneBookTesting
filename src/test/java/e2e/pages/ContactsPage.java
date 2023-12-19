@@ -85,5 +85,5 @@ public class ContactsPage extends BasePage {
 
 public void takeScreenshotNoResultMessage(){
     takeAndCompareScreenshot("contactsPageNoResultMessage",noResultsMessage );
-}
+    }
 }
