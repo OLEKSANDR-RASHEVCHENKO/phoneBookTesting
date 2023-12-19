@@ -43,6 +43,7 @@ public class LoginTest extends TestBase {
         } else {
             contactsPage = new ContactsPage(app.driver);
             contactsPage.waitForLoading();
+            contactsPage.takeScreenshotHeader();
         }
     }
     @Test
@@ -58,6 +59,7 @@ public class LoginTest extends TestBase {
     public void userCanLoginWithInvalidPassword(){
         loginTestMethod("newtest@gmail.com","newtest@gasdmail.com","login_invalid_password",true);
     }
+
     @Test
     public void userCanLoginWithInvalidEmailAndPassword(){
         loginTestMethod("newtest@gmail.cosdfm","newtest@sdfgasdmail.com","login_invalid_email_and_password",true);
