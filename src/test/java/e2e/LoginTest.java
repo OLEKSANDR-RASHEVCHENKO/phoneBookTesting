@@ -22,14 +22,11 @@ public class LoginTest extends TestBase{
     }
     @Test(dataProvider = "invalidLogin",dataProviderClass = DataProviders.class)
     public void userCannotLoginWithInvalidEmail(String email, String password, String caseName){
-//        String email = "newtest@gmail.com";
-//        String password = "newtest@gmail.com";
-
         loginPage = new LoginPage(app.driver);
         loginPage.waitForLoading();
         loginPage.login(email, password);
-
+        loginPage.takeLoginPageScreenshot(caseName + "_negative_login_case");
         loginPage.waitForLoading();
-        loginPage.takeLoginPageScreenshot(email + password + "negative_login_case");
+
     }
 }
