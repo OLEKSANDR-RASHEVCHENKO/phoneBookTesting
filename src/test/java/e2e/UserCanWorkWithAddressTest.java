@@ -87,6 +87,16 @@ public class UserCanWorkWithAddressTest extends TestBase{
         addAddressDialog.addressAddSaveButtonClick();
         checkAddressData(addressesInfoPage,country,city,postCode,street);
 
+        //check created Addresses
+
+        //edit Addresses
+
+        //check  created Addresses
+
+
+
+
+
 
 
     }
