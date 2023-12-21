@@ -13,35 +13,24 @@ public class AddEmailDialog extends EmailPage {
 
     @FindBy(xpath = "//*[@role='dialog']")
     WebElement dialog;
-
-
     @FindBy(xpath = "//*[@id='input-email']")
-    WebElement emailField;
-
+    WebElement emailInputField;
     @FindBy(xpath = "//*[@class='btn btn-primary']")
     WebElement saveButton;
+    @FindBy(xpath = "//*[@aria-label='Close']")
+    WebElement closeWindowsButton;
 
 
     public void waitForOpen(){
         getWait().forVisibility(dialog);
-        getWait().forVisibility(emailField);
+        getWait().forVisibility(emailInputField);
         getWait().forClickable(saveButton);
+        getWait().forClickable(closeWindowsButton);
 
     }
-
-
-   // public void setEmailFieldInput(String emailField){
-      //  setInput(emailFieldInput,emailField);
-    //}
-
-
-
-    public void setAddContactForm(String emailField, String emailInput){
-
-      //  setEmailField(emailField);
-      //  setEmailInput(emailInput);
+    public void setEmailFieldInput(String email){
+        emailInputField.sendKeys(email);
     }
-
     public void saveEmail(){
         try {
             getWait().forClickable(saveButton);

@@ -69,6 +69,11 @@ public class ContactsPage extends BasePage {
         return new AddContactDialog(driver);
     }
 
+    public AddEmailDialog openAddEmailDialog(){
+        addContactButton.click();
+        return new AddEmailDialog(driver);
+    }
+
     //
 
     public void selectLanguage(String language){
@@ -91,5 +96,8 @@ public class ContactsPage extends BasePage {
     public boolean isNoResultMessageDisplayed(){
         getWait().forVisibility(noResultMessage);
         return isElementDisplayed(noResultMessage);
+    }
+    public void  takeScreenshotNoResultMessage(){
+        takeAndCompareScreenshot("contactsPageNoResultMessage", noResultMessage);
     }
 }
