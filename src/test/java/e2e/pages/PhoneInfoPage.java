@@ -28,8 +28,8 @@ public class PhoneInfoPage extends ContactInfoPage {
     public void clickOnAddPhoneButton(){
         addPhoneButton.click();
     }
-    public void getPhone(){
-        phoneNumbers.getText();
+    public String getPhone(){
+         return phoneNumbers.getText();
     }
     public void clickOnDropdownButtonEdit(String Edit){
         getSelect(optionDropDown).selectByVisibleText(Edit);
