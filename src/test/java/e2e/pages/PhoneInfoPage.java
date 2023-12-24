@@ -21,8 +21,6 @@ public class PhoneInfoPage extends ContactInfoPage {
     public void waitForLoading(){
         getWait().forVisibility(searchInput);
         getWait().forClickable(addPhoneButton);
-        getWait().forVisibility(phoneNumbers);
-        getWait().forVisibility(optionDropDown);
     }
 
     public void clickOnAddPhoneButton(){

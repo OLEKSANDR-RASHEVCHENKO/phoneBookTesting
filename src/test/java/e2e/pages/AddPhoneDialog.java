@@ -21,11 +21,12 @@ public class AddPhoneDialog extends PhoneInfoPage{
         getWait().forVisibility(phoneNumberInput);
         getWait().forVisibility(saveButton);
     }
+
     public void selectCountryCode(String country){
         getSelect(countryCodeDropdown).selectByVisibleText(country);
     }
     public void setPhoneNumber(String phoneNumber){
-        phoneNumbers.sendKeys(phoneNumber);
+        phoneNumberInput.sendKeys(phoneNumber);
     }
     public void clickOnSaveButton(){
         saveButton.click();

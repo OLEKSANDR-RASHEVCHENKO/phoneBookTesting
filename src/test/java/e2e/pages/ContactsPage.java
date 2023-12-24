@@ -43,7 +43,7 @@ public class ContactsPage extends BasePage {
         getWait().forVisibility(contactsList);
         getWait().forAllVisibility(contactRows);
         getWait().forClickable(addContactButton);
-        getWait().forClickable(contactsButton);
+
     }
 
 

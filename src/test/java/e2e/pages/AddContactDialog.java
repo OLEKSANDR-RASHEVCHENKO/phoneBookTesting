@@ -42,7 +42,6 @@ public class AddContactDialog extends ContactsPage{
         getWait().forVisibility(lastNameInput);
         getWait().forVisibility(descriptionInput);
         getWait().forVisibility(saveButton);
-        getWait().forClickable(saveButton);
     }
 
     public void setFirstNameInput(String firstName){

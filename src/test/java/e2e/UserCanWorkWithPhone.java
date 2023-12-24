@@ -1,6 +1,7 @@
 package e2e;
 
 import com.github.javafaker.Faker;
+import e2e.enums.ContactInfoTabs;
 import e2e.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -32,14 +33,52 @@ public class UserCanWorkWithPhone extends TestBase{
         String email = "newTest@gmail.com";
         String password = "newtest@gmail.com";
         String language = "English";
-        String phoneNumberInput = "0966451658";
+        String phoneNumberInput = "0966451638";
         String dropDownEdit = "Edit";
-        String changedPhone = "5533444333";
+        String changedPhone = "0965544331";
         String dropDownRemove = "Remove";
+        String countryCode = "Ukraine (+380)";
 
         String firsName = faker.internet().uuid();
         String lastName = faker.internet().uuid();
         String description = faker.lorem().sentence();
+
+        loginPage = new LoginPage(app.driver);
+        loginPage.waitForLoading();
+        loginPage.login(email,password);
+
+        contactsPage = new ContactsPage(app.driver);
+        //contactsPage.waitForLoading();
+        contactsPage.selectLanguage(language);
+        String actualLanguage = contactsPage.getLanguage();
+        Assert.assertEquals(actualLanguage,language);
+
+        addContactDialog = contactsPage.openAddContactDialog();
+        addContactDialog.waitForOpen();
+        addContactDialog.setAddContactForm(lastName,firsName,description);
+        addContactDialog.saveContact();
+
+        contactInfoPage = new ContactInfoPage(app.driver);
+        contactInfoPage.waitForLoading();
+        contactInfoPage.openTab(ContactInfoTabs.PHONES);
+
+        phoneInfoPage = new PhoneInfoPage(app.driver);
+        phoneInfoPage.waitForLoading();
+        phoneInfoPage.clickOnAddPhoneButton();
+
+        addPhoneDialog = new AddPhoneDialog(app.driver);
+        addPhoneDialog.waitForLoading();
+        addPhoneDialog.selectCountryCode(countryCode);
+        addPhoneDialog.setPhoneNumber(phoneNumberInput);
+        addPhoneDialog.clickOnSaveButton();
+
+        checkPhoneData(phoneInfoPage,phoneNumberInput);
+
+        phoneInfoPage.clickOnDropdownButtonEdit(dropDownEdit);
+        addPhoneDialog.setPhoneNumber(changedPhone);
+        addPhoneDialog.clickOnSaveButton();
+        checkPhoneData(phoneInfoPage,changedPhone);
+
 
 
     }
