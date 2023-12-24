@@ -18,6 +18,8 @@ public class DeletePhone extends PhoneInfoPage{
     WebElement phoneNumbers;
     @FindBy(xpath = "//*[@class='dropdown-toggle btn btn-outline-light btn-block']")
     WebElement optionDropDown;
+    @FindBy(xpath = "//*[@ng-reflect-type='warning']")
+    WebElement noResultMessage;
 
     public void waitForLoading(){
         getWait().forVisibility(searchInput);
@@ -30,6 +32,11 @@ public class DeletePhone extends PhoneInfoPage{
         WebElement editOpen = driver.findElement(By.xpath("//*[text()='Remove']"));
         editOpen.click();
     }
+
+    public boolean isNoResultMessageDisplayed(){
+        return isElementDisplayed(noResultMessage);
+    }
+
 
 
 }

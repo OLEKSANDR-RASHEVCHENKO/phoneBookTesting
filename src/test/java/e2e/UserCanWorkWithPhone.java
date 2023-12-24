@@ -79,7 +79,9 @@ public class UserCanWorkWithPhone extends TestBase{
         editPhone.setPhoneNumberInput(changedPhone);
         editPhone.saveChange();
         checkPhoneData(phoneInfoPage,changedPhone);
+        deletePhone = new DeletePhone(app.driver);
         deletePhone.clickOnDropdownButtonRemove();
+        deletePhone.isNoResultMessageDisplayed();
 
 
 
