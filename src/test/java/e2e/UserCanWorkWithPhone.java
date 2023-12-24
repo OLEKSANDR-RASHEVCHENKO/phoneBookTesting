@@ -14,6 +14,7 @@ public class UserCanWorkWithPhone extends TestBase{
     PhoneInfoPage phoneInfoPage;
     AddPhoneDialog addPhoneDialog;
     EditPhone editPhone;
+    DeletePhone deletePhone;
     Faker faker = new Faker();
     private void checkContactData(ContactInfoPage page,String firsName,String lastName,String description){
         String actualFirstName=page.getFirstName();
@@ -75,9 +76,11 @@ public class UserCanWorkWithPhone extends TestBase{
         phoneInfoPage.clickOnDropdownButtonEdit();
 
         editPhone = new EditPhone(app.driver);
-        editPhone.setChangePhoneNumber(changedPhone);
-        editPhone.clickOnSaveButton();
+        editPhone.setPhoneNumberInput(changedPhone);
+        editPhone.saveChange();
         checkPhoneData(phoneInfoPage,changedPhone);
+        deletePhone.clickOnDropdownButtonRemove();
+
 
 
 

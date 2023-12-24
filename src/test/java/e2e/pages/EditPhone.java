@@ -26,11 +26,13 @@ public class EditPhone extends PhoneInfoPage{
     public void selectCountryCode(String country){
         getSelect(countryCodeDropdown).selectByVisibleText(country);
     }
-    public void setChangePhoneNumber(String changePhoneNumber){
-        phoneNumberInput.sendKeys(changePhoneNumber);
+    public void setPhoneNumberInput(String editPhone){
+        setInput(phoneNumberInput ,editPhone);
+
     }
-    public void clickOnSaveButton(){
+    public void saveChange(){
         saveButton.click();
+        getWait().forInvisibility(saveButton);
     }
 
 
