@@ -1,5 +1,6 @@
 package e2e.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,8 +30,11 @@ public class PhoneInfoPage extends ContactInfoPage {
     public String getPhone(){
          return phoneNumbers.getText();
     }
-    public void clickOnDropdownButtonEdit(String Edit){
-        getSelect(optionDropDown).selectByVisibleText(Edit);
+    public void clickOnDropdownButtonEdit() {
+        getWait().forClickable(optionDropDown);
+        optionDropDown.click();
+        WebElement editOpen = driver.findElement(By.xpath("//*[text()='Edit']"));
+        editOpen.click();
     }
     public void clickOnDropdownButtonDelete(String Remove){
         getSelect(optionDropDown).selectByVisibleText(Remove);

@@ -13,6 +13,7 @@ public class UserCanWorkWithPhone extends TestBase{
     ContactInfoPage contactInfoPage;
     PhoneInfoPage phoneInfoPage;
     AddPhoneDialog addPhoneDialog;
+    EditPhone editPhone;
     Faker faker = new Faker();
     private void checkContactData(ContactInfoPage page,String firsName,String lastName,String description){
         String actualFirstName=page.getFirstName();
@@ -34,9 +35,7 @@ public class UserCanWorkWithPhone extends TestBase{
         String password = "newtest@gmail.com";
         String language = "English";
         String phoneNumberInput = "0966451638";
-        String dropDownEdit = "Edit";
         String changedPhone = "0965544331";
-        String dropDownRemove = "Remove";
         String countryCode = "Ukraine (+380)";
 
         String firsName = faker.internet().uuid();
@@ -73,10 +72,11 @@ public class UserCanWorkWithPhone extends TestBase{
         addPhoneDialog.clickOnSaveButton();
 
         checkPhoneData(phoneInfoPage,phoneNumberInput);
+        phoneInfoPage.clickOnDropdownButtonEdit();
 
-        phoneInfoPage.clickOnDropdownButtonEdit(dropDownEdit);
-        addPhoneDialog.setPhoneNumber(changedPhone);
-        addPhoneDialog.clickOnSaveButton();
+        editPhone = new EditPhone(app.driver);
+        editPhone.setPhoneNumber(changedPhone);
+        editPhone.clickOnSaveButton();
         checkPhoneData(phoneInfoPage,changedPhone);
 
 
