@@ -9,21 +9,13 @@ public class DeletePhone extends PhoneInfoPage{
     public DeletePhone(WebDriver driver) {
         super(driver);
     }
-
-    @FindBy(xpath = "//*[@id='search']")
-    WebElement searchInput;
-    @FindBy(xpath = "//*[@id='btn-add-phone']")
-    WebElement addPhoneButton;
-    @FindBy(xpath = "//*[@class='row-table-pn']")
-    WebElement phoneNumbers;
     @FindBy(xpath = "//*[@class='dropdown-toggle btn btn-outline-light btn-block']")
     WebElement optionDropDown;
     @FindBy(xpath = "//*[@ng-reflect-type='warning']")
     WebElement noResultMessage;
 
     public void waitForLoading(){
-        getWait().forVisibility(searchInput);
-        getWait().forClickable(addPhoneButton);
+        getWait().forVisibility(optionDropDown);
     }
 
     public void clickOnDropdownButtonRemove() {

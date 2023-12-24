@@ -84,8 +84,5 @@ public class UserCanWorkWithPhone extends TestBase{
         deletePhone.clickOnDropdownButtonRemove();
         Assert.assertTrue(deletePhone.isNoResultMessageDisplayed(),"No result message is not visible");
 
-
-
-
     }
 }
