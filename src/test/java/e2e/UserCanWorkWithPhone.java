@@ -75,7 +75,7 @@ public class UserCanWorkWithPhone extends TestBase{
         phoneInfoPage.clickOnDropdownButtonEdit();
 
         editPhone = new EditPhone(app.driver);
-        editPhone.setPhoneNumber(changedPhone);
+        editPhone.setChangePhoneNumber(changedPhone);
         editPhone.clickOnSaveButton();
         checkPhoneData(phoneInfoPage,changedPhone);
 

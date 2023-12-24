@@ -26,7 +26,7 @@ public class EditPhone extends PhoneInfoPage{
     public void selectCountryCode(String country){
         getSelect(countryCodeDropdown).selectByVisibleText(country);
     }
-    public void setPhoneNumber(String phoneNumber){
+    public void setChangePhoneNumber(String phoneNumber){
         phoneNumberInput.sendKeys(phoneNumber);
     }
     public void clickOnSaveButton(){
