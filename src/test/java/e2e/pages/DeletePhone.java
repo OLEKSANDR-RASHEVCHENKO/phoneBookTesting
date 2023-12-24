@@ -29,8 +29,8 @@ public class DeletePhone extends PhoneInfoPage{
     public void clickOnDropdownButtonRemove() {
         getWait().forClickable(optionDropDown);
         optionDropDown.click();
-        WebElement editOpen = driver.findElement(By.xpath("//*[text()='Remove']"));
-        editOpen.click();
+        WebElement removeOpen = driver.findElement(By.xpath("//*[text()='Remove  ']"));
+        removeOpen.click();
     }
 
     public boolean isNoResultMessageDisplayed(){
