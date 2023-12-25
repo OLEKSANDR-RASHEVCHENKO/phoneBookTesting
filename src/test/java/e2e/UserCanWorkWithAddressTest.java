@@ -90,7 +90,7 @@ public class UserCanWorkWithAddressTest extends TestBase {
         addressesInfoPage = new AddressesInfoPage(app.driver);
         addressesInfoPage.openTab(ContactInfoTabs.ADRESSES);
         addressesInfoPage.clickOnAddressButton();
-        //adresdsesInfoPage.waitForLoading();
+        //adressesInfoPage.waitForLoading();
         addAddressDialog = new AddAddressDialog(app.driver);
         addAddressDialog.selectCountry(country);
         addAddressDialog.setCity(city);
@@ -123,6 +123,7 @@ public class UserCanWorkWithAddressTest extends TestBase {
 
         //remove Address
         addressesInfoPage.deleteAddress();
+        addressesInfoPage.waitForLoading();
 
     }
 
