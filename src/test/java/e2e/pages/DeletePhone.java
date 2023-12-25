@@ -28,6 +28,9 @@ public class DeletePhone extends PhoneInfoPage{
     public boolean isNoResultMessageDisplayed(){
         return isElementDisplayed(noResultMessage);
     }
+    public void takeScreenshotNoResult(){
+        takeAndCompareScreenshot("deletePageNoResultMessage",noResultsMessage);
+    }
 
 
 

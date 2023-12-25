@@ -40,8 +40,8 @@ public class ContactsPage extends BasePage {
         getWait().forVisibility(header);
         getWait().forVisibility(contactsButton);
         getWait().forVisibility(addContactButton);
-        getWait().forVisibility(contactsList);
-        getWait().forAllVisibility(contactRows);
+        //getWait().forVisibility(contactsList);
+        //getWait().forAllVisibility(contactRows);
         getWait().forClickable(addContactButton);
 
     }

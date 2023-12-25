@@ -48,7 +48,7 @@ public class UserCanWorkWithPhone extends TestBase{
         loginPage.login(email,password);
 
         contactsPage = new ContactsPage(app.driver);
-        //contactsPage.waitForLoading();
+        contactsPage.waitForLoading();
         contactsPage.selectLanguage(language);
         String actualLanguage = contactsPage.getLanguage();
         Assert.assertEquals(actualLanguage,language);
@@ -67,22 +67,27 @@ public class UserCanWorkWithPhone extends TestBase{
         phoneInfoPage.clickOnAddPhoneButton();
 
         addPhoneDialog = new AddPhoneDialog(app.driver);
-        addPhoneDialog.waitForLoading();
+        addPhoneDialog.waitForOpen();
         addPhoneDialog.selectCountryCode(countryCode);
         addPhoneDialog.setPhoneNumber(phoneNumberInput);
         addPhoneDialog.clickOnSaveButton();
+        phoneInfoPage.takeScreenshotNumber();
 
         checkPhoneData(phoneInfoPage,phoneNumberInput);
         phoneInfoPage.clickOnDropdownButtonEdit();
 
         editPhone = new EditPhone(app.driver);
+        editPhone.waitForOpen();
         editPhone.setPhoneNumberInput(changedPhone);
+        editPhone.takeScreenshotEditedNumber();
         editPhone.saveChange();
         checkPhoneData(phoneInfoPage,changedPhone);
+
 
         deletePhone = new DeletePhone(app.driver);
         deletePhone.clickOnDropdownButtonRemove();
         Assert.assertTrue(deletePhone.isNoResultMessageDisplayed(),"No result message is not visible");
+        deletePhone.takeScreenshotNoResult();
 
     }
 }

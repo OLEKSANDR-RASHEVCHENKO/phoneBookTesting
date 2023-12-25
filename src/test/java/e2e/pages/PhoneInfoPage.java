@@ -36,8 +36,9 @@ public class PhoneInfoPage extends ContactInfoPage {
         WebElement editOpen = driver.findElement(By.xpath("//*[text()='Edit']"));
         editOpen.click();
     }
-    public void clickOnDropdownButtonDelete(String Remove){
-        getSelect(optionDropDown).selectByVisibleText(Remove);
+
+    public void takeScreenshotNumber(){
+        takeAndCompareScreenshot("phoneInfoPage",phoneNumbers);
     }
 
 

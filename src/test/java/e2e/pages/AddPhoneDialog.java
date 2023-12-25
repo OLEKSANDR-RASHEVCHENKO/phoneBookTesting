@@ -16,10 +16,15 @@ public class AddPhoneDialog extends PhoneInfoPage{
     @FindBy(xpath = "//*[@class='btn btn-primary']")
     WebElement saveButton;
 
-    public void waitForLoading(){
+    public void waitForOpen(){
         getWait().forVisibility(countryCodeDropdown);
         getWait().forVisibility(phoneNumberInput);
         getWait().forVisibility(saveButton);
+    }
+    public void waitForClose(){
+        getWait().forInvisibility(countryCodeDropdown);
+        getWait().forInvisibility(phoneNumberInput);
+        getWait().forInvisibility(saveButton);
     }
 
     public void selectCountryCode(String country){
@@ -31,4 +36,8 @@ public class AddPhoneDialog extends PhoneInfoPage{
     public void clickOnSaveButton(){
         saveButton.click();
     }
+    public void takeScreenshotAddPhoneNumber(){
+        takeAndCompareScreenshot("phoneNumber",phoneNumberInput);
+    }
+
 }
