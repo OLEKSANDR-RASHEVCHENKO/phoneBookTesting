@@ -123,7 +123,6 @@ public class UserCanWorkWithAddressTest extends TestBase {
 
         //remove Address
         addressesInfoPage.deleteAddress();
-        addressesInfoPage.waitForLoading();
 
     }
 
