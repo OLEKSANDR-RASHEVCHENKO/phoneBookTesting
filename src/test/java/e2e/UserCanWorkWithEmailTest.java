@@ -15,6 +15,7 @@ public class UserCanWorkWithEmailTest extends TestBase {
     EmailInfoPage emailInfoPage;
     AddEmailDialog addEmailDialog;
     EditEmailDialog editEmailDialog;
+    DeleteContactDialog deleteContactDialog;
 
     Faker faker = new Faker();
 
@@ -104,6 +105,28 @@ public class UserCanWorkWithEmailTest extends TestBase {
         //delete email
         emailInfoPage.deleteEmail();
 
+        // open contacts page
+        contactInfoPage.openContactsPage();
+        contactsPage.waitForLoading();
 
+        // filter by contact name (firstName)
+        contactsPage.filterByContact(firsName);
+        contactsPage.waitForLoading();
+
+        //check rows count after filter by contact name
+        int actualContactCountRow = contactsPage.getContactCount();
+        Assert.assertEquals(actualContactCountRow, 1, "Contact count row after filter should be 1");
+
+        // delete contact
+        deleteContactDialog = contactsPage.openDeleteDialog();
+        deleteContactDialog.waitForOpen();
+        deleteContactDialog.setConfirmDeletion();
+        deleteContactDialog.removeContact();
+
+        // check that deleted contact was deleted
+        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(), "No result message is not visible");
+        contactsPage.takeScreenshotNoResultMessage();
     }
+
+
 }
