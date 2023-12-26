@@ -14,10 +14,7 @@ public class UserCanWorkWithEmailTest extends TestBase {
     ContactInfoPage contactInfoPage;
     EmailInfoPage emailInfoPage;
     AddEmailDialog addEmailDialog;
-
     EditEmailDialog editEmailDialog;
-
-    DeleteEmail deleteEmail;
 
     Faker faker = new Faker();
 
