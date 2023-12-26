@@ -49,20 +49,22 @@ public class UserCanWorkWithEmailTest extends TestBase {
 
         //logged as user
         loginPage = new LoginPage(app.driver);
-        //loginPage.waitForLoading();
+        loginPage.waitForLoading();
         loginPage.login(email, password);
+
         //check that user was logged
         contactsPage = new ContactsPage(app.driver);
-        //contactsPage.waitForLoading();
+        contactsPage.waitForLoading();
         contactsPage.selectLanguage(language);
         String actualLanguage = contactsPage.getLanguage();
         Assert.assertEquals(actualLanguage, language);
-        //add contact
 
+        //add contact
         addContactDialog = contactsPage.openAddContactDialog();
         addContactDialog.waitForOpen();
         addContactDialog.setAddContactForm(firsName, lastName, description);
         addContactDialog.saveContact();
+
         //check  create contact
         contactInfoPage = new ContactInfoPage(app.driver);
         contactInfoPage.waitForLoading();
@@ -84,7 +86,6 @@ public class UserCanWorkWithEmailTest extends TestBase {
         checkEmailData(emailInfoPage, expectedEmail);
 
         // edit email dialog
-
         editEmailDialog = emailInfoPage.openEditEmailDialog();
         editEmailDialog.waitForOpen();
         editEmailDialog.setEditEmail(editExpectedEmail);
@@ -101,7 +102,6 @@ public class UserCanWorkWithEmailTest extends TestBase {
 
 
         //delete email
-
         emailInfoPage.deleteEmail();
 
 
