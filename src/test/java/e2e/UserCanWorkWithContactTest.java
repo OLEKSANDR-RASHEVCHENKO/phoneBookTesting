@@ -27,6 +27,7 @@ public class UserCanWorkWithContactTest extends TestBase{
         Assert.assertEquals(actualDescription, description, actualDescription + "is not equal" + description);
     }
 
+
     @Test(dataProvider = "newContact", dataProviderClass = DataProviders.class) //говорим тесту к какому методу обращаться и где он лежит в каком классе
     public void userCanWorkWithContactTest(String firstName, String lastName, String description) throws InterruptedException {
         String email = "newtest@gmail.com";

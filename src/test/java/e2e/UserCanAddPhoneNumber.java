@@ -1,7 +1,6 @@
 package e2e;
 
 import com.github.javafaker.Faker;
-import e2e.TestBase;
 import e2e.enums.ContactInfoTabs;
 import e2e.pages.*;
 import org.testng.Assert;
@@ -18,14 +17,13 @@ public class UserCanAddPhoneNumber extends TestBase {
 
     Faker faker = new Faker();
 
-    private void checkContactData(ContactInfoPage page, String firstName, String lastName, String description) {
-        contactInfoPage = new ContactInfoPage(app.driver);
-        String actualFirstName = page.getFirstName();
-        String actualLastName = page.getLastName();
-        String actualDescription = page.getDescription();
-        Assert.assertEquals(actualFirstName, firstName, actualFirstName + "is not equal" + firstName); // актуальное с ожидаемым
-        Assert.assertEquals(actualLastName, lastName, actualLastName + "is not equal" + lastName); // актуальное с ожидаемым
-        Assert.assertEquals(actualDescription, description, actualDescription + "is not equal" + description);
+    private  void checkPhoneData(PhonesPage page, String country, String phoneNumber){
+        phonesPage = new PhonesPage(app.driver);
+        String actualCountry = page.getCountry();
+        String actualPhoneNumber = page.getPhoneNumber();
+        Assert.assertEquals(actualCountry, country, actualCountry + "is not equal" + country); // актуальное с ожидаемым
+        Assert.assertEquals(actualPhoneNumber, phoneNumber, actualPhoneNumber + "is not equal" + phoneNumber); // актуальное с ожидаемым
+
     }
 
     @Test
@@ -59,14 +57,28 @@ public class UserCanAddPhoneNumber extends TestBase {
         addContactDialog.setAddContactForm(firstName, lastName, description);
         addContactDialog.saveContact();
 
-        //
+        // open Phone Tab
         contactInfoPage = new ContactInfoPage(app.driver);
         contactInfoPage.waitForLoading();
         contactInfoPage.openTab(ContactInfoTabs.PHONES);
 
-        //phone page
+        //phone page/ click add phone number
         phonesPage = new PhonesPage(app.driver);
         phonesPage.waitForLoading();
+        phonesPage.openPhoneButton();
+
+        //fill addPhoneDialog
+        addPhoneDialog = new AddPhoneDialog(app.driver);
+        addPhoneDialog.waitForOpen();
+        addPhoneDialog.selectCountryCode(addPhoneDialog.getCountry());
+        addPhoneDialog.setPhoneNumberInput("111111111");
+        addPhoneDialog.savePhone();
+
+        //// check created phone
+        phonesPage = new PhonesPage(app.driver);
+        phonesPage.waitForLoading();
+        checkPhoneData(phonesPage, phonesPage.getCountry(), phonesPage.getPhoneNumber() );
+
 
     }
 

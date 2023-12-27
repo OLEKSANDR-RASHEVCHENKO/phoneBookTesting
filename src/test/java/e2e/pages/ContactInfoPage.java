@@ -7,8 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import java.nio.file.WatchEvent;
-
 public class ContactInfoPage extends ContactsPage{
     public ContactInfoPage(WebDriver driver) {
         super(driver);

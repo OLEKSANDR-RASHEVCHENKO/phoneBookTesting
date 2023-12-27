@@ -26,14 +26,16 @@ public class PhonesPage extends ContactInfoPage {
         getWait().forVisibility(addPhoneButton);
 
     }
+    public void openPhoneButton() throws InterruptedException {
+        addPhoneButton.click();
+        getWait().forVisibility(addPhoneButton);}
 
-    public String getCountryCode() {
+    public String getCountry() {
         return countryCodeField.getText();
     }
-
-    public String getPhoneNumber() {
+    public  String getPhoneNumber(){
         return phoneNumberField.getText();
-
     }
+
 }
 

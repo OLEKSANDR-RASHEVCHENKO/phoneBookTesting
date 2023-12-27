@@ -1,5 +1,6 @@
 package e2e.pages;
 
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +21,7 @@ public class AddPhoneDialog extends PhonesPage {
     @FindBy(xpath = "//*[@id='selected-cc']")
     WebElement phoneNumberInput;
 
-    @FindBy(xpath = "//*[@type='submit']")
+    @FindBy(xpath = "//*[@class='btn btn-primary']")
     WebElement saveButton;
 
     public void waitForOpen() {
@@ -43,9 +44,15 @@ public class AddPhoneDialog extends PhonesPage {
         setInput(phoneNumberInput, phoneNumber);
     }
 
-    public void savePhone() throws InterruptedException {
-        saveButton.click();
-        getWait().forInvisibility(saveButton);
-    }
+    public void savePhone() {
+       try {
+           getWait().forClickable(saveButton);
+           saveButton.click();
+           getWait().forInvisibility(countryCodeLabel);
+       } catch (StaleElementReferenceException e) { //отображается старый элемент
+            e.printStackTrace();
+       }
 
+
+    }
 }
