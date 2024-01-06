@@ -91,4 +91,5 @@ public class UserCanWorkWithAddressTest extends TestBase {
         addAddressDialog.addressAddSaveButtonClick();
         checkAddressData(addressesInfoPage, country, city, postCode, street);
     }
+
 }
