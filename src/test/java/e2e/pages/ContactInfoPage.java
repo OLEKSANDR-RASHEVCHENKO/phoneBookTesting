@@ -48,6 +48,7 @@ public class ContactInfoPage extends ContactsPage{
     public  String getDescription(){
         return descriptionField.getText();
     }
+
     // метод для редактирования
     public EditContactForm openEditContactForm(){
         editButton.click();

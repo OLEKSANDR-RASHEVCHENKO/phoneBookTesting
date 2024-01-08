@@ -74,6 +74,7 @@ public class ContactsPage extends BasePage {
         return new AddContactDialog(driver); // после клика мы выводим новый экземпляр класса AddContact Dialog
     }
 
+    //
     public void selectLanguage(String language){
         getSelect(languageDropdown).selectByVisibleText(language);
     }
@@ -81,6 +82,7 @@ public class ContactsPage extends BasePage {
     public String getLanguage(){
         return getSelect(languageDropdown).getFirstSelectedOption().getText();
     }
+
     // метод удаления контакта
     public DeleteContactDialog openDeleteDialog(){
         getWait().forClickable(deleteButton);

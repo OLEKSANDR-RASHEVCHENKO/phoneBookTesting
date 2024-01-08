@@ -13,6 +13,8 @@ public class UserCanAddPhoneNumber extends TestBase {
     ContactInfoPage contactInfoPage;
     PhonesPage phonesPage;
     AddPhoneDialog addPhoneDialog;
+    EditPhoneForm editPhoneForm;
+    DeleteContactDialog deleteContactDialog;
 
 
     Faker faker = new Faker();
@@ -31,6 +33,7 @@ public class UserCanAddPhoneNumber extends TestBase {
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
         String language = "English";
+        String country = "Albania";
 
         String firstName = faker.internet().uuid(); // faker генерирует рандомные данные через генератор uuid
         String lastName = faker.internet().uuid();
@@ -62,9 +65,9 @@ public class UserCanAddPhoneNumber extends TestBase {
         contactInfoPage.waitForLoading();
         contactInfoPage.openTab(ContactInfoTabs.PHONES);
 
-        //phone page/ click add phone number
+        // add phone number
         phonesPage = new PhonesPage(app.driver);
-        phonesPage.waitForLoading();
+        //phonesPage.waitForLoading();
         phonesPage.openPhoneButton();
 
         //fill addPhoneDialog
@@ -74,10 +77,44 @@ public class UserCanAddPhoneNumber extends TestBase {
         addPhoneDialog.setPhoneNumberInput("111111111");
         addPhoneDialog.savePhone();
 
-        //// check created phone
+
+        // check created phone
         phonesPage = new PhonesPage(app.driver);
-        phonesPage.waitForLoading();
+        //phonesPage.waitForLoading();
         checkPhoneData(phonesPage, phonesPage.getCountry(), phonesPage.getPhoneNumber() );
+
+
+        //
+        editPhoneForm = phonesPage.openEditPhoneForm();
+        editPhoneForm.waitForOpen();
+        editPhoneForm.selectCountryCode(editPhoneForm.getCountry());
+        editPhoneForm.setPhoneNumberInput("22222222222");
+        editPhoneForm.saveChange();
+        phonesPage.waitForLoading();
+
+        //
+        phonesPage.deletePhone();
+
+        // open contact page
+        contactInfoPage.openContactsPage();
+        contactsPage.waitForLoading();
+
+        // filter by contact name
+        contactsPage.filterByContact(firstName);
+        contactsPage.waitForLoading(); //дождаться момента по фильтрации
+
+        // check rows count after filter by contact name
+        int actualContactCountRow = contactsPage.getContactCount();
+        Assert.assertEquals(actualContactCountRow, 1, "Contact count row after filter should be 1");
+
+        // check that contact was deleted
+        deleteContactDialog = contactsPage.openDeleteDialog();
+        deleteContactDialog.waitForOpen();
+        deleteContactDialog.setConfirmDeletion();
+        deleteContactDialog.removeContact();
+
+        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(), " No result message is not visible");
+        contactsPage.takeScreenshotNoResultMessage();
 
 
     }
