@@ -41,7 +41,7 @@ public class UserCanWorkWithEmailTest extends TestBase {
         String language = "English";
         String expectedEmail = "newhrest@gmail.com";
 
-        String editExpectedEmail = "new.manolov@gmail.com";
+        String editExpectedEmail = "new.pislaru@gmail.com";
 
 
         String firsName = faker.internet().uuid();
