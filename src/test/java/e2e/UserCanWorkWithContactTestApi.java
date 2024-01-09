@@ -6,7 +6,7 @@ import e2e.utils.DataProviders;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class UserCanWorkWithContactTest extends TestBase {
+public class UserCanWorkWithContactTestApi extends TestBase {
     LoginPage loginPage;
     ContactsPage contactsPage;
     AddContactDialog addContactDialog;
@@ -15,13 +15,13 @@ public class UserCanWorkWithContactTest extends TestBase {
     DeleteContactDialog deleteContactDialog;
     Faker faker = new Faker();
 
-    private void checkContactData(ContactInfoPage page, String firstName, String lastName, String description){
+    private void checkContactData(ContactInfoPage page, String firstName, String lastName, String description) {
         String actualFirstName = page.getFirstName();
         String actualLastName = page.getLastName();
         String actualDescription = page.getDescription();
-        Assert.assertEquals(actualFirstName,firstName, actualFirstName + " is not equal " + firstName);
-        Assert.assertEquals(actualLastName,lastName, actualLastName + " is not equal " + lastName);
-        Assert.assertEquals(actualDescription,description, actualDescription + " is not equal " + description);
+        Assert.assertEquals(actualFirstName, firstName, actualFirstName + " is not equal " + firstName);
+        Assert.assertEquals(actualLastName, lastName, actualLastName + " is not equal " + lastName);
+        Assert.assertEquals(actualDescription, description, actualDescription + " is not equal " + description);
     }
 
     @Test(dataProvider = "newContact", dataProviderClass = DataProviders.class)
@@ -52,13 +52,13 @@ public class UserCanWorkWithContactTest extends TestBase {
         // add contact
         addContactDialog = contactsPage.openAddContactDialog();
         addContactDialog.waitForOpen();
-        addContactDialog.setAddContactForm(firstName,lastName,description);
+        addContactDialog.setAddContactForm(firstName, lastName, description);
         addContactDialog.saveContact();
 
         // check created contact
         contactInfoPage = new ContactInfoPage(app.driver);
         contactInfoPage.waitForLoading();
-        checkContactData(contactInfoPage, firstName,lastName,description);
+        checkContactData(contactInfoPage, firstName, lastName, description);
         // edit contact
         editContactForm = contactInfoPage.openEditContactForm();
         editContactForm.waitForOpen();
@@ -69,7 +69,7 @@ public class UserCanWorkWithContactTest extends TestBase {
 
         //check edited contact
         contactInfoPage.waitForLoading();
-        checkContactData(contactInfoPage, editFirstName, editLastName,editDescription);
+        checkContactData(contactInfoPage, editFirstName, editLastName, editDescription);
 
         //open contacts page
         contactInfoPage.openContactsPage();
@@ -86,7 +86,7 @@ public class UserCanWorkWithContactTest extends TestBase {
         deleteContactDialog.setConfirmDeletion();
         deleteContactDialog.removeContact();
         // check that contact was deleted
-        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(),"No result message is not visible");
+        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(), "No result message is not visible");
         contactsPage.takeScreenshotNoResultMessage();
     }
 }

@@ -8,7 +8,7 @@
                     <include name="userCannotLogin"/>
                 </methods>
             </class>
-            <class name="e2e.UserCanWorkWithContactTest"/>
+            <class name="e2e.UserCanWorkWithContactTestApi"/>
         </classes>
     </test>
 </suite>
