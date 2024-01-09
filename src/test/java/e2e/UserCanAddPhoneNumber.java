@@ -1,7 +1,6 @@
 package e2e;
 
 import com.github.javafaker.Faker;
-import e2e.TestBase;
 import e2e.enums.ContactInfoTabs;
 import e2e.pages.*;
 import org.testng.Assert;
@@ -14,25 +13,25 @@ public class UserCanAddPhoneNumber extends TestBase {
     ContactInfoPage contactInfoPage;
     PhonesPage phonesPage;
     AddPhoneDialog addPhoneDialog;
-
+    EditPhoneForm editPhoneForm;
+    DeleteContactDialog deleteContactDialog;
 
     Faker faker = new Faker();
 
-    private void checkContactData(ContactInfoPage page, String firstName, String lastName, String description) {
-        contactInfoPage = new ContactInfoPage(app.driver);
-        String actualFirstName = page.getFirstName();
-        String actualLastName = page.getLastName();
-        String actualDescription = page.getDescription();
-        Assert.assertEquals(actualFirstName, firstName, actualFirstName + "is not equal" + firstName); // актуальное с ожидаемым
-        Assert.assertEquals(actualLastName, lastName, actualLastName + "is not equal" + lastName); // актуальное с ожидаемым
-        Assert.assertEquals(actualDescription, description, actualDescription + "is not equal" + description);
+    private  void checkPhoneData(PhonesPage page, String country, String phoneNumber){
+        phonesPage = new PhonesPage(app.driver);
+        String actualCountry = page.getCountry();
+        String actualPhoneNumber = page.getPhoneNumber();
+        Assert.assertEquals(actualCountry, country, actualCountry + "is not equal" + country); // актуальное с ожидаемым
+        Assert.assertEquals(actualPhoneNumber, phoneNumber, actualPhoneNumber + "is not equal" + phoneNumber); // актуальное с ожидаемым
     }
 
-    @Test(enabled = false)
+    @Test
     public void userCanAddPhoneNumber()throws InterruptedException {
         String email = "newtest@gmail.com";
         String password = "newtest@gmail.com";
         String language = "English";
+        String country = "Albania";
 
         String firstName = faker.internet().uuid(); // faker генерирует рандомные данные через генератор uuid
         String lastName = faker.internet().uuid();
@@ -59,14 +58,58 @@ public class UserCanAddPhoneNumber extends TestBase {
         addContactDialog.setAddContactForm(firstName, lastName, description);
         addContactDialog.saveContact();
 
-        //
+        // open Phone Tab
         contactInfoPage = new ContactInfoPage(app.driver);
         contactInfoPage.waitForLoading();
         contactInfoPage.openTab(ContactInfoTabs.PHONES);
 
-        //phone page
+        // add phone number
         phonesPage = new PhonesPage(app.driver);
+        //phonesPage.waitForLoading();
+        phonesPage.openPhoneButton();
+
+        //fill addPhoneDialog
+        addPhoneDialog = new AddPhoneDialog(app.driver);
+        addPhoneDialog.waitForOpen();
+        addPhoneDialog.selectCountryCode(addPhoneDialog.getCountry());
+        addPhoneDialog.setPhoneNumberInput("111111111");
+        addPhoneDialog.savePhone();
+
+        // check created phone
+        phonesPage = new PhonesPage(app.driver);
+        checkPhoneData(phonesPage, phonesPage.getCountry(), phonesPage.getPhoneNumber() );
+
+        // edit phone number
+        editPhoneForm = phonesPage.openEditPhoneForm();
+        editPhoneForm.waitForOpen();
+        editPhoneForm.selectCountryCode(editPhoneForm.getCountry());
+        editPhoneForm.setPhoneNumberInput("22222222222");
+        editPhoneForm.saveChange();
         phonesPage.waitForLoading();
+
+        //delete phone
+        phonesPage.deletePhone();
+
+        // open contact page
+        contactInfoPage.openContactsPage();
+        contactsPage.waitForLoading();
+
+        // filter by contact name
+        contactsPage.filterByContact(firstName);
+        contactsPage.waitForLoading(); //дождаться момента по фильтрации
+
+        // check rows count after filter by contact name
+        int actualContactCountRow = contactsPage.getContactCount();
+        Assert.assertEquals(actualContactCountRow, 1, "Contact count row after filter should be 1");
+
+        // check that contact was deleted
+        deleteContactDialog = contactsPage.openDeleteDialog();
+        deleteContactDialog.waitForOpen();
+        deleteContactDialog.setConfirmDeletion();
+        deleteContactDialog.removeContact();
+
+        Assert.assertTrue(contactsPage.isNoResultMessageDisplayed(), " No result message is not visible");
+        contactsPage.takeScreenshotNoResultMessage();
 
 
     }

@@ -7,8 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import java.nio.file.WatchEvent;
-
 public class ContactInfoPage extends ContactsPage{
     public ContactInfoPage(WebDriver driver) {
         super(driver);
@@ -35,7 +33,7 @@ public class ContactInfoPage extends ContactsPage{
 
 //метод на все табы через энамы, смотреть по локаторамюю отличаются только цифрой-динамический
     public void openTab(ContactInfoTabs tab){
-        driver.findElement(By.xpath("//*[@id='ngb-nav-"+tab.value+"'")).click();
+        driver.findElement(By.xpath("//*[@ng-reflect-_id='"+tab.value+"']")).click();
 
 }
     // get метод, кот проверяет, создался/сохранился ли новый контакт, сохранились ли валидные данные - выводит содержимое Field
@@ -50,6 +48,7 @@ public class ContactInfoPage extends ContactsPage{
     public  String getDescription(){
         return descriptionField.getText();
     }
+
     // метод для редактирования
     public EditContactForm openEditContactForm(){
         editButton.click();
