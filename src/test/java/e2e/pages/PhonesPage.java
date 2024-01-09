@@ -31,37 +31,21 @@ public class PhonesPage extends ContactInfoPage {
     @FindBy(xpath = "//*[@class='dropdown-item btn-phone-remove']")
     WebElement removePhoneButton;
 
-
     public void waitForLoading() {
         getWait().forVisibility(searchInput);
         getWait().forVisibility(addPhoneButton);
-
     }
     public void openPhoneButton() throws InterruptedException {
         addPhoneButton.click();
         getWait().forVisibility(addPhoneButton);}
-
     public String getCountry() {
         return countryCodeField.getText();
     }
+
     public  String getPhoneNumber(){
         return phoneNumberField.getText();
     }
-//    public void selectEditButton(String edit){
-//        getSelect(editDeleteDropdown).selectByVisibleText(edit);
-//    }
-//    public String getEditButton() {
-//        return getSelect(editDeleteDropdown).getFirstSelectedOption().getText();
-//    }
 
-    public void openEditDeleteDropdown() {
-        dropdown.click();
-        getWait().forVisibility(dropdown);}
-
-    public void clickEditButton()throws InterruptedException{
-        editButton.click();
-        getWait().forVisibility(editButton);
-    }
     public EditPhoneForm openEditPhoneForm(){
         dropdown.click();
         getWait().forVisibility(editButton);

@@ -16,7 +16,6 @@ public class UserCanAddPhoneNumber extends TestBase {
     EditPhoneForm editPhoneForm;
     DeleteContactDialog deleteContactDialog;
 
-
     Faker faker = new Faker();
 
     private  void checkPhoneData(PhonesPage page, String country, String phoneNumber){
@@ -25,7 +24,6 @@ public class UserCanAddPhoneNumber extends TestBase {
         String actualPhoneNumber = page.getPhoneNumber();
         Assert.assertEquals(actualCountry, country, actualCountry + "is not equal" + country); // актуальное с ожидаемым
         Assert.assertEquals(actualPhoneNumber, phoneNumber, actualPhoneNumber + "is not equal" + phoneNumber); // актуальное с ожидаемым
-
     }
 
     @Test
@@ -77,14 +75,11 @@ public class UserCanAddPhoneNumber extends TestBase {
         addPhoneDialog.setPhoneNumberInput("111111111");
         addPhoneDialog.savePhone();
 
-
         // check created phone
         phonesPage = new PhonesPage(app.driver);
-        //phonesPage.waitForLoading();
         checkPhoneData(phonesPage, phonesPage.getCountry(), phonesPage.getPhoneNumber() );
 
-
-        //
+        // edit phone number
         editPhoneForm = phonesPage.openEditPhoneForm();
         editPhoneForm.waitForOpen();
         editPhoneForm.selectCountryCode(editPhoneForm.getCountry());
@@ -92,7 +87,7 @@ public class UserCanAddPhoneNumber extends TestBase {
         editPhoneForm.saveChange();
         phonesPage.waitForLoading();
 
-        //
+        //delete phone
         phonesPage.deletePhone();
 
         // open contact page
