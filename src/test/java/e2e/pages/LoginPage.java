@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.IOException;
+
 public class LoginPage extends BasePage{
     //import constructor!!!
     public LoginPage(WebDriver driver) {
@@ -25,13 +27,13 @@ public class LoginPage extends BasePage{
         getWait().forVisibility(passwordInput);
         getWait().forVisibility(loginButton);
     }
-
+    public void takeLoginPageScreenshot(String actualScreenshotName){
+        takeAndCompareScreenshot(actualScreenshotName, null);
+    }
     //Describe methods
     public void login(String email, String password){
         emailInput.sendKeys(email);
         passwordInput.sendKeys(password);
         loginButton.click();
     }
-
-
 }
