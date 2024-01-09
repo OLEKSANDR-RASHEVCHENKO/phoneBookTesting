@@ -6,7 +6,7 @@ import e2e.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class UserCanAddPhoneNumber extends TestBase {
+public class UserCanWorkWithPhoneTest extends TestBase {
     LoginPage loginPage;// пуустые переменные, туда будем записывать новые экземпляры класса
     ContactsPage contactsPage;
     AddContactDialog addContactDialog;
