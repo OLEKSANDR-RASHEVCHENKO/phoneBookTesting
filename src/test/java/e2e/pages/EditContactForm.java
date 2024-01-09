@@ -45,7 +45,5 @@ public class EditContactForm extends ContactInfoPage {
     public void saveChanges() {
         saveButton.click();
         getWait().forInvisibility(saveButton);
-
-
     }
 }

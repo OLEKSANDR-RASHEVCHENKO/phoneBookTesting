@@ -15,6 +15,9 @@ public class UserCanWorkWithAddressTest extends TestBase {
     DeleteContactDialog deleteContactDialog;
     AddressesInfoPage addressesInfoPage;
     AddAddressDialog addAddressDialog;
+    EditAddressDialog editAddressDialog;
+    DeleteAddress deleteAddress;
+
     Faker faker = new Faker();
 
     private void checkContactData(ContactInfoPage page, String firsName, String lastName, String description) {
@@ -48,6 +51,12 @@ public class UserCanWorkWithAddressTest extends TestBase {
         String postCode = "19455";
         String street = "Dresdner st 8";
 
+        String editCountry = "Angola";
+        String editCity = "Buraban";
+        String editPostCode = "1990";
+        String editStreet = "Gdetotam 10";
+
+
         String firsName = faker.internet().uuid();
         String lastName = faker.internet().uuid();
         String description = faker.lorem().sentence();
@@ -66,16 +75,15 @@ public class UserCanWorkWithAddressTest extends TestBase {
         contactsPage.selectLanguage(language);
         String actualLanguage = contactsPage.getLanguage();
         Assert.assertEquals(actualLanguage, language);
-
         //add contact
+
         addContactDialog = contactsPage.openAddContactDialog();
         //addContactDialog.waitForOpen();
         addContactDialog.setAddContactForm(firsName, lastName, description);
         addContactDialog.saveContact();
-
         //check  create contact
         contactInfoPage = new ContactInfoPage(app.driver);
-        //contactInfoPage.waitForLoading();
+        contactInfoPage.waitForLoading();
         checkContactData(contactInfoPage, firsName, lastName, description);
 
         //addAddress
@@ -89,7 +97,31 @@ public class UserCanWorkWithAddressTest extends TestBase {
         addAddressDialog.setPostCode(postCode);
         addAddressDialog.setStreet(street);
         addAddressDialog.addressAddSaveButtonClick();
-        checkAddressData(addressesInfoPage, country, city, postCode, street);
-    }
 
+        //check created Addresses
+        addressesInfoPage = new AddressesInfoPage(app.driver);
+        addressesInfoPage.waitForLoading();
+        checkAddressData(addressesInfoPage, country, city, postCode, street);
+
+        //edit Addresses
+        editAddressDialog = addressesInfoPage.openEditAddressDialog();
+        editAddressDialog.waitForOpen();
+        editAddressDialog.selectCountry(editCountry);
+        editAddressDialog.setCityInput(editCity);
+        editAddressDialog.setPostCodeInput(editPostCode);
+        editAddressDialog.setStreetInput(editStreet);
+        editAddressDialog.saveChanges();
+        addressesInfoPage.waitForLoading();
+
+        //check  edited Addresses
+        checkAddressData(addressesInfoPage, editCountry, editCity, editPostCode, editStreet);
+        addressesInfoPage.waitForLoading();
+
+        //check search form
+        addressesInfoPage.filterByPostCode(editPostCode);
+        addressesInfoPage.waitForLoading();
+
+        //remove Address
+        addressesInfoPage.deleteAddress();
+    }
 }

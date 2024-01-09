@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ContactsPage extends BasePage {
     public ContactsPage(WebDriver driver) {
@@ -80,11 +81,12 @@ public class ContactsPage extends BasePage {
         return isElementDisplayed(noResultsMessage);
     }
 
-    public  void takeScreeshotHeader(){
+    public  void takeScreenShotHeader(){
         takeAndCompareScreenshot("header", header);
     }
 
-    public void  takeScreenShotNoResultMessage(){
+    public void  takeScreenShot
+    NoResultMessage(){
         takeAndCompareScreenshot("contactPageNoResultMessage", noResultsMessage);
     }
 
@@ -95,4 +97,16 @@ public class ContactsPage extends BasePage {
     public String getLanguage(){
         return getSelect(languageDropdown).getFirstSelectedOption().getText();
     }
+
+    WebElement header;
+
+    public boolean confirmlogin() {
+        try {
+            header.isDisplayed();
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
 }
+

@@ -12,6 +12,10 @@ public class Locators {
     WebElement elementVariantNameFive = driver.findElement(By.xpath("//*[@routerlink='/user/forgot-password']"));
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     // id
     WebElement elementVariantIdOne = driver.findElement(By.xpath("//*[@id='login-form']//*[@id ='defaultRegisterFormEmail']"));
     WebElement elementVariantIdTwo = driver.findElement(By.cssSelector("[id='defaultRegisterFormEmail']"));
@@ -29,6 +33,10 @@ public class Locators {
     WebElement elementVariantClassSeven = driver.findElement(By.cssSelector("[class = 'btn-link'][href='/user/forgot-password']"));
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     // by name
 
     WebElement elementVariantByNameOne = driver.findElement(By.xpath("//*[@name='password']"));
