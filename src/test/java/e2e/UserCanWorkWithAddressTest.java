@@ -41,7 +41,7 @@ public class UserCanWorkWithAddressTest extends TestBase {
     }
 
     @Test
-    public void userCanWorkWithContactTest() throws InterruptedException {
+    public void userCanWorkWithContactTest()  {
         String email = "newTest@gmail.com";
         String password = "newtest@gmail.com";
         String language = "English";
@@ -86,7 +86,7 @@ public class UserCanWorkWithAddressTest extends TestBase {
 
         //addAddress
         addressesInfoPage = new AddressesInfoPage(app.driver);
-        addressesInfoPage.openTab(ContactInfoTabs.ADRESSES);
+        addressesInfoPage.openTab(ContactInfoTabs.ADDRESSES);
         addressesInfoPage.clickOnAddressButton();
         addressesInfoPage.waitForLoading();
         addAddressDialog = new AddAddressDialog(app.driver);
