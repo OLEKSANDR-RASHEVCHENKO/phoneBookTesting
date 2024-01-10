@@ -95,4 +95,7 @@ public class ContactsPage extends BasePage {
     public String getLanguage(){
         return getSelect(languageDropdown).getFirstSelectedOption().getText();
     }
+
+    public void takeScreenshotNoResultMessage() {
+    }
 }
