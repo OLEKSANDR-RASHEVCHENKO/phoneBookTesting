@@ -28,4 +28,52 @@ public class ApiBase {
         response.then().assertThat().statusCode(code);
         return response;
     }
+    protected Response getRequestWhitParam(String endpoint,int code,String paramName,int id){
+        Response response = RestAssured.given()
+                .spec(spec)
+                .when()
+                .pathParam(paramName,id)
+                .log().all()
+                .get(endpoint)
+                .then().log().all()
+                .extract().response();
+        response.then().assertThat().statusCode(code);
+        return response;
+    }
+    protected Response postRequest(String endpoint,int code,Object body){
+        Response response = RestAssured.given()
+                .spec(spec)
+                .body(body)
+                .when()
+                .log().all()
+                .post(endpoint)
+                .then().log().all()
+                .extract().response();
+        response.then().assertThat().statusCode(code);
+        return response;
+    }
+    protected Response putRequest(String endpoint,int code,Object body){
+        Response response = RestAssured.given()
+                .spec(spec)
+                .body(body)
+                .when()
+                .log().all()
+                .put(endpoint)
+                .then().log().all()
+                .extract().response();
+        response.then().assertThat().statusCode(code);
+        return response;
+    }
+    protected Response deleteRequest(String endpoint,int code,int id){
+        Response response = RestAssured.given()
+                .spec(spec)
+                .when()
+                .pathParam("id",id)
+                .log().all()
+                .delete(endpoint)
+                .then().log().all()
+                .extract().response();
+        response.then().assertThat().statusCode(code);
+        return response;
+    }
 }
