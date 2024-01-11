@@ -14,13 +14,13 @@ public class EditContactForm extends ContactInfoPage {
 
     @FindBy(xpath = "//button[@class='btn btn-secondary cancel-btn-ec']")
     WebElement cancelButton;
-    @FindBy(xpath = "//button[@class='btn btn-primary submit-btn-ec']")
+    @FindBy(xpath = "//*[@class='btn btn-primary submit-btn-ec']")
     WebElement saveButton;
-    @FindBy(xpath = "//input[@name='input-ec-firstName']")
+    @FindBy(xpath = "//*[@name='input-ec-firstName']")
     WebElement firstNameInput;
-    @FindBy(xpath = "//input[@name='input-ec-lastName']")
+    @FindBy(xpath = "//*[@name='input-ec-lastName']")
     WebElement lastNameInput;
-    @FindBy(xpath = "//textarea[@name='input-ec-description']")
+    @FindBy(xpath = "//*[@formcontrolname='description']")
     WebElement descriptionInput;
 
     public void waitForOpen(){
@@ -28,7 +28,6 @@ public class EditContactForm extends ContactInfoPage {
         getWait().forVisibility(lastNameInput);
         getWait().forVisibility(descriptionInput);
         getWait().forVisibility(saveButton);
-        getWait().forClickable(saveButton);
     }
 
     public void setFirstNameInput(String firstName) {

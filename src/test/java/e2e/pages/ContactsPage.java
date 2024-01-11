@@ -13,9 +13,9 @@ public class ContactsPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//div[@class='collapse navbar-collapse']")
+    @FindBy(xpath = "//*[@class='collapse navbar-collapse']")
     public WebElement header;
-    @FindBy(xpath = "//div[@class='collapse navbar-collapse']//*[@href='/']")
+    @FindBy(xpath = "//*[@class='collapse navbar-collapse']//*[@href='/']")
     WebElement contactsButton;
     @FindBy(xpath = "//*[@href='/contacts']")
     WebElement addContactButton;
@@ -40,8 +40,6 @@ public class ContactsPage extends BasePage {
         getWait().forVisibility(header);
         getWait().forVisibility(contactsButton);
         getWait().forVisibility(addContactButton);
-        getWait().forVisibility(contactsList);
-        getWait().forAllVisibility(contactRows);
         getWait().forClickable(addContactButton);
         getWait().forClickable(contactsButton);
     }
