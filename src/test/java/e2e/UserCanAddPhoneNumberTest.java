@@ -46,6 +46,7 @@ public class UserCanAddPhoneNumberTest extends TestBase {
         loginPage.waitForLoading();
         loginPage.login(email, password);
 
+
         // check that user was logged
         contactsPage = new ContactsPage(app.driver);
         contactsPage.waitForLoading();
