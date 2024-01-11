@@ -43,12 +43,12 @@ public class ContactApi extends ApiBase {
         putRequest(endpoint,code,body);
     }
     public Response deleteContact(int code,int id){
-        String endpoint = "/api/contact{id}";
+        String endpoint = "/api/contact/{id}";
         response = deleteRequest(endpoint,code,id);
         return response;
     }
     public Response getContact(int code,int id){
-        String endpoint = "/api/contact{id}";
+        String endpoint = "/api/contact/{id}";
         response = getRequestWhitParam(endpoint,code,"id",id);
         return response;
     }
