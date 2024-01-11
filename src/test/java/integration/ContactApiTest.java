@@ -37,6 +37,8 @@ public class ContactApiTest {
         contactApi.editContact(200, contactId);
         checkContactData(contactId,contactApi.rndDataForEditContact(contactId));
 
+        // delete Contact
+
         contactApi.deleteContact(200, contactId);
         JsonPath actualDeletedObject = contactApi.getContact(500, contactId).jsonPath();
         String errorMessage = actualDeletedObject.getString("message");
